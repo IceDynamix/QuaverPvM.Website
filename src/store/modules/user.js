@@ -2,7 +2,6 @@ import axios from "axios";
 
 const userStore = {
     namespaced: true,
-    debug: true,
     state: {
         entityId: null,
     },
@@ -10,6 +9,8 @@ const userStore = {
         async login({ commit }) {
             try {
                 const { data: entity } = await axios.get("me");
+                if (!entity) return; // Not logged in
+
                 const id = entity._id;
                 commit("setLogin", { id });
                 commit("entities/setEntities", { entities: [entity] }, { root: true })

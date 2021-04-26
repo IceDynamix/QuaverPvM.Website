@@ -2,7 +2,6 @@ import axios from "axios";
 
 const entitiesStore = {
     namespaced: true,
-    debug: true,
     state: {
         entities: {},
     },
@@ -19,8 +18,9 @@ const entitiesStore = {
     },
     mutations: {
         setEntities(state, { entities }) {
-            for (const entity of entities)
-                state.entities[entity._id] = entity;
+            let newEntities = {};
+            for (const entity of entities) newEntities[entity.id] = entity;
+            state.entities = { ...state.entities, ...newEntities };
         },
     },
 };
