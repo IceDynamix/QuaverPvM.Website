@@ -7,15 +7,20 @@ const userStore = {
         entityId: null,
     },
     actions: {
-        async login({ dispatch, commit }) {
+        async login({ commit }) {
             try {
                 const { data: entity } = await axios.get("me");
                 const id = entity._id;
                 commit("setLogin", { id });
-                dispatch("entities/fetch", { id }, { root: true });
+                commit("entities/setEntities", { entities: [entity] }, { root: true })
             } catch (err) {
                 console.error(err);
             }
+        },
+        // Used for debugging
+        simulateLogin({ commit, dispatch }, id) {
+            commit("setLogin", { id });
+            dispatch("entities/fetch", { id }, { root: true });
         },
     },
     mutations: {
