@@ -2,33 +2,28 @@
     <div id="app">
         <div class="container">
             <Header />
-            <HLine />
+            <hr />
             <div class="content">
                 <transition name="fade" mode="out-in">
                     <router-view />
                 </transition>
-                <LoadingSpinner />
             </div>
-            <HLine />
+            <hr />
             <Footer />
         </div>
     </div>
 </template>
 
 <script>
-import HLine from "@/components/HLine.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 export default {
     components: {
-        HLine,
         Header,
         Footer,
-        LoadingSpinner,
     },
-    created: function () {
+    created() {
         this.$store.dispatch("user/login");
     },
 };
@@ -44,25 +39,34 @@ export default {
     background-color: #434343;
     color: white;
 }
+.content {
+    margin: 25px;
+}
 .container {
     max-width: 750px;
     margin: 25px auto;
     padding: 30px;
+    height: auto;
 }
 a {
     color: white;
     text-decoration: underline;
-}
-.content {
-    margin: 25px;
-    text-align: center;
 }
 
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter,
+.fade-leave-to {
     opacity: 0;
+}
+hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 2px solid white;
+    padding: 0;
+    margin: 25px 0;
 }
 </style>

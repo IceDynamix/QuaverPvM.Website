@@ -17,5 +17,6 @@
     list-style-type: none;
     align-items: center;
     justify-content: space-around;
+    margin-top: 25px;
 }
 </style>
