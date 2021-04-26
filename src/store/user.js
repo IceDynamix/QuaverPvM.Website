@@ -7,18 +7,20 @@ const userStore = {
         entityId: null,
     },
     actions: {
-        async login({ commit }) {
+        async login({ dispatch, commit }) {
             try {
                 const { data: entity } = await axios.get("me");
-                commit("setLogin", { entityId: entity._id });
+                const id = entity._id;
+                commit("setLogin", { id });
+                dispatch("entities/fetch", { id }, { root: true });
             } catch (err) {
                 console.error(err);
             }
         },
     },
     mutations: {
-        setLogin(state, payload) {
-            state.entityId = payload.entityId;
+        setLogin(state, { id }) {
+            state.entityId = id;
         },
     },
 };
