@@ -7,6 +7,7 @@
                 <transition name="fade" mode="out-in">
                     <router-view />
                 </transition>
+                <LoadingSpinner />
             </div>
             <HLine />
             <Footer />
@@ -18,12 +19,14 @@
 import HLine from "@/components/HLine.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 export default {
     components: {
         HLine,
         Header,
         Footer,
+        LoadingSpinner,
     },
     created: function () {
         this.$store.dispatch("user/login");
