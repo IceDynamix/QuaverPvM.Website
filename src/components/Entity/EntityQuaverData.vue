@@ -1,0 +1,133 @@
+<template>
+    <div class="quaver-data-outer">
+        <transition name="fade" mode="out-in">
+            <div class="quaver-data" v-if="quaverData != null">
+                <div class="img">
+                    <img :src="img" alt="" />
+                </div>
+                <div class="info-text">
+                    <p class="row1">
+                        <a
+                            :href="quaverUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {{ info1 }}
+                        </a>
+                    </p>
+                    <p class="row2">{{ info2 }}</p>
+                </div>
+            </div>
+        </transition>
+    </div>
+</template>
+
+<script>
+import config from "@/config/config";
+
+export default {
+    props: {
+        quaverId: Number,
+        entityType: String,
+    },
+    async created() {
+        switch (this.entityType) {
+            case "user":
+                this.$store.dispatch("quaver/fetchUser", this.quaverId);
+                break;
+            case "map":
+                this.$store.dispatch("quaver/fetchMap", this.quaverId);
+                break;
+        }
+    },
+    computed: {
+        quaverData() {
+            switch (this.entityType) {
+                case "user":
+                    return this.$store.state.quaver.users[this.quaverId];
+                case "map":
+                    return this.$store.state.quaver.maps[this.quaverId];
+                default:
+                    return null;
+            }
+        },
+        quaverUrl() {
+            switch (this.entityType) {
+                case "user":
+                    return `${config.quaverBaseUrl}/user/${this.quaverId}`;
+                case "map":
+                    return `${config.quaverBaseUrl}/mapsets/map/${this.quaverId}`;
+                default:
+                    return "";
+            }
+        },
+        img() {
+            switch (this.entityType) {
+                case "user":
+                    return this.quaverData?.info.avatar_url;
+                case "map":
+                    return `${config.quaverCdnUrl}/mapsets/${this.quaverData.mapset_id}.jpg`;
+                default:
+                    return "";
+            }
+        },
+        info1() {
+            switch (this.entityType) {
+                case "user":
+                    return this.quaverData?.info.username;
+                case "map":
+                    return `${this.quaverData.artist} - ${this.quaverData.title}`;
+                default:
+                    return "";
+            }
+        },
+        info2() {
+            switch (this.entityType) {
+                case "user":
+                    return `#${this.quaverData.keys4.globalRank}`;
+                case "map":
+                    return `${this.quaverData.difficulty_name}`;
+                default:
+                    return "";
+            }
+        },
+    },
+};
+</script>
+
+<style scoped>
+.quaver-data-outer {
+    height: 60px;
+}
+.quaver-data {
+    flex: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: inherit;
+}
+.right-side {
+    flex-basis: 150px;
+}
+.info-text {
+    flex: auto;
+    text-align: left;
+    padding: 0 10px;
+}
+.row2 {
+    color: rgb(163, 163, 163);
+}
+.img {
+    height: 60px;
+    width: 60px;
+}
+img {
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    background-size: cover;
+    object-fit: cover;
+    object-position: center;
+}
+</style>

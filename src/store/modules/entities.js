@@ -8,8 +8,7 @@ const entitiesStore = {
     actions: {
         async fetch({ commit }, params) {
             try {
-                const response = await axios.get("entities", { params });
-                const entities = response.data.results;
+                const { data: entities } = await axios.get("entities", { params });
                 commit("setEntities", { entities });
             } catch (err) {
                 console.error(err);

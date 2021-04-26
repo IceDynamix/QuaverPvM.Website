@@ -8,10 +8,10 @@ const datapointsStore = {
         general: [],
     },
     getters: {
-        leaderboard: state => {
+        current: state => {
             const sortedByTime = Object.values(state.entity).sort((a, b) => a.timestamp - b.timestamp);
             const newest = _.sortedUniqBy(sortedByTime, dp => dp.entity);
-            return newest.filter(dp => dp.rd <= 100)
+            return newest;
         }
     },
     actions: {
@@ -54,9 +54,8 @@ const datapointsStore = {
             state.entity = { ...state.entity }
         },
         addGeneralDatapoints(state, { datapoints }) {
-            let newGeneral = {};
-            for (const dp of datapoints) newGeneral[dp._id] = dp;
-            state.general = { ...state.general, ...newGeneral }
+            for (const dp of datapoints) state.general[dp._id] = dp;
+            state.general = { ...state.general }
         },
     },
 };
