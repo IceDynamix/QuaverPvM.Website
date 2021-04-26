@@ -21,6 +21,7 @@ export default {
     },
     created: function () {
         this.$store.dispatch("user/login");
+        this.$store.dispatch("quaver/fetchMap", 293);
     },
 };
 </script>

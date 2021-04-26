@@ -18,9 +18,8 @@ const entitiesStore = {
     },
     mutations: {
         setEntities(state, { entities }) {
-            let newEntities = {};
-            for (const entity of entities) newEntities[entity.id] = entity;
-            state.entities = { ...state.entities, ...newEntities };
+            for (const entity of entities) state.entities[entity.id] = entity;
+            state.entities = { ...state.entities };
         },
     },
 };

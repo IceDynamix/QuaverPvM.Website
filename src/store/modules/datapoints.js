@@ -31,9 +31,9 @@ const datapointsStore = {
                 console.error(err);
             }
         },
-        async fetchLeaderboard({ commit }, { params }) {
+        async fetchLeaderboard({ commit }) {
             try {
-                const { data: datapoints } = await axios.get("leaderboard", { params });
+                const { data: datapoints } = await axios.get("leaderboard");
                 commit("addEntityDatapoints", { datapoints });
             } catch (err) {
                 console.error(err);
@@ -50,9 +50,8 @@ const datapointsStore = {
     },
     mutations: {
         addEntityDatapoints(state, { datapoints }) {
-            let newEntity = {};
-            for (const dp of datapoints) newEntity[dp._id] = dp;
-            state.entity = { ...state.entity, ...newEntity }
+            for (const dp of datapoints) state.entity[dp._id] = dp;
+            state.entity = { ...state.entity }
         },
         addGeneralDatapoints(state, { datapoints }) {
             let newGeneral = {};
