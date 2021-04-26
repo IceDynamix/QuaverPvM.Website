@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <div class="container">
+            <Header />
             <HLine />
             <div class="content">
                 <transition name="fade" mode="out-in">
@@ -8,20 +9,24 @@
                 </transition>
             </div>
             <HLine />
+            <Footer />
         </div>
     </div>
 </template>
 
 <script>
 import HLine from "@/components/HLine.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
     components: {
         HLine,
+        Header,
+        Footer,
     },
     created: function () {
         this.$store.dispatch("user/login");
-        this.$store.dispatch("quaver/fetchMap", 293);
     },
 };
 </script>
