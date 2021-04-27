@@ -4,13 +4,18 @@
             <h1>How do I play?</h1>
             <p>
                 After getting matched against a map around your current rating,
-                you will then have 10 minutes to submit a score in Quaver on
-                that map. This also means that you're allowed to retry as long
-                as you have time left to submit the score. Mirror mod is
-                allowed. Rates below 1.0x are not allowed. NF/NLN/FLN/INV mods
-                and pausing are not allowed, as those will make your play not
-                submit to the server. NSV is also not allowed, but not necessary
-                because of the maps chosen to get added to QuaverPvM.
+                you will then have 10 minutes to submit an S Rank score or
+                higher (&ge; 95.00% accuracy) in Quaver on that map. This also
+                means that you're allowed to retry as long as you have time left
+                to submit the score. If you're unable to get the S rank, then
+                you can resign.
+            </p>
+            <p>
+                Mirror mod is allowed. Rates below 1.0x are not allowed.
+                NF/NLN/FLN/INV mods and pausing are not allowed, as those will
+                make your play not submit to the server. NSV is also not
+                allowed, but not necessary because of the maps chosen to get
+                added to QuaverPvM.
             </p>
         </div>
         <div class="entry">
@@ -19,8 +24,25 @@
                 No. A specific set of filters have been implemented: 4K only,
                 map must be ranked, length between 2-5 minutes, &lt; 60% LN and
                 no SVs in the map file. The initial rating of a map also scales
-                off its Quaver difficulty done with linear approximation and its
-                initial RD is reduced to 200 as opposed to 350.
+                off its Quaver difficulty and its initial RD is reduced to 200
+                as opposed to 350. I used the ratings computed
+                <a
+                    href="https://docs.google.com/spreadsheets/d/1lfBCM6EAdJ1n-xf8HqR7PEEJDFoqApI8uy5s8ESf45g/edit#gid=247636023"
+                >
+                    in this spreadsheet </a
+                >, which considers players with more than 50 playcount and more
+                than 50 overall rating in percentile ranking. I made it before
+                QuaverPvM, so they will not reflect the current thresholds.
+                Please refer to the upcoming stats page for current thresholds.
+            </p>
+        </div>
+        <div class="entry">
+            <h1>I played against a map that was over/underrated in QXE!</h1>
+            <p>
+                This happens. Remember, a maps initial rating scales off Quaver
+                difficulty rating, so its as accurate as that when it hasn't
+                played against anyone. It will get more accurate as more players
+                play against it, so please help make the rating more accurate!
             </p>
         </div>
         <div class="entry">
@@ -46,7 +68,7 @@
             </p>
         </div>
         <div class="entry">
-            <h1>What is Glicko?</h1>
+            <h1>What is Glicko / RD?</h1>
             <p>
                 The Glicko-2 system is a rating system that has a regular skill
                 rating, but also considers how inaccurate the rating is by
@@ -67,14 +89,27 @@
             </p>
         </div>
         <div class="entry">
+            <h1>
+                I played 10 matches and see my QXE, but I don't have a letter
+                rank yet?
+            </h1>
+            <p>
+                While you need to play 10 matches to see your QXE and Glicko
+                rating, once you see them does not mean that you are ranked. You
+                will be ranked as soon as you get a letter rank, which requires
+                having 100 RD or less. Once you have it, you will be considered
+                in the leaderboards. Only one way to get there: play more
+                matches.
+            </p>
+        </div>
+        <div class="entry">
             <h1>What does my letter rank mean?</h1>
             <p>
                 Your letter rank is determined by the current percentile you're
                 currently in (based on GLIXARE). This means that for example at
-                rank #150 of 2000 players, you would be considered in the 7.5th
-                percentile, which would be considered SS rank. The thresholds
-                are the same as in <a href="https://tetr.io/">Tetr.io</a> and as
-                following:
+                rank #150 of 2000 players, you would be in the 7.5th percentile,
+                which is considered SS rank. The thresholds are the same as in
+                <a href="https://tetr.io/">Tetr.io</a> and as following:
             </p>
             <div class="ranks">
                 <div class="thresholds">
