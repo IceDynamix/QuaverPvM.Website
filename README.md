@@ -1,4 +1,6 @@
-# quaverpvm-site-js
+# QuaverPvM Site
+
+Running at <https://qpvm.icedynamix.moe/>
 
 ## Project setup
 
