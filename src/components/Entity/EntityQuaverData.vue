@@ -1,6 +1,6 @@
 <template>
     <div class="quaver-data-outer">
-        <transition name="fade" mode="out-in">
+        <transition name="transition" mode="out-in">
             <div class="quaver-data" v-if="quaverData != null">
                 <div class="img">
                     <img :src="img" alt="" />
@@ -33,10 +33,10 @@ export default {
     async created() {
         switch (this.entityType) {
             case "user":
-                this.$store.dispatch("quaver/fetchUser", this.quaverId);
+                this.$store.dispatch("fetchQuaverUser", this.quaverId);
                 break;
             case "map":
-                this.$store.dispatch("quaver/fetchMap", this.quaverId);
+                this.$store.dispatch("fetchQuaverMap", this.quaverId);
                 break;
         }
     },
@@ -106,9 +106,6 @@ export default {
     align-items: center;
     justify-content: flex-start;
     height: inherit;
-}
-.right-side {
-    flex-basis: 150px;
 }
 .info-text {
     flex: auto;

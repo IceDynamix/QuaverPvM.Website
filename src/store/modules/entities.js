@@ -1,12 +1,11 @@
 import axios from "axios";
 
 const entitiesStore = {
-    namespaced: true,
     state: {
         entities: {},
     },
     actions: {
-        async fetch({ commit }, params) {
+        async fetchEntities({ commit }, params) {
             try {
                 const { data: entities } = await axios.get("entities", { params });
                 commit("setEntities", { entities });

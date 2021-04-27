@@ -5,8 +5,10 @@ import router from './router'
 import store from './store'
 import config from './config/config'
 import VTooltip from 'v-tooltip'
+import Toasted from "vue-toasted";
 
 Vue.use(VTooltip)
+Vue.use(Toasted, { duration: 10 * 1000, position: "bottom-center" })
 
 Vue.config.productionTip = false
 

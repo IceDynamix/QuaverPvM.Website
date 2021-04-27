@@ -31,7 +31,7 @@ export default {
         entityId: String,
     },
     created() {
-        this.$store.dispatch("entities/fetch", { id: this.entityId });
+        this.$store.dispatch("fetchEntities", { id: this.entityId });
     },
     computed: {
         entityData() {

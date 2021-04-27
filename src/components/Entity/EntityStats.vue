@@ -56,7 +56,7 @@ export default {
         AnimatedNumber,
     },
     async created() {
-        this.$store.dispatch("datapoints/fetchEntityCurrent", this.entityId);
+        this.$store.dispatch("fetchEntityDatapointsCurrent", this.entityId);
     },
     methods: {
         trim: function (n) {
@@ -65,7 +65,7 @@ export default {
     },
     computed: {
         entityStats() {
-            return this.$store.getters["datapoints/current"].find(
+            return this.$store.getters["currentDatapoints"].find(
                 (dp) => dp.entity._id == this.entityId
             );
         },
@@ -90,7 +90,9 @@ export default {
             let typePercentile = (
                 100 * this.entityStats.typePercentile
             ).toFixed(1);
-            let type = this.entity.entityType;
+            console.log(this.$store.state.entities.entities[this.entityId]);
+            let type = this.$store.state.entities.entities[this.entityId]
+                .entityType;
             return `Top ${overallPercentile}% overall | ${typePercentile}% ${type}s`;
         },
         wlTooltip() {

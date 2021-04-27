@@ -4,6 +4,8 @@ import datapoints from './modules/datapoints'
 import entities from './modules/entities'
 import user from './modules/user'
 import quaver from './modules/quaver'
+import match from './modules/match'
+import results from './modules/results'
 
 Vue.use(Vuex)
 
@@ -12,7 +14,9 @@ export default new Vuex.Store({
         user,
         entities,
         datapoints,
-        quaver
+        quaver,
+        match,
+        results
     },
     plugins: [Vuex.createLogger()]
 })

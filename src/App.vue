@@ -4,7 +4,7 @@
             <Header />
             <hr />
             <div class="content">
-                <transition name="fade" mode="out-in">
+                <transition name="transition" mode="out-in">
                     <router-view />
                 </transition>
             </div>
@@ -24,7 +24,7 @@ export default {
         Footer,
     },
     created() {
-        this.$store.dispatch("user/login");
+        this.$store.dispatch("login");
     },
 };
 </script>
@@ -53,12 +53,12 @@ a {
     text-decoration: underline;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s;
+.transition-enter-active,
+.transition-leave-active {
+    transition: opacity 0.2s;
 }
-.fade-enter,
-.fade-leave-to {
+.transition-enter,
+.transition-leave-to {
     opacity: 0;
 }
 hr {

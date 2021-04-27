@@ -20,13 +20,13 @@ import config from "../config/config";
 export default {
     computed: {
         loginUrl() {
-            return config.apiUrl + "/auth/steam";
+            return config.apiUrl + "/auth/quaver";
         },
         logoutUrl() {
             return config.apiUrl + "/logout";
         },
         loggedIn() {
-            return this.$store.state.user.entityId != null;
+            return this.$store.state.user.loggedInUser;
         },
     },
 };

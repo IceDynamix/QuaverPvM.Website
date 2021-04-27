@@ -2,20 +2,19 @@ import axios from "axios";
 import _ from "lodash";
 
 const datapointsStore = {
-    namespaced: true,
     state: {
-        entity: [],
-        general: [],
+        entityDatapoints: [],
+        generalDatapoints: [],
     },
     getters: {
-        current: state => {
-            const sortedByTime = Object.values(state.entity).sort((a, b) => a.timestamp - b.timestamp);
+        currentDatapoints: state => {
+            const sortedByTime = Object.values(state.entityDatapoints).sort((a, b) => a.timestamp - b.timestamp);
             const newest = _.sortedUniqBy(sortedByTime, dp => dp.entity);
             return newest;
         }
     },
     actions: {
-        async fetchEntityCurrent({ commit }, id) {
+        async fetchEntityDatapointsCurrent({ commit }, id) {
             try {
                 const { data: datapoint } = await axios.get("entity/stats/" + id);
                 commit("addEntityDatapoints", { datapoints: [datapoint] });
@@ -23,7 +22,7 @@ const datapointsStore = {
                 console.error(err);
             }
         },
-        async fetchEntityFull({ commit }, id) {
+        async fetchEntityDatapointsFull({ commit }, id) {
             try {
                 const { data: datapoints } = await axios.get("entity/history/" + id);
                 commit("addEntityDatapoints", { datapoints });
@@ -39,7 +38,7 @@ const datapointsStore = {
                 console.error(err);
             }
         },
-        async fetchGeneralStats({ commit }) {
+        async fetchGeneralDatapoints({ commit }) {
             try {
                 const { data: datapoints } = await axios.get("history");
                 commit("addGeneralDatapoints", { datapoints });
@@ -50,12 +49,12 @@ const datapointsStore = {
     },
     mutations: {
         addEntityDatapoints(state, { datapoints }) {
-            for (const dp of datapoints) state.entity[dp._id] = dp;
-            state.entity = { ...state.entity }
+            for (const dp of datapoints) state.entityDatapoints[dp._id] = dp;
+            state.entityDatapoints = { ...state.entityDatapoints }
         },
         addGeneralDatapoints(state, { datapoints }) {
-            for (const dp of datapoints) state.general[dp._id] = dp;
-            state.general = { ...state.general }
+            for (const dp of datapoints) state.generalDatapoints[dp._id] = dp;
+            state.generalDatapoints = { ...state.generalDatapoints }
         },
     },
 };

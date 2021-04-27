@@ -1,9 +1,8 @@
 import axios from "axios";
 
 const userStore = {
-    namespaced: true,
     state: {
-        entityId: null,
+        loggedInUser: null,
     },
     actions: {
         async login({ commit }) {
@@ -12,21 +11,21 @@ const userStore = {
                 if (!entity) return; // Not logged in
 
                 const id = entity._id;
-                commit("setLogin", { id });
-                commit("entities/setEntities", { entities: [entity] }, { root: true })
+                commit("setLoggedInUser", { id });
+                commit("setEntities", { entities: [entity] })
             } catch (err) {
                 console.error(err);
             }
         },
         // Used for debugging
         simulateLogin({ commit, dispatch }, id) {
-            commit("setLogin", { id });
-            dispatch("entities/fetch", { id }, { root: true });
+            commit("setLoggedInUser", { id });
+            dispatch("setEntities", { id });
         },
     },
     mutations: {
-        setLogin(state, { id }) {
-            state.entityId = id;
+        setLoggedInUser(state, { id }) {
+            state.loggedInUser = id;
         },
     },
 };
