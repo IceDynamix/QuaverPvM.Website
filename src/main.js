@@ -14,6 +14,7 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL = config.apiUrl;
 axios.defaults.withCredentials = true;
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 new Vue({
     router,
