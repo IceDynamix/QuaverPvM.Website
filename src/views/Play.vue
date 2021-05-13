@@ -44,7 +44,7 @@
             <Entity :entityId="userId" />
             <Match />
         </div>
-        <div v-else>Please log in with Quaver (top right)!</div>
+        <div v-else class="login">Please log in with Quaver! (top right)</div>
     </div>
 </template>
 
@@ -89,5 +89,8 @@ export default {
 .flavor {
     margin: 25px 0;
     text-align: justify;
+}
+.login {
+    text-align: center;
 }
 </style>

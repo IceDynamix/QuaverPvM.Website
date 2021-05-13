@@ -15,20 +15,21 @@
                 <h3>Rating System</h3>
                 <p>
                     Glicko-2 rating system applied to a PvE environment. Your
-                    rating and the maps rating changes after each match. Takes
-                    account rating inaccuracy over time into account. Destined
-                    to become the best skill and difficulty measurement system
-                    over time.
+                    rating and the map's rating change after each match. The
+                    system takes rating inaccuracy over time into account. It's
+                    destined to become the best skill and difficulty measurement
+                    system over time.
                 </p>
             </div>
             <div class="col">
                 <span class="material-icons">recommend</span>
-                <h3>Recommendations</h3>
+                <h3>Skill Range</h3>
                 <p>
-                    Map recommendations in your skill range. You'll always have
-                    something challenging to play. The rating system will make
-                    sure it's mostly accurate, and if it's not, then the outcome
-                    will make sure that it becomes more accurate over time.
+                    Get map "recommendations" in your skill range. You'll always
+                    have something challenging to play. The rating system will
+                    make sure it's mostly accurate, and if it's not, then the
+                    outcome will make sure that it becomes more accurate over
+                    time.
                 </p>
             </div>
         </div>
@@ -49,7 +50,7 @@
 }
 .col {
     flex: 1;
-    margin: 10px;
+    margin: 15px;
 }
 p {
     font-family: "Lexend";

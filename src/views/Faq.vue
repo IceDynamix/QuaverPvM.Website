@@ -4,30 +4,31 @@
             <h1>How do I play?</h1>
             <p>
                 After getting matched against a map around your current rating,
-                you will then have 10 minutes to submit an S Rank score or
-                higher (&ge; 95.00% accuracy) in Quaver on that map. This also
-                means that you're allowed to retry as long as you have time left
-                to submit the score. If you're unable to get the S rank, then
-                you can resign. Please make sure that you're playing the correct
+                you will have 10 minutes to submit an S Rank score or higher
+                (&ge; 95.00% accuracy) in Quaver on that map. This also means
+                that you're allowed to retry as long as you have time left to
+                submit the score. If you're unable to get the S rank, then you
+                can resign. Please make sure that you're playing the correct
                 rate.
             </p>
             <p>
                 Mirror mod is allowed. Rates below the provided map rate are not
-                allowed. NF/NLN/FLN/INV mods and pausing are not allowed, as
-                those will make your play not submit to the server. NSV is also
-                not allowed, but not necessary because of the maps chosen to get
-                added to QuaverPvM.
+                allowed (higher rates are allowed). NF/NLN/FLN/INV mods and
+                pausing are not allowed, as those will make your play not submit
+                to the server. NSV is also not allowed, but not necessary
+                because of the maps chosen to get added to QuaverPvM.
             </p>
         </div>
         <div class="entry">
             <h1>Are the maps added to the database randomly?</h1>
             <p>
-                No. A specific set of filters have been implemented: 4K only,
-                map must be ranked, length between 2-5 minutes, &lt; 60% LN and
-                no SVs in the map file. The initial rating of a map also scales
-                off its Quaver difficulty and its initial RD is reduced to 200
-                as opposed to 350. Please refer to the upcoming stats page for
-                current thresholds.
+                Yes and no. A specific set of filters have been implemented: 4K
+                only, map must be ranked, length between 2-5 minutes, &lt; 60%
+                LN and no SVs in the map file. The system chooses maps randomly
+                from this filtered pool of maps. The total pool is around 2200
+                maps, from which 10 get added to the database every midnight.
+                The initial rating of a map scales off its Quaver difficulty and
+                its initial RD is reduced to 200 as opposed to 350.
             </p>
         </div>
         <div class="entry">
@@ -55,8 +56,8 @@
                 higher rate?
             </h1>
             <p>
-                No, the Glicko-2 system only considers wins and losses as two
-                results, no matter the accuracy or rate.
+                No, the Glicko-2 system considers each win/loss as the same, no
+                matter the accuracy or rate.
             </p>
         </div>
         <div class="entry">
@@ -67,7 +68,7 @@
                 The RD is the largest for an unranked player, which means that
                 the rating will fluctuate a lot at the beginning. This can lead
                 to false expectations, so you need to play a few matches until
-                the system can be sure that your rating is roughly accurate.
+                the system is confident that your rating is roughly accurate.
             </p>
         </div>
         <div class="entry">
@@ -77,10 +78,11 @@
             </h1>
             <p>
                 While you need to play 10 matches to see your Glicko rating,
-                once you see them does not mean that you are ranked. You will be
-                ranked as soon as you get a letter rank, which requires having
-                100 RD or less. Once you have it, you will be considered in the
-                leaderboards. Only one way to get there: play more matches.
+                being able to see it does not mean that you are ranked. You will
+                be ranked as soon as you get a letter rank, which requires
+                having 100 RD or less. Once you have it, you will be considered
+                in the leaderboards. Only one way to get there: play more
+                matches.
             </p>
         </div>
         <div class="entry">
@@ -110,10 +112,6 @@
                     <span>100%</span>
                 </div>
             </div>
-            <p>
-                You will be able to find more statistics in that regard in the
-                upcoming stats page.
-            </p>
         </div>
         <div class="entry">
             <h1>
