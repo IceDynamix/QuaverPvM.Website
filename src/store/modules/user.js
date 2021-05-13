@@ -1,4 +1,5 @@
 import axios from "axios";
+import Vue from "vue";
 
 const userStore = {
     state: {
@@ -14,13 +15,14 @@ const userStore = {
                 commit("setLoggedInUser", { id });
                 commit("setEntities", { entities: [entity] })
             } catch (err) {
-                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
             }
         },
         // Used for debugging
         simulateLogin({ commit, dispatch }, id) {
             commit("setLoggedInUser", { id });
-            dispatch("setEntities", { id });
+            dispatch("setEntities", { entities: [id] });
         },
     },
     mutations: {

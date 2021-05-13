@@ -130,7 +130,7 @@ export default {
                     });
                 }
             } catch (e) {
-                this.$toasted.show(e, { type: "error" });
+                this.$toasted.show(e.response.data.err, { type: "error" });
             }
             this.scanLoading = false;
         },

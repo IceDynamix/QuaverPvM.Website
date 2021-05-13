@@ -1,4 +1,6 @@
 import axios from "axios";
+import Vue from "vue";
+
 
 const resultsStore = {
     state: {
@@ -10,7 +12,8 @@ const resultsStore = {
                 const { data: results } = await axios.get("results", { entity });
                 commit("setResults", { results });
             } catch (err) {
-                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
             }
         }
     },

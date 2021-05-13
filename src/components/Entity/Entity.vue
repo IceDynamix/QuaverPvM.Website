@@ -6,10 +6,7 @@
             key="entity-content"
         >
             <div class="left-side">
-                <EntityQuaverData
-                    :quaverId="entityData.quaverId"
-                    :entityType="entityData.entityType"
-                />
+                <EntityData :entityId="entityId" />
             </div>
             <div class="right-side">
                 <EntityStats :entityId="entityId" />
@@ -20,12 +17,12 @@
 
 <script>
 import EntityStats from "./EntityStats.vue";
-import EntityQuaverData from "./EntityQuaverData.vue";
+import EntityData from "./EntityData.vue";
 
 export default {
     components: {
         EntityStats,
-        EntityQuaverData,
+        EntityData,
     },
     props: {
         entityId: String,
@@ -50,12 +47,5 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
 }
 </style>

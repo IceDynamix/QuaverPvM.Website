@@ -27,8 +27,7 @@ import config from "@/config/config";
 
 export default {
     props: {
-        quaverId: Number,
-        entityType: String,
+        entityId: String,
     },
     async created() {
         switch (this.entityType) {
@@ -41,6 +40,15 @@ export default {
         }
     },
     computed: {
+        entityData() {
+            return this.$store.state.entities.entities[this.entityId];
+        },
+        entityType() {
+            return this.entityData.entityType;
+        },
+        quaverId() {
+            return this.entityData.quaverId;
+        },
         quaverData() {
             switch (this.entityType) {
                 case "user":
@@ -86,7 +94,9 @@ export default {
                 case "user":
                     return `#${this.quaverData.keys4.globalRank}`;
                 case "map":
-                    return `${this.quaverData.difficulty_name}`;
+                    return `${
+                        this.quaverData.difficulty_name
+                    } ${this.entityData.mapRate.toFixed(1)}x`;
                 default:
                     return "";
             }

@@ -1,4 +1,6 @@
 import axios from "axios";
+import Vue from "vue";
+
 
 const matchStore = {
     state: {
@@ -15,7 +17,8 @@ const matchStore = {
                 commit("setMatch", match);
                 commit("setEntities", { entities: [match.user, match.map] });
             } catch (err) {
-                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
             } finally {
                 commit("setMatchLoading", false);
             }
@@ -28,7 +31,8 @@ const matchStore = {
                 commit("setMatch", match);
                 commit("setEntities", { entities: [match.user, match.map] });
             } catch (err) {
-                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
             } finally {
                 commit("setMatchLoading", false);
             }

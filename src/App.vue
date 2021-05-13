@@ -31,6 +31,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend&display=swap");
 * {
     box-sizing: border-box;
     margin: 0;

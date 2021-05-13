@@ -1,41 +1,22 @@
 <template>
     <div class="stats" v-if="entityStats != null">
         <div class="numbers">
-            <div
-                v-if="entityStats.matches >= 10"
-                class="qxe number-row"
-                v-tooltip.left="glixareTooltip"
-            >
-                <div class="number">
-                    <animated-number
-                        :value="entityStats.glixare"
-                        :duration="2000"
-                        :formatValue="trim"
-                        :delay="100"
-                        easing="easeInOutQuint"
-                    />
-                    QXE
+            <div v-if="entityStats.matches >= 10" class="number-row">
+                <div class="number left-number">
+                    <Number :value="entityStats.rating" />
+                </div>
+                <div class="middle-char">±</div>
+                <div class="number right-number">
+                    <Number :value="entityStats.rd" />
                 </div>
             </div>
-            <div class="wl number-row" v-tooltip.left="wlTooltip" v-else>
+            <div class="wl number-row" v-tooltip.left="wlTooltip">
                 <div class="number left-number">
-                    <animated-number
-                        :value="entityStats.wins"
-                        :duration="2000"
-                        :formatValue="trim"
-                        :delay="100"
-                        easing="easeInOutQuint"
-                    />W
+                    <Number :value="entityStats.wins" />W
                 </div>
                 <div class="middle-char">/</div>
                 <div class="number right-number">
-                    <animated-number
-                        :value="entityStats.matches - entityStats.wins"
-                        :duration="2000"
-                        :formatValue="trim"
-                        :delay="100"
-                        easing="easeInOutQuint"
-                    />L
+                    <Number :value="entityStats.matches - entityStats.wins" />L
                 </div>
             </div>
         </div>
@@ -46,14 +27,14 @@
 </template>
 
 <script>
-import AnimatedNumber from "animated-number-vue";
+import Number from "./Number.vue";
 
 export default {
     props: {
         entityId: String,
     },
     components: {
-        AnimatedNumber,
+        Number,
     },
     async created() {
         this.$store.dispatch("fetchEntityDatapointsCurrent", this.entityId);
@@ -74,30 +55,17 @@ export default {
             if (lRank == "z") return "?";
             return lRank.toUpperCase();
         },
-        glixareTooltip() {
-            return `Glicko: ${this.trim(this.entityStats.rating)} ± ${this.trim(
-                this.entityStats.rd
-            )}`;
-        },
         letterRankTooltip() {
             if (this.entityStats.rd > 100)
-                return `Unranked, RD must be less than 100 (currently ${this.trim(
+                return `Unranked, RD must be less than 100 to get letter rank (currently ${this.trim(
                     this.entityStats.rd
                 )})`;
-            let overallPercentile = (
-                100 * this.entityStats.overallPercentile
-            ).toFixed(1);
-            let typePercentile = (
-                100 * this.entityStats.typePercentile
-            ).toFixed(1);
-            console.log(this.$store.state.entities.entities[this.entityId]);
-            let type = this.$store.state.entities.entities[this.entityId]
-                .entityType;
-            return `Top ${overallPercentile}% overall | ${typePercentile}% ${type}s`;
+            let percentile = (100 * this.entityStats.userPercentile).toFixed(1);
+            return `Top ${percentile}%`;
         },
         wlTooltip() {
             if (this.entityStats.matches < 10)
-                return "Play 10 matches to view the GLIXARE rating";
+                return "Play 10 matches to view the Glicko rating";
 
             const winPercentage =
                 this.entityStats.wins > 0
@@ -130,13 +98,14 @@ export default {
     align-items: center;
 }
 .number {
-    flex: auto;
+    flex: 4;
 }
 .qxe {
     text-align: right;
 }
 .middle-char {
     flex: 1;
+    margin: 0 2px;
 }
 .left-number {
     text-align: right;

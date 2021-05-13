@@ -1,5 +1,7 @@
 import axios from "axios";
 import _ from "lodash";
+import Vue from "vue";
+
 
 const datapointsStore = {
     state: {
@@ -19,7 +21,8 @@ const datapointsStore = {
                 const { data: datapoint } = await axios.get("entity/stats/" + id);
                 commit("addEntityDatapoints", { datapoints: [datapoint] });
             } catch (err) {
-                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
             }
         },
         async fetchEntityDatapointsFull({ commit }, id) {
@@ -27,7 +30,8 @@ const datapointsStore = {
                 const { data: datapoints } = await axios.get("entity/history/" + id);
                 commit("addEntityDatapoints", { datapoints });
             } catch (err) {
-                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
             }
         },
         async fetchLeaderboard({ commit }) {
@@ -35,7 +39,8 @@ const datapointsStore = {
                 const { data: datapoints } = await axios.get("leaderboard");
                 commit("addEntityDatapoints", { datapoints });
             } catch (err) {
-                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
             }
         },
         async fetchGeneralDatapoints({ commit }) {
@@ -43,7 +48,8 @@ const datapointsStore = {
                 const { data: datapoints } = await axios.get("history");
                 commit("addGeneralDatapoints", { datapoints });
             } catch (err) {
-                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
             }
         },
     },
