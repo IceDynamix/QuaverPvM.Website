@@ -2,8 +2,6 @@
 
 Play against maps in a Glicko rating environment!
 
-Running at <https://qpvm.icedynamix.moe/>
-
 ## Project setup
 
 ```txt
