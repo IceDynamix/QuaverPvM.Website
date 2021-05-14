@@ -29,10 +29,30 @@
             </div>
         </div>
         <div class="play">
-            <router-link to="/play"><h2>PLAY</h2></router-link>
+            <div v-if="loggedIn == null">
+                <h2><a :href="loginUrl">LOGIN TO PLAY</a></h2>
+            </div>
+            <div v-else>
+                <h2><router-link to="/play">PLAY</router-link></h2>
+            </div>
         </div>
     </div>
 </template>
+
+<script>
+import config from "../config/config";
+
+export default {
+    computed: {
+        loginUrl() {
+            return config.apiUrl + "/auth/quaver";
+        },
+        loggedIn() {
+            return this.$store.state.user.loggedInUser;
+        },
+    },
+};
+</script>
 
 <style scoped>
 .sub {

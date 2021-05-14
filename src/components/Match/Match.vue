@@ -10,7 +10,7 @@
                             <transition name="transition" mode="out-in">
                                 <div
                                     class="submission-container"
-                                    v-if="secondsLeft != null"
+                                    v-if="secondsLeft > 0"
                                 >
                                     <div class="left-side side">
                                         <div>
@@ -104,6 +104,10 @@ export default {
             this.$store.dispatch("requestMatch");
         },
         onYesButton: async function () {
+            if (scanLoading) {
+                this.$toasted.show("Already scanning!");
+                return;
+            }
             try {
                 this.scanLoading = true;
                 let response = await axios.post("results");
@@ -135,6 +139,10 @@ export default {
             this.scanLoading = false;
         },
         onNoButton: async function () {
+            if (scanLoading) {
+                this.$toasted.show("Already resigning!");
+                return;
+            }
             let confirmation = confirm("Are you sure you want to resign?");
             if (!confirmation) return;
             try {
@@ -158,34 +166,24 @@ export default {
             this.scanLoading = false;
         },
         countdown: function () {
-            if (!this.match) {
-                // Match not ongoing
-                setTimeout(this.countdown, 1000);
-            } else if (this.secondsLeft != null && this.secondsLeft <= 0) {
-                // User timed out
-                this.$toasted.show("Timed out, match is considered lost");
-                this.$store.commit("setMatch", null);
-                this.$store.dispatch(
-                    "fetchEntityDatapointsCurrent",
-                    this.$store.state.user.loggedInUser
-                );
-            } else if (this.match && this.secondsLeft == null) {
-                // New match and timer doesn't exist yet
+            if (this.match) {
                 const currentTime = new Date();
                 this.secondsLeft =
                     (new Date(this.match.endsAt).getTime() -
                         currentTime.getTime()) /
                     1000;
-                setTimeout(this.countdown, 1000);
-            } else if (
-                // Timer
-                this.match &&
-                this.secondsLeft != null &&
-                this.secondsLeft > 0
-            ) {
-                this.secondsLeft--;
-                setTimeout(this.countdown, 1000);
+
+                // User timed out
+                if (this.secondsLeft <= 0) {
+                    this.$toasted.show("Timed out, match is considered lost");
+                    this.$store.commit("setMatch", null);
+                    this.$store.dispatch(
+                        "fetchEntityDatapointsCurrent",
+                        this.$store.state.user.loggedInUser
+                    );
+                }
             }
+            setTimeout(this.countdown, 1000);
         },
     },
     computed: {
@@ -204,7 +202,7 @@ export default {
         timer() {
             if (this.secondsLeft)
                 return `${Math.floor(this.secondsLeft / 60)}:${(
-                    this.secondsLeft % 60
+                    Math.floor(this.secondsLeft) % 60
                 )
                     .toFixed(0)
                     .padStart(2, "0")}`;
