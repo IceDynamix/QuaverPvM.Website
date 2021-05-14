@@ -4,34 +4,32 @@
             <div class="flavor tutorial" v-if="rd > 300">
                 Welcome to QuaverPvM! This is your first time playing, so here's
                 what you need to know to get going. The instructions will
-                disappear after a few matches, but will be available in the FAQ.
+                disappear after a match, but will be available in the FAQ at any
+                time.
                 <ol>
                     <li>
                         Once you click on MATCH, you will be matched against a
-                        map. You have an initial rating of 1500, so the map
-                        you're matched against will be around that rating as
-                        well. Your rating is going to be hidden until you've
-                        finished your 10 placement matches.
+                        map.
                     </li>
                     <li>
                         After getting matched, you have 10 minutes to submit an
-                        S rank play on the map. Make sure you're online and
-                        don't use any unranked mods. Don't worry about
-                        accidentally leaving the page, your match is saved
-                        across browsers.
+                        S rank play on the map. Mirror and higher rates are
+                        allowed.
                     </li>
                     <li>
                         When your score is submitted to Quaver, you need to
                         click the SUBMIT button. Your recent plays will be
-                        scanned for a valid play and it will tell you in case
-                        there's something wrong. If you're unable to submit an S
-                        rank play, then you're free to resign with the RESIGN
+                        scanned for a valid play. If you're unable to submit an
+                        S rank play, then you're free to resign with the RESIGN
                         button.
                     </li>
                     <li>
-                        If you have any more questions then feel free to check
-                        out the FAQ or ask questions in the Discord (refer to
-                        page footer).
+                        Your rating is going to be hidden until you've finished
+                        your 10 placement matches.
+                    </li>
+                    <li>
+                        If you have any more questions then check out the FAQ or
+                        ask questions in the Discord.
                     </li>
                 </ol>
             </div>
