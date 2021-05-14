@@ -56,10 +56,7 @@ export default {
             return lRank.toUpperCase();
         },
         letterRankTooltip() {
-            if (this.entityStats.rd > 100)
-                return `Unranked, RD must be less than 100 to get letter rank (currently ${this.trim(
-                    this.entityStats.rd
-                )})`;
+            if (this.entityStats.rd > 100) return "Unranked";
             let percentile = (100 * this.entityStats.userPercentile).toFixed(1);
             return `Top ${percentile}%`;
         },

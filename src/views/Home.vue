@@ -2,7 +2,12 @@
     <div class="home">
         <div class="title">
             <h1>QuaverPvM</h1>
-            <p class="sub"><i>The ultimate Player vs. Map experience</i></p>
+            <p class="sub">
+                <i
+                    >The ultimate Player vs. Map experience based on
+                    <a href="https://quavergame.com/">Quaver</a></i
+                >
+            </p>
         </div>
         <div class="cols">
             <div class="col">

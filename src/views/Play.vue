@@ -34,10 +34,10 @@
                 </ol>
             </div>
             <div class="flavor helper" v-if="rd > 100">
-                Your Rating Deviation (RD) is above 100, which means you're
-                <b>unranked</b> (currently {{ rd.toFixed(0) }}). Once your RD is
-                below 100, you will receive a letter rank and appear on the
-                leaderboards (coming soon!).
+                Your Rating Deviation (RD) is above 100 (currently
+                {{ rd.toFixed(0) }}), which means you're <b>unranked</b>. Once
+                your RD is below 100, you will receive a letter rank and appear
+                on the leaderboards (coming soon!).
             </div>
             <Entity :entityId="userId" />
             <Match />
