@@ -104,7 +104,7 @@ export default {
             this.$store.dispatch("requestMatch");
         },
         onYesButton: async function () {
-            if (scanLoading) {
+            if (this.scanLoading) {
                 this.$toasted.show("Already scanning!");
                 return;
             }
@@ -139,7 +139,7 @@ export default {
             this.scanLoading = false;
         },
         onNoButton: async function () {
-            if (scanLoading) {
+            if (this.scanLoading) {
                 this.$toasted.show("Already resigning!");
                 return;
             }
