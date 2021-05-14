@@ -1,14 +1,31 @@
 <template>
     <div class="header">
-        <div class="title">
-            <router-link to="/">QuaverPvM</router-link>
-        </div>
-        <div class="login">
-            <div class="login-content" v-if="loggedIn">
-                <a :href="logoutUrl">Logout</a>
+        <div class="header-row">
+            <div class="title">
+                <router-link to="/">QuaverPvM</router-link>
             </div>
-            <div class="login-content" v-else>
-                <a :href="loginUrl">Login with Quaver</a>
+            <div class="login">
+                <div class="login-content" v-if="loggedIn">
+                    <a :href="logoutUrl">Logout</a>
+                </div>
+                <div class="login-content" v-else>
+                    <a :href="loginUrl">Login with Quaver</a>
+                </div>
+            </div>
+        </div>
+        <div class="banner header-row">
+            <div class="excl-point">
+                <p>!</p>
+            </div>
+            <div class="banner-content">
+                <p>
+                    The site just released, which means that the rating is going
+                    to be very inaccurate. Please keep that in mind when you
+                    feel like your matchup was inbalanced!
+                </p>
+            </div>
+            <div class="excl-point">
+                <p>!</p>
             </div>
         </div>
     </div>
@@ -33,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-.header {
+.header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,5 +67,19 @@ export default {
 .login {
     flex: 1;
     text-align: right;
+}
+.banner {
+    background-color: salmon;
+}
+.banner-content > p {
+    background-color: salmon;
+    text-align: center;
+    color: #434343;
+}
+.excl-point > p {
+    background-color: salmon;
+    color: #434343;
+    font-size: 36px;
+    padding: 10px;
 }
 </style>
