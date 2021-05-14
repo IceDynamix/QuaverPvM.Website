@@ -19,9 +19,9 @@
             </div>
             <div class="banner-content">
                 <p>
-                    The site just released, which means that the rating is going
-                    to be very inaccurate. Please keep that in mind when you
-                    feel like your matchup was inbalanced!
+                    The site just released, which means that map ratings are
+                    going to be very inaccurate. Please keep that in mind during
+                    gameplay!
                 </p>
             </div>
             <div class="excl-point">
