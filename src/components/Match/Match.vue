@@ -125,16 +125,15 @@ export default {
                         this.$store.state.user.loggedInUser
                     );
                 } else {
-                    this.$toasted.show(message, {
-                        type: "info",
-                        action: {
-                            text: "Resign",
-                            onClick: () => this.onNoButton(),
-                        },
-                    });
+                    this.$toasted.show(message, { type: "info" });
                 }
             } catch (e) {
                 this.$toasted.show(e.response.data.err, { type: "error" });
+                this.$store.dispatch("requestMatch");
+                this.$store.dispatch(
+                    "fetchEntityDatapointsCurrent",
+                    this.$store.state.user.loggedInUser
+                );
             }
             this.scanLoading = false;
         },
