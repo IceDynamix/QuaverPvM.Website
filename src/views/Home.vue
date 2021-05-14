@@ -4,11 +4,6 @@
             <h1>QuaverPvM</h1>
             <p class="sub"><i>The ultimate Player vs. Map experience</i></p>
         </div>
-
-        <div class="play">
-            <router-link to="/play"><h2>PLAY</h2></router-link>
-        </div>
-
         <div class="cols">
             <div class="col">
                 <span class="material-icons">emoji_events</span>
@@ -33,6 +28,9 @@
                 </p>
             </div>
         </div>
+        <div class="play">
+            <router-link to="/play"><h2>PLAY</h2></router-link>
+        </div>
     </div>
 </template>
 
@@ -46,7 +44,7 @@
 .cols {
     display: flex;
     flex-direction: row;
-    margin: 25px 0;
+    margin: 10px 0;
 }
 .col {
     flex: 1;
@@ -57,7 +55,7 @@ p {
     text-align: justify;
 }
 .play {
-    margin: 25px;
+    margin: 10px;
 }
 .col > h3 {
     margin: 5px;
