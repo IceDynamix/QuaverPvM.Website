@@ -71,6 +71,11 @@ export default {
     flex-direction: row;
     margin: 10px 0;
 }
+@media only screen and (max-width: 600px) {
+    .cols {
+        flex-direction: column;
+    }
+}
 .col {
     flex: 1;
     margin: 15px;
