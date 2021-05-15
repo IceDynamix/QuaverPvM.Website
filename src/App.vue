@@ -39,6 +39,11 @@ export default {
     font-family: "Lexend Deca", sans-serif;
     background-color: #434343;
     color: white;
+    hyphens: auto;
+}
+p {
+    font-family: "Lexend", sans-serif;
+    hyphens: auto;
 }
 .content {
     margin: 25px;
