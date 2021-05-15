@@ -15,7 +15,7 @@
         </div>
         <div class="banner header-row red">
             <div class="excl-point">
-                <p>!</p>
+                <span class="material-icons"> warning </span>
             </div>
             <div class="banner-content">
                 <p>
@@ -25,18 +25,18 @@
                 </p>
             </div>
             <div class="excl-point">
-                <p>!</p>
+                <span class="material-icons"> warning </span>
             </div>
         </div>
         <div class="banner header-row yellow" v-if="!inProduction">
             <div class="excl-point">
-                <p>!</p>
+                <span class="material-icons"> warning </span>
             </div>
             <div class="banner-content">
                 <p>In development mode</p>
             </div>
             <div class="excl-point">
-                <p>!</p>
+                <span class="material-icons"> warning </span>
             </div>
         </div>
     </div>
@@ -95,11 +95,12 @@ export default {
     background-color: inherit;
     text-align: center;
     color: #434343;
+    font-family: "Lexend Deca";
 }
-.excl-point > p {
+.excl-point > span {
     background-color: inherit;
     color: #434343;
-    font-size: 36px;
+    font-size: 30px;
     padding: 10px;
 }
 </style>
