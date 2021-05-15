@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="banner header-row">
+        <div class="banner header-row red">
             <div class="excl-point">
                 <p>!</p>
             </div>
@@ -23,6 +23,17 @@
                     going to be very inaccurate. Please keep that in mind during
                     gameplay!
                 </p>
+            </div>
+            <div class="excl-point">
+                <p>!</p>
+            </div>
+        </div>
+        <div class="banner header-row yellow" v-if="!inProduction">
+            <div class="excl-point">
+                <p>!</p>
+            </div>
+            <div class="banner-content">
+                <p>In development mode</p>
             </div>
             <div class="excl-point">
                 <p>!</p>
@@ -44,6 +55,9 @@ export default {
         },
         loggedIn() {
             return this.$store.state.user.loggedInUser;
+        },
+        inProduction() {
+            return process.env.NODE_ENV == "production";
         },
     },
 };
@@ -68,16 +82,22 @@ export default {
     flex: 1;
     text-align: right;
 }
-.banner {
+.red {
     background-color: salmon;
 }
+.yellow {
+    background-color: khaki;
+}
+.banner > div {
+    background-color: inherit;
+}
 .banner-content > p {
-    background-color: salmon;
+    background-color: inherit;
     text-align: center;
     color: #434343;
 }
 .excl-point > p {
-    background-color: salmon;
+    background-color: inherit;
     color: #434343;
     font-size: 36px;
     padding: 10px;
