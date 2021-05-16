@@ -2,11 +2,17 @@
     <div class="stats" v-if="entityStats != null">
         <div class="numbers">
             <div v-if="entityStats.matches >= 10" class="number-row">
-                <div class="number left-number">
+                <div
+                    class="number left-number"
+                    v-tooltip.left="'Glicko Rating'"
+                >
                     <Number :value="entityStats.rating" />
                 </div>
                 <div class="middle-char">±</div>
-                <div class="number right-number">
+                <div
+                    class="number right-number"
+                    v-tooltip.left="'Rating Deviation (RD)'"
+                >
                     <Number :value="entityStats.rd" />
                 </div>
             </div>
