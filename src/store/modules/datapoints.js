@@ -10,13 +10,13 @@ const datapointsStore = {
     },
     getters: {
         currentEntityDatapoints: state => {
-            const sortedByTime = Object.values(state.entityDatapoints).sort((a, b) => b.timestamp - a.timestamp);
+            const sortedByTime = Object.values(state.entityDatapoints).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
             const newest = _.sortedUniqBy(sortedByTime, dp => dp.entity);
             return newest;
         },
         currentGeneralDatapoint: state => {
             if (state.generalDatapoints.length == 0) return null
-            return Object.values(state.generalDatapoints).sort((a, b) => b.timestamp - a.timestamp)[0];
+            return Object.values(state.generalDatapoints).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
         }
     },
     actions: {
