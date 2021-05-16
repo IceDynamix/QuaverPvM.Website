@@ -9,7 +9,7 @@
                 >
             </p>
         </div>
-        <div class="stats cols">
+        <div class="stats cols" v-if="generalDatapoint != null">
             <div class="col">
                 <h4>Users (ranked)</h4>
                 <p class="stat">
