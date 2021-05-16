@@ -9,30 +9,32 @@
                 >
             </p>
         </div>
-        <div class="stats cols" v-if="generalDatapoint != null">
-            <div class="col">
-                <h4>Users (ranked)</h4>
-                <p class="stat">
-                    {{ generalDatapoint["userCount"] }} ({{
-                        generalDatapoint["rankedUserCount"]
-                    }})
-                </p>
+        <transition name="transition" mode="out-in">
+            <div class="stats cols" v-if="generalDatapoint != null">
+                <div class="col">
+                    <h4>Users (ranked)</h4>
+                    <p class="stat">
+                        {{ generalDatapoint["userCount"] }} ({{
+                            generalDatapoint["rankedUserCount"]
+                        }})
+                    </p>
+                </div>
+                <div class="col">
+                    <h4>Maps (ranked)</h4>
+                    <p class="stat">
+                        {{ generalDatapoint["mapCount"] }} ({{
+                            generalDatapoint["rankedMapCount"]
+                        }})
+                    </p>
+                </div>
+                <div class="col">
+                    <h4>Matches played</h4>
+                    <p class="stat">
+                        {{ generalDatapoint["matchCount"] }}
+                    </p>
+                </div>
             </div>
-            <div class="col">
-                <h4>Maps (ranked)</h4>
-                <p class="stat">
-                    {{ generalDatapoint["mapCount"] }} ({{
-                        generalDatapoint["rankedMapCount"]
-                    }})
-                </p>
-            </div>
-            <div class="col">
-                <h4>Matches played</h4>
-                <p class="stat">
-                    {{ generalDatapoint["matchCount"] }}
-                </p>
-            </div>
-        </div>
+        </transition>
         <div class="features cols">
             <div class="col">
                 <span class="material-icons">emoji_events</span>
@@ -99,7 +101,6 @@ export default {
 .cols {
     display: flex;
     flex-direction: row;
-    margin: 10px 0;
 }
 @media only screen and (max-width: 600px) {
     .cols {
@@ -126,7 +127,7 @@ p {
 .stat {
     text-align: center;
 }
-.features {
-    margin-top: -20px;
+.template {
+    margin-top: 0;
 }
 </style>
