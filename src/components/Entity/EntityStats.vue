@@ -52,7 +52,7 @@ export default {
     },
     computed: {
         entityStats() {
-            return this.$store.getters["currentDatapoints"].find(
+            return this.$store.getters["currentEntityDatapoints"].find(
                 (dp) => dp.entity._id == this.entityId
             );
         },

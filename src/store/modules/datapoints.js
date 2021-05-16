@@ -10,7 +10,7 @@ const datapointsStore = {
     },
     getters: {
         currentEntityDatapoints: state => {
-            const sortedByTime = Object.values(state.entityDatapoints).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            const sortedByTime = Object.values(state.entityDatapoints).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             const newest = _.sortedUniqBy(sortedByTime, dp => dp.entity);
             return newest;
         },

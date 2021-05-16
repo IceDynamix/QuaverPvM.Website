@@ -60,7 +60,7 @@ export default {
             return this.$store.state.user.loggedInUser;
         },
         userStats() {
-            return this.$store.getters["currentDatapoints"].find(
+            return this.$store.getters["currentEntityDatapoints"].find(
                 (dp) => dp.entity._id == this.userId
             );
         },
