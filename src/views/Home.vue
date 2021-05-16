@@ -9,7 +9,31 @@
                 >
             </p>
         </div>
-        <div class="cols">
+        <div class="stats cols">
+            <div class="col">
+                <h4>Users (ranked)</h4>
+                <p class="stat">
+                    {{ generalDatapoint["userCount"] }} ({{
+                        generalDatapoint["rankedUserCount"]
+                    }})
+                </p>
+            </div>
+            <div class="col">
+                <h4>Maps (ranked)</h4>
+                <p class="stat">
+                    {{ generalDatapoint["mapCount"] }} ({{
+                        generalDatapoint["rankedMapCount"]
+                    }})
+                </p>
+            </div>
+            <div class="col">
+                <h4>Matches played</h4>
+                <p class="stat">
+                    {{ generalDatapoint["matchCount"] }}
+                </p>
+            </div>
+        </div>
+        <div class="features cols">
             <div class="col">
                 <span class="material-icons">emoji_events</span>
                 <h3>Rating System</h3>
@@ -55,6 +79,12 @@ export default {
         loggedIn() {
             return this.$store.state.user.loggedInUser;
         },
+        generalDatapoint() {
+            return this.$store.getters.currentGeneralDatapoint;
+        },
+    },
+    created() {
+        this.$store.dispatch("fetchGeneralDatapoints");
     },
 };
 </script>
@@ -89,5 +119,14 @@ p {
 }
 .col > h3 {
     margin: 5px;
+}
+.stats > .col > h4 {
+    margin-bottom: 5px;
+}
+.stat {
+    text-align: center;
+}
+.features {
+    margin-top: -20px;
 }
 </style>
