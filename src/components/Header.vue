@@ -13,39 +13,33 @@
                 </div>
             </div>
         </div>
-        <div class="banner header-row red">
-            <div class="excl-point">
-                <span class="material-icons"> warning </span>
-            </div>
-            <div class="banner-content">
-                <p>
-                    The site just released, which means that map ratings are
-                    going to be very inaccurate. Please keep that in mind during
-                    gameplay!
-                </p>
-            </div>
-            <div class="excl-point">
-                <span class="material-icons"> warning </span>
-            </div>
+        <div class="header-row">
+            <Banner
+                color="yellow"
+                icon="warning"
+                content="There will be a maintanence period to adjust rating scaling
+                    coming up on Monday. Please refer to the Discord for more
+                    information."
+            />
         </div>
-        <div class="banner header-row yellow" v-if="!inProduction">
-            <div class="excl-point">
-                <span class="material-icons"> warning </span>
-            </div>
-            <div class="banner-content">
-                <p>In development mode</p>
-            </div>
-            <div class="excl-point">
-                <span class="material-icons"> warning </span>
-            </div>
+        <div class="header-row" v-if="!inProduction">
+            <Banner
+                color="yellow"
+                icon="warning"
+                content="In development mode"
+            />
         </div>
     </div>
 </template>
 
 <script>
 import config from "../config/config";
+import Banner from "./Banner.vue";
 
 export default {
+    components: {
+        Banner,
+    },
     computed: {
         loginUrl() {
             return config.apiUrl + "/auth/quaver";
@@ -70,6 +64,9 @@ export default {
     align-items: center;
     margin-bottom: 25px;
 }
+.header-row > * {
+    flex: 1;
+}
 .title {
     font-size: 30px;
     flex: 1;
@@ -81,26 +78,5 @@ export default {
 .login {
     flex: 1;
     text-align: right;
-}
-.red {
-    background-color: salmon;
-}
-.yellow {
-    background-color: khaki;
-}
-.banner > div {
-    background-color: inherit;
-}
-.banner-content > p {
-    background-color: inherit;
-    text-align: center;
-    color: #434343;
-    font-family: "Lexend Deca";
-}
-.excl-point > span {
-    background-color: inherit;
-    color: #434343;
-    font-size: 30px;
-    padding: 10px;
 }
 </style>
