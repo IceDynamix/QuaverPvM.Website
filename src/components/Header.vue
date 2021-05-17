@@ -13,6 +13,13 @@
                 </div>
             </div>
         </div>
+        <div class="header-row">
+            <Banner
+                color="blue"
+                icon="info"
+                content="A new rating scaling has been applied. All ratings went down, but the leaderboard positions relative to other players will stay the same."
+            />
+        </div>
         <div class="header-row" v-if="!inProduction">
             <Banner
                 color="yellow"
