@@ -21,31 +21,35 @@ const datapointsStore = {
     actions: {
         async fetchEntityDatapointsCurrent({ commit }, id) {
             try {
-                const { data: datapoint } = await axios.get("entity/stats/" + id);
+                const { data } = await axios.get("entity/stats/" + id);
+                const { datapoint, entity } = data;
                 commit("addEntityDatapoints", { datapoints: [datapoint] });
+                commit("setEntities", { entities: [entity] });
             } catch (err) {
-                console.error(err.response.data.err);
-                Vue.toasted.show(err.response.data.err, { type: "error" });
+                console.error(err);
+                Vue.toasted.show(JSON.stringify(err), { type: "error" });
             }
         },
         async fetchEntityDatapointsFull({ commit }, id) {
             try {
-                const { data: datapoints } = await axios.get("entity/history/" + id);
-                commit("addEntityDatapoints", { datapoints });
+                const { data } = await axios.get("entity/history/" + id);
+                const { datapoints, entities } = data;
+                commit("addEntityDatapoints", { datapoints: datapoints });
+                commit("setEntities", { entities });
             } catch (err) {
-                console.error(err.response.data.err);
-                Vue.toasted.show(err.response.data.err, { type: "error" });
+                console.error(err);
+                Vue.toasted.show(JSON.stringify(err), { type: "error" });
             }
         },
         async fetchLeaderboard({ commit }, params) {
             try {
-                const { data: datapoints } = await axios.get("leaderboard", { params });
+                const { data } = await axios.get("leaderboard", { params });
+                const { datapoints, entities } = data;
                 commit("addEntityDatapoints", { datapoints });
-                const entities = datapoints.map(dp => dp.entity);
                 commit("setEntities", { entities });
             } catch (err) {
-                console.error(err.response.data.err);
-                Vue.toasted.show(err.response.data.err, { type: "error" });
+                console.error(err);
+                Vue.toasted.show(JSON.stringify(err), { type: "error" });
             }
         },
         async fetchGeneralDatapoints({ commit }) {
@@ -53,8 +57,8 @@ const datapointsStore = {
                 const { data: datapoints } = await axios.get("history");
                 commit("addGeneralDatapoints", { datapoints });
             } catch (err) {
-                console.error(err.response.data.err);
-                Vue.toasted.show(err.response.data.err, { type: "error" });
+                console.error(err);
+                Vue.toasted.show(JSON.stringify(err), { type: "error" });
             }
         },
     },

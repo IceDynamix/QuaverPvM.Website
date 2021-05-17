@@ -1,9 +1,9 @@
 <template>
     <div class="quaver-data-outer">
         <transition name="transition" mode="out-in">
-            <div class="quaver-data" v-if="quaverData != null">
+            <div class="quaver-data" v-if="entityData != null">
                 <div class="img">
-                    <img :src="img" alt="" />
+                    <img :src="img" alt=""/>
                 </div>
                 <div class="info-text">
                     <p class="row1">
@@ -29,16 +29,6 @@ export default {
     props: {
         entityId: String,
     },
-    async created() {
-        switch (this.entityType) {
-            case "user":
-                // this.$store.dispatch("fetchQuaverUser", this.quaverId);
-                break;
-            case "map":
-                this.$store.dispatch("fetchQuaverMap", this.quaverId);
-                break;
-        }
-    },
     computed: {
         entityData() {
             return this.$store.state.entities.entities[this.entityId];
@@ -50,14 +40,7 @@ export default {
             return this.entityData.quaverId;
         },
         quaverData() {
-            switch (this.entityType) {
-                case "user":
-                    return this.$store.state.quaver.users[this.quaverId];
-                case "map":
-                    return this.$store.state.quaver.maps[this.quaverId];
-                default:
-                    return null;
-            }
+            return this.entityData.quaverData;
         },
         quaverUrl() {
             switch (this.entityType) {
@@ -72,9 +55,9 @@ export default {
         img() {
             switch (this.entityType) {
                 case "user":
-                    return this.quaverData?.avatar_url;
+                    return this.quaverData?.info.avatar_url;
                 case "map":
-                    return `${config.quaverCdnUrl}/mapsets/${this.quaverData.mapset_id}.jpg`;
+                    return `${ config.quaverCdnUrl }/mapsets/${ this.quaverData?.mapset_id }.jpg`;
                 default:
                     return "";
             }
@@ -82,9 +65,9 @@ export default {
         info1() {
             switch (this.entityType) {
                 case "user":
-                    return this.quaverData?.username;
+                    return this.quaverData?.info.username;
                 case "map":
-                    return `${this.quaverData.artist} - ${this.quaverData.title}`;
+                    return `${ this.quaverData?.artist } - ${ this.quaverData?.title }`;
                 default:
                     return "";
             }
@@ -92,10 +75,10 @@ export default {
         info2() {
             switch (this.entityType) {
                 case "user":
-                    return ``;
+                    return `#${ this.quaverData?.keys4.globalRank }`;
                 case "map":
                     return `${
-                        this.quaverData.difficulty_name
+                        this.quaverData?.difficulty_name
                     } ${this.entityData.mapRate.toFixed(1)}x`;
                 default:
                     return "";

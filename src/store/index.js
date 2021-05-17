@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import datapoints from './modules/datapoints'
 import entities from './modules/entities'
 import user from './modules/user'
-import quaver from './modules/quaver'
 import match from './modules/match'
 import results from './modules/results'
 
@@ -14,7 +13,6 @@ export default new Vuex.Store({
         user,
         entities,
         datapoints,
-        quaver,
         match,
         results
     },

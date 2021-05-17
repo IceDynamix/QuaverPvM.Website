@@ -7,7 +7,7 @@
                         <div class="vs">VS</div>
                         <Entity :entityId="match.map._id" />
                         <transition name="transition" mode="out-in">
-                            <MatchSubmission :endsAt="match.endsAt"/>
+                            <MatchSubmission :endsAt="new Date(match.endsAt)"/>
                         </transition>
                     </div>
                     <div v-else key="idling">

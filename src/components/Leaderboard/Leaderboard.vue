@@ -19,7 +19,6 @@ export default {
     },
     async created() {
         await this.$store.dispatch("fetchLeaderboard", { entityType: this.type });
-        await this.$store.dispatch("fetchQuaverUsers", this.entities.map(e => e.quaverId));
     },
     computed: {
         leaderboard() {

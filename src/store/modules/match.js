@@ -12,10 +12,11 @@ const matchStore = {
             if (state.match != null) return;
             commit("setMatchLoading", true);
             try {
-                const { data: match } = await axios.get("match");
+                const { data } = await axios.get("match");
+                const { match, entities } = data;
                 if (!match) return;
                 commit("setMatch", match);
-                commit("setEntities", { entities: [match.user, match.map] });
+                commit("setEntities", { entities });
             } catch (err) {
                 console.error(err.response.data.err);
                 Vue.toasted.show(err.response.data.err, { type: "error" });
@@ -27,9 +28,10 @@ const matchStore = {
             if (state.match != null) return;
             commit("setMatchLoading", true);
             try {
-                const { data: match } = await axios.post("match");
+                const { data } = await axios.post("match");
+                const { match, entities } = data;
                 commit("setMatch", match);
-                commit("setEntities", { entities: [match.user, match.map] });
+                commit("setEntities", { entities });
             } catch (err) {
                 console.error(err.response.data.err);
                 Vue.toasted.show(err.response.data.err, { type: "error" });
