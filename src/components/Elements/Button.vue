@@ -22,7 +22,6 @@ button {
     padding: 0;
     cursor: pointer;
     font-size: 18px;
-    margin: 5px;
 }
 
 .button-icon {

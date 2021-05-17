@@ -1,57 +1,20 @@
 <template>
-    <div>
+    <div class="match">
         <transition name="transition" mode="out-in">
-            <transition name="transition" mode="out-in">
-                <div class="submission" v-if="matchLoading === false">
-                    <transition name="transition" mode="out-in">
-                        <div v-if="match" key="playing">
-                            <div class="vs">VS</div>
-                            <Entity :entityId="match.map._id" />
-                            <transition name="transition" mode="out-in">
-                                <div
-                                    class="submission-container"
-                                    v-if="secondsLeft > 0"
-                                >
-                                    <div class="left-side side">
-                                        <MatchTimer :secondsLeft="secondsLeft" />
-                                    </div>
-                                    <div class="right-side side">
-                                        <div class="submission-buttons">
-                                            <div class="submission-selection">
-                                                <Button
-                                                    :click="onYesButton"
-                                                    v-tooltip.right="submitYesTooltip"
-                                                    button-text="SUBMIT"
-                                                    icon="send"
-                                                />
-                                            </div>
-                                            <div class="submission-selection">
-                                                <Button
-                                                    :click="onYesButton"
-                                                    v-tooltip.right="submitYesTooltip"
-                                                    button-text="RESIGN"
-                                                    icon="flag"
-                                                />
-                                            </div>
-                                        </div>
-                                        <transition name="fade" mode="in-out">
-                                            <div
-                                                class="submission-scan-loading"
-                                                v-if="scanLoading === true"
-                                            >
-                                                <LoadingSpinner />
-                                            </div>
-                                        </transition>
-                                    </div>
-                                </div>
-                            </transition>
-                        </div>
-                        <div v-else key="idling">
-                            <Button :click="onMatchButton" button-text="MATCH" icon="search"/>
-                        </div>
-                    </transition>
-                </div>
-            </transition>
+            <div class="submission" v-if="matchLoading === false">
+                <transition name="transition" mode="out-in">
+                    <div v-if="match" key="playing">
+                        <div class="vs">VS</div>
+                        <Entity :entityId="match.map._id" />
+                        <transition name="transition" mode="out-in">
+                            <MatchSubmission :endsAt="match.endsAt"/>
+                        </transition>
+                    </div>
+                    <div v-else key="idling">
+                        <Button :click="onMatchButton" button-text="MATCH" icon="search"/>
+                    </div>
+                </transition>
+            </div>
         </transition>
     </div>
 </template>
@@ -59,109 +22,21 @@
 <script>
 // import axios from "axios";
 import Entity from "../Entity/Entity.vue";
-import LoadingSpinner from "../Elements/LoadingSpinner.vue";
-import MatchTimer from "./MatchTimer";
 import Button from "../Elements/Button";
-import axios from "axios";
+import MatchSubmission from "./MatchSubmission";
 
 export default {
     components: {
         Entity,
-        LoadingSpinner,
-        MatchTimer,
+        MatchSubmission,
         Button,
-    },
-    data: function () {
-        return { secondsLeft: null, scanLoading: false };
     },
     created() {
         this.$store.dispatch("fetchMatch");
-        setTimeout(this.countdown, 1000);
     },
     methods: {
         onMatchButton: function () {
             this.$store.dispatch("requestMatch");
-        },
-        onYesButton: async function () {
-            if (this.scanLoading) {
-                this.$toasted.show("Already scanning!");
-                return;
-            }
-            try {
-                this.scanLoading = true;
-                let response = await axios.post("results");
-                let { success, message, plays } = response.data;
-                if (success) {
-                    this.$toasted.show(
-                        `Submitted a win successfully (${plays[0].accuracy.toFixed(
-                            2
-                        )}%)`
-                    );
-                    this.secondsLeft = null;
-                    this.$store.commit("setMatch", null);
-                    this.$store.dispatch(
-                        "fetchEntityDatapointsCurrent",
-                        this.$store.state.user.loggedInUser
-                    );
-                } else {
-                    this.$toasted.show(message, { type: "info" });
-                }
-            } catch (e) {
-                this.$toasted.show(e.response.data.err, { type: "error" });
-                this.$store.dispatch("requestMatch");
-                this.$store.dispatch(
-                    "fetchEntityDatapointsCurrent",
-                    this.$store.state.user.loggedInUser
-                );
-            }
-            this.scanLoading = false;
-        },
-        onNoButton: async function () {
-            if (this.scanLoading) {
-                this.$toasted.show("Already resigning!");
-                return;
-            }
-            let confirmation = confirm("Are you sure you want to resign?");
-            if (!confirmation) return;
-            try {
-                this.scanLoading = true;
-                let response = await axios.post("results", { giveUp: true });
-                let { success, message } = response.data;
-                if (success) {
-                    this.$toasted.show("Resigned successfully");
-                    this.secondsLeft = null;
-                    this.$store.commit("setMatch", null);
-                    this.$store.dispatch(
-                        "fetchEntityDatapointsCurrent",
-                        this.$store.state.user.loggedInUser
-                    );
-                } else {
-                    this.$toasted.show(message, { type: "info" });
-                }
-            } catch (e) {
-                this.$toasted.show(e, { type: "error" });
-            }
-            this.scanLoading = false;
-        },
-        countdown: function () {
-            if (this.match) {
-                const currentTime = new Date();
-                this.secondsLeft =
-                    (new Date(this.match.endsAt).getTime() -
-                        currentTime.getTime()) /
-                    1000;
-
-                // User timed out
-                if (this.secondsLeft < 0) {
-                    this.$toasted.show("Timed out, match is considered lost");
-                    this.$store.commit("setMatch", null);
-                    this.$store.dispatch(
-                        "fetchEntityDatapointsCurrent",
-                        this.$store.state.user.loggedInUser,
-                    );
-                }
-            }
-            setTimeout(this.countdown, 1000);
         },
     },
     computed: {
@@ -171,21 +46,6 @@ export default {
         matchLoading() {
             return this.$store.state.match.loading;
         },
-        submitYesTooltip() {
-            return "Scan for recent plays";
-        },
-        submitNoTooltip() {
-            return "Give up on this one";
-        },
-        timer() {
-            if (this.secondsLeft)
-                return `${Math.floor(this.secondsLeft / 60)}:${(
-                    Math.floor(this.secondsLeft) % 60
-                )
-                    .toFixed(0)
-                    .padStart(2, "0")}`;
-            else return "";
-        },
     },
 };
 </script>
@@ -193,49 +53,5 @@ export default {
 <style scoped>
 .submission {
     text-align: center;
-}
-
-.submission-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    margin-top: 30px;
-}
-
-.side {
-    margin: 10px;
-    height: inherit;
-}
-
-.left-side {
-    flex: 1;
-    text-align: right;
-}
-
-.right-side {
-    flex: 1;
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.submission-selection {
-    flex: 1;
-}
-
-.submission-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: inherit;
-}
-
-.submission-scan-loading {
-    margin: 10px;
 }
 </style>
