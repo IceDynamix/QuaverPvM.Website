@@ -5,12 +5,8 @@
             v-if="entityData != null"
             key="entity-content"
         >
-            <div class="left-side">
-                <EntityData :entityId="entityId" />
-            </div>
-            <div class="right-side">
-                <EntityStats :entityId="entityId" />
-            </div>
+            <EntityData :entityId="entityId" />
+            <EntityStats :entityId="entityId" />
         </div>
     </div>
 </template>
@@ -28,7 +24,8 @@ export default {
         entityId: String,
     },
     created() {
-        this.$store.dispatch("fetchEntities", { id: this.entityId });
+        if (!this.entityData)
+            this.$store.dispatch("fetchEntities", { id: this.entityId });
     },
     computed: {
         entityData() {
@@ -40,10 +37,10 @@ export default {
 
 <style scoped>
 .entity {
-    height: 60px;
     margin: 10px;
 }
 .entity-content {
+    height: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -1,6 +1,7 @@
 <template>
     <div class="footer">
         <router-link to="/faq">FAQ</router-link>
+        <router-link to="/leaderboards">Leaderboards</router-link>
         <a
             href="https://discord.gg/czxEcwBftm"
             target="_blank"

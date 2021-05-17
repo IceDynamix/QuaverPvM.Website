@@ -39,8 +39,9 @@ export default {
     components: {
         Number,
     },
-    async created() {
-        this.$store.dispatch("fetchEntityDatapointsCurrent", this.entityId);
+    created() {
+        if (!this.entityStats) // Use cached if initializing
+            this.$store.dispatch("fetchEntityDatapointsCurrent", this.entityId);
     },
     methods: {
         trim: function (n) {
@@ -91,7 +92,7 @@ export default {
     justify-content: space-around;
     flex-direction: row;
     text-align: center;
-    width: 120px;
+    width: 130px;
 }
 .numbers {
     flex-direction: column;
@@ -119,6 +120,6 @@ export default {
     top: 50%;
     font-size: 30px;
     line-height: 100%;
-    flex-basis: 30px;
+    flex-basis: 50px;
 }
 </style>
