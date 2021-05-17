@@ -13,15 +13,6 @@
                 </div>
             </div>
         </div>
-        <div class="header-row">
-            <Banner
-                color="yellow"
-                icon="warning"
-                content="There will be a maintanence period to adjust rating scaling
-                    coming up on Monday. Please refer to the Discord for more
-                    information."
-            />
-        </div>
         <div class="header-row" v-if="!inProduction">
             <Banner
                 color="yellow"

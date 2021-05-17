@@ -3,10 +3,17 @@
         <div class="container">
             <Header />
             <hr />
-            <div class="content">
+            <div class="content" v-if="false">
                 <transition name="transition" mode="out-in">
                     <router-view />
                 </transition>
+            </div>
+            <div class="content" v-else>
+                <Banner
+                    color="blue"
+                    icon="settings"
+                    content="Maintenance ongoing, please refer to the Discord for more information!"
+                />
             </div>
             <hr />
             <Footer />
@@ -17,11 +24,13 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import Banner from "@/components/Banner.vue";
 
 export default {
     components: {
         Header,
         Footer,
+        Banner,
     },
     created() {
         this.$store.dispatch("login");
