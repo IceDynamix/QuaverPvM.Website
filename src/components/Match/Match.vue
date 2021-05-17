@@ -18,36 +18,20 @@
                                     <div class="right-side side">
                                         <div class="submission-buttons">
                                             <div class="submission-selection">
-                                                <button
-                                                    @click="onYesButton"
-                                                    v-tooltip.right="
-                                                        submitYesTooltip
-                                                    "
-                                                >
-                                                    <span
-                                                        class="submission-button-text"
-                                                        >SUBMIT</span
-                                                    >
-                                                    <span class="material-icons"
-                                                        >send</span
-                                                    >
-                                                </button>
+                                                <Button
+                                                    :click="onYesButton"
+                                                    v-tooltip.right="submitYesTooltip"
+                                                    button-text="SUBMIT"
+                                                    icon="send"
+                                                />
                                             </div>
                                             <div class="submission-selection">
-                                                <button
-                                                    @click="onNoButton"
-                                                    v-tooltip.right="
-                                                        submitNoTooltip
-                                                    "
-                                                >
-                                                    <span
-                                                        class="submission-button-text"
-                                                        >RESIGN</span
-                                                    >
-                                                    <span class="material-icons"
-                                                        >flag</span
-                                                    >
-                                                </button>
+                                                <Button
+                                                    :click="onYesButton"
+                                                    v-tooltip.right="submitYesTooltip"
+                                                    button-text="RESIGN"
+                                                    icon="flag"
+                                                />
                                             </div>
                                         </div>
                                         <transition name="fade" mode="in-out">
@@ -63,9 +47,7 @@
                             </transition>
                         </div>
                         <div v-else key="idling">
-                            <button @click="onMatchButton">
-                                MATCH<span class="material-icons">search</span>
-                            </button>
+                            <Button :click="onMatchButton" button-text="MATCH" icon="search"/>
                         </div>
                     </transition>
                 </div>
@@ -79,13 +61,15 @@
 import Entity from "../Entity/Entity.vue";
 import LoadingSpinner from "../Elements/LoadingSpinner.vue";
 import MatchTimer from "./MatchTimer";
+import Button from "../Elements/Button";
 import axios from "axios";
 
 export default {
     components: {
         Entity,
         LoadingSpinner,
-        MatchTimer
+        MatchTimer,
+        Button,
     },
     data: function () {
         return { secondsLeft: null, scanLoading: false };
@@ -168,12 +152,12 @@ export default {
                     1000;
 
                 // User timed out
-                if (this.secondsLeft <= 0) {
+                if (this.secondsLeft < 0) {
                     this.$toasted.show("Timed out, match is considered lost");
                     this.$store.commit("setMatch", null);
                     this.$store.dispatch(
                         "fetchEntityDatapointsCurrent",
-                        this.$store.state.user.loggedInUser
+                        this.$store.state.user.loggedInUser,
                     );
                 }
             }
@@ -253,21 +237,5 @@ export default {
 
 .submission-scan-loading {
     margin: 10px;
-}
-
-button {
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.material-icons {
-    font-size: 16px;
-    margin-left: 5px;
-}
-
-.submission-button-text {
-    text-decoration: underline;
 }
 </style>
