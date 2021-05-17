@@ -13,14 +13,7 @@
                                     v-if="secondsLeft > 0"
                                 >
                                     <div class="left-side side">
-                                        <div>
-                                            <p class="timer-label">
-                                                Time left to play
-                                            </p>
-                                            <p class="timer-content">
-                                                {{ timer }}
-                                            </p>
-                                        </div>
+                                        <MatchTimer :secondsLeft="secondsLeft" />
                                     </div>
                                     <div class="right-side side">
                                         <div class="submission-buttons">
@@ -85,12 +78,14 @@
 // import axios from "axios";
 import Entity from "../Entity/Entity.vue";
 import LoadingSpinner from "../Elements/LoadingSpinner.vue";
+import MatchTimer from "./MatchTimer";
 import axios from "axios";
 
 export default {
     components: {
         Entity,
         LoadingSpinner,
+        MatchTimer
     },
     data: function () {
         return { secondsLeft: null, scanLoading: false };
@@ -242,10 +237,6 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-}
-
-.timer-content {
-    font-size: 30px;
 }
 
 .submission-selection {
