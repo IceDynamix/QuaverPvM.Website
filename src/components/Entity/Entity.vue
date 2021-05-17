@@ -5,12 +5,8 @@
             v-if="entityData != null"
             key="entity-content"
         >
-            <div class="left-side">
-                <EntityData :entityId="entityId" />
-            </div>
-            <div class="right-side">
-                <EntityStats :entityId="entityId" />
-            </div>
+            <EntityData :entityId="entityId" />
+            <EntityStats :entityId="entityId" />
         </div>
     </div>
 </template>

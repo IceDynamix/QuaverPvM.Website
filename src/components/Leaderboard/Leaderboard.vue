@@ -1,7 +1,7 @@
 <template>
     <div class="leaderboard">
         <div class="leaderboard-row" v-for="(entity, index) in entities" :key="entity._id">
-            <p>#{{ index + 1 }}</p>
+            <p class="rank">#{{ index + 1 }}</p>
             <Entity class="col" :entityId="entity._id"/>
         </div>
     </div>
@@ -40,8 +40,11 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
-
 .col {
     flex: 1;
+}
+.rank {
+    text-align: right;
+    flex-basis: 35px;
 }
 </style>

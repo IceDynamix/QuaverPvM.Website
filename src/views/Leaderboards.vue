@@ -9,7 +9,7 @@ import Leaderboard from "../components/Leaderboard/Leaderboard";
 
 export default {
     name: "Leaderboards",
-    components: {Leaderboard}
+    components: { Leaderboard },
 }
 </script>
 
