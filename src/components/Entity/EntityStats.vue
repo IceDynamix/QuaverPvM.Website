@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Number from "./Number.vue";
+import Number from "../Elements/Number.vue";
 
 export default {
     props: {
@@ -50,12 +50,12 @@ export default {
     computed: {
         entityStats() {
             return this.$store.getters["currentEntityDatapoints"].find(
-                (dp) => dp.entity._id == this.entityId
+                (dp) => dp.entity._id === this.entityId
             );
         },
         letterRank() {
             const lRank = this.entityStats.letterRank;
-            if (lRank == "z") return "?";
+            if (lRank === "z") return "?";
             return lRank.toUpperCase();
         },
         letterRankTooltip() {
@@ -104,9 +104,6 @@ export default {
 }
 .number {
     flex: 4;
-}
-.qxe {
-    text-align: right;
 }
 .middle-char {
     flex: 1;

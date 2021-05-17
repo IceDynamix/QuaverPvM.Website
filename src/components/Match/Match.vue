@@ -2,7 +2,7 @@
     <div>
         <transition name="transition" mode="out-in">
             <transition name="transition" mode="out-in">
-                <div class="submission" v-if="matchLoading == false">
+                <div class="submission" v-if="matchLoading === false">
                     <transition name="transition" mode="out-in">
                         <div v-if="match" key="playing">
                             <div class="vs">VS</div>
@@ -60,7 +60,7 @@
                                         <transition name="fade" mode="in-out">
                                             <div
                                                 class="submission-scan-loading"
-                                                v-if="scanLoading == true"
+                                                v-if="scanLoading === true"
                                             >
                                                 <LoadingSpinner />
                                             </div>
@@ -84,7 +84,7 @@
 <script>
 // import axios from "axios";
 import Entity from "../Entity/Entity.vue";
-import LoadingSpinner from "../LoadingSpinner.vue";
+import LoadingSpinner from "../Elements/LoadingSpinner.vue";
 import axios from "axios";
 
 export default {

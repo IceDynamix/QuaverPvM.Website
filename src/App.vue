@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-import Banner from "@/components/Banner.vue";
+import Header from "@/components/Elements/Header.vue";
+import Footer from "@/components/Elements/Footer.vue";
+import Banner from "@/components/Elements/Banner.vue";
 
 export default {
     components: {
@@ -45,13 +45,13 @@ export default {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Lexend Deca", sans-serif;
+    font-family: Lexend Deca, sans-serif;
     background-color: #434343;
     color: white;
     hyphens: auto;
 }
 p {
-    font-family: "Lexend", sans-serif;
+    font-family: Lexend, sans-serif;
     hyphens: auto;
 }
 .content {
@@ -76,6 +76,7 @@ a {
 .transition-leave-to {
     opacity: 0;
 }
+
 hr {
     display: block;
     height: 2px;

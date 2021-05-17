@@ -1,5 +1,5 @@
 <template>
-    <div class="banner" :class="color">
+    <div class="banner" :style="style">
         <div class="excl-point">
             <span class="material-icons">{{ icon }}</span>
         </div>
@@ -21,22 +21,22 @@ export default {
         color: String,
         content: String,
     },
+    computed: {
+        style() {
+            let colors = {
+                red: "salmon",
+                yellow: "khaki",
+                blue: "skyblue",
+                green: "palegreen",
+            };
+            let col = this.color in colors ? colors[this.color] : this.color;
+            return `background-color: ${col}`;
+        }
+    }
 };
 </script>
 
 <style scoped>
-.red {
-    background-color: salmon;
-}
-.yellow {
-    background-color: khaki;
-}
-.blue {
-    background-color: skyblue;
-}
-.green {
-    background-color: palegreen;
-}
 .banner {
     display: flex;
     justify-content: space-between;
@@ -50,7 +50,7 @@ export default {
     background-color: inherit;
     text-align: center;
     color: #434343;
-    font-family: "Lexend Deca";
+    font-family: Lexend Deca, sans-serif;
 }
 .excl-point > span {
     background-color: inherit;

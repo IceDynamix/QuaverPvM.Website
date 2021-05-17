@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import config from "../config/config";
+import config from "../../config/config";
 import Banner from "./Banner.vue";
 
 export default {
@@ -49,7 +49,7 @@ export default {
             return this.$store.state.user.loggedInUser;
         },
         inProduction() {
-            return process.env.NODE_ENV == "production";
+            return process.env.NODE_ENV === "production";
         },
     },
 };

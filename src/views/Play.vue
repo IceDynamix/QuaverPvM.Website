@@ -1,7 +1,7 @@
 <template>
     <div class="play">
         <div v-if="userId != null">
-            <div class="flavor tutorial" v-if="matches == 0">
+            <div class="flavor tutorial" v-if="matches === 0">
                 Welcome to QuaverPvM! This is your first time playing, so here's
                 what you need to know to get going. The instructions will
                 disappear after a match, but will be available in the FAQ at any
@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import Entity from "@/components/Entity/Entity.vue";
-import Match from "@/components/Match/Match.vue";
+import Entity from "../components/Entity/Entity.vue";
+import Match from "../components/Match/Match.vue";
 
 export default {
     components: {
@@ -61,7 +61,7 @@ export default {
         },
         userStats() {
             return this.$store.getters["currentEntityDatapoints"].find(
-                (dp) => dp.entity._id == this.userId
+                (dp) => dp.entity._id === this.userId
             );
         },
         rd() {
@@ -82,7 +82,7 @@ export default {
 }
 .tutorial > ol > li {
     margin: 10px 0;
-    font-family: "Lexend";
+    font-family: Lexend, sans-serif;
 }
 .flavor {
     margin: 25px 0;

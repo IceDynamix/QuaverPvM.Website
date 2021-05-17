@@ -14,23 +14,21 @@
                 <div class="col">
                     <h4>Users (ranked)</h4>
                     <p class="stat">
-                        {{ generalDatapoint["userCount"] }} ({{
-                            generalDatapoint["rankedUserCount"]
-                        }})
+                        <Number :value="generalDatapoint['userCount']"/>
+                        (<Number :value="generalDatapoint['rankedUserCount']"/>)
                     </p>
                 </div>
                 <div class="col">
                     <h4>Maps (ranked)</h4>
                     <p class="stat">
-                        {{ generalDatapoint["mapCount"] }} ({{
-                            generalDatapoint["rankedMapCount"]
-                        }})
+                        <Number :value="generalDatapoint['mapCount']"/>
+                        (<Number :value="generalDatapoint['rankedMapCount']"/>)
                     </p>
                 </div>
                 <div class="col">
                     <h4>Matches played</h4>
                     <p class="stat">
-                        {{ generalDatapoint["matchCount"] }}
+                        <Number :value="generalDatapoint['matchCount']"/>
                     </p>
                 </div>
             </div>
@@ -72,8 +70,12 @@
 
 <script>
 import config from "../config/config";
+import Number from "../components/Elements/Number.vue";
 
 export default {
+    components: {
+        Number
+    },
     computed: {
         loginUrl() {
             return config.apiUrl + "/auth/quaver";
@@ -112,7 +114,7 @@ export default {
     margin: 15px;
 }
 p {
-    font-family: "Lexend";
+    font-family: Lexend, sans-serif;
     text-align: justify;
 }
 .play {
@@ -126,8 +128,5 @@ p {
 }
 .stat {
     text-align: center;
-}
-.template {
-    margin-top: 0;
 }
 </style>
