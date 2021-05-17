@@ -18,7 +18,7 @@
                 </div>
                 <div class="submission-selection">
                     <Button
-                        :click="onYesButton"
+                        :click="onNoButton"
                         v-tooltip.right="submitNoTooltip"
                         buttonText="RESIGN"
                         icon="flag"
