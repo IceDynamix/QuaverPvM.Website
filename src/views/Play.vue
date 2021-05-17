@@ -1,7 +1,7 @@
 <template>
     <div class="play">
         <div v-if="userId != null">
-            <div class="flavor tutorial" v-if="matches === 0">
+            <div class="flavor tutorial" v-if="matches === 0 && userStats != null">
                 Welcome to QuaverPvM! This is your first time playing, so here's
                 what you need to know to get going. The instructions will
                 disappear after a match, but will be available in the FAQ at any
