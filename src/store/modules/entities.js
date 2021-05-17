@@ -20,7 +20,7 @@ const entitiesStore = {
     mutations: {
         setEntities(state, { entities }) {
             for (const entity of entities) state.entities[entity.id] = entity;
-            state.entities = { ...state.entities };
+            state.entities = { ...state.entities }; // Assignment required to reload components
         },
     },
 };

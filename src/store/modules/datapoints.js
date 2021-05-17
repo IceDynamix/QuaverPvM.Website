@@ -11,11 +11,10 @@ const datapointsStore = {
     getters: {
         currentEntityDatapoints: state => {
             const sortedByTime = Object.values(state.entityDatapoints).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-            const newest = _.sortedUniqBy(sortedByTime, dp => dp.entity);
-            return newest;
+            return _.sortedUniqBy(sortedByTime, dp => dp.entity);
         },
         currentGeneralDatapoint: state => {
-            if (state.generalDatapoints.length == 0) return null
+            if (state.generalDatapoints.length === 0) return null
             return Object.values(state.generalDatapoints).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
         }
     },
@@ -38,10 +37,12 @@ const datapointsStore = {
                 Vue.toasted.show(err.response.data.err, { type: "error" });
             }
         },
-        async fetchLeaderboard({ commit }) {
+        async fetchLeaderboard({ commit }, params) {
             try {
-                const { data: datapoints } = await axios.get("leaderboard");
+                const { data: datapoints } = await axios.get("leaderboard", { params });
                 commit("addEntityDatapoints", { datapoints });
+                const entities = datapoints.map(dp => dp.entity);
+                commit("setEntities", { entities });
             } catch (err) {
                 console.error(err.response.data.err);
                 Vue.toasted.show(err.response.data.err, { type: "error" });

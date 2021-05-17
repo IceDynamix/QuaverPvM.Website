@@ -39,8 +39,9 @@ export default {
     components: {
         Number,
     },
-    async created() {
-        this.$store.dispatch("fetchEntityDatapointsCurrent", this.entityId);
+    created() {
+        if (!this.entityStats) // Use cached if initializing
+            this.$store.dispatch("fetchEntityDatapointsCurrent", this.entityId);
     },
     methods: {
         trim: function (n) {
