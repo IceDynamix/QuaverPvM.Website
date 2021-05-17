@@ -17,13 +17,14 @@ export default {
         type: String,
         page: Number,
     },
-    created() {
-        this.$store.dispatch("fetchLeaderboard", { entityType: this.type })
+    async created() {
+        await this.$store.dispatch("fetchLeaderboard", { entityType: this.type });
+        await this.$store.dispatch("fetchQuaverUsers", this.entities.map(e => e.quaverId));
     },
     computed: {
         leaderboard() {
             return this.$store.getters.currentEntityDatapoints
-                .filter(dp => dp.rd < 100)
+                .filter(dp => dp.rd < 100 && dp.entity.entityType === this.type)
                 .sort((a, b) => b.rating - a.rating);
         },
         entities() {

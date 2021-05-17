@@ -32,7 +32,7 @@ export default {
     async created() {
         switch (this.entityType) {
             case "user":
-                this.$store.dispatch("fetchQuaverUser", this.quaverId);
+                // this.$store.dispatch("fetchQuaverUser", this.quaverId);
                 break;
             case "map":
                 this.$store.dispatch("fetchQuaverMap", this.quaverId);
@@ -72,7 +72,7 @@ export default {
         img() {
             switch (this.entityType) {
                 case "user":
-                    return this.quaverData?.info.avatar_url;
+                    return this.quaverData?.avatar_url;
                 case "map":
                     return `${config.quaverCdnUrl}/mapsets/${this.quaverData.mapset_id}.jpg`;
                 default:
@@ -82,7 +82,7 @@ export default {
         info1() {
             switch (this.entityType) {
                 case "user":
-                    return this.quaverData?.info.username;
+                    return this.quaverData?.username;
                 case "map":
                     return `${this.quaverData.artist} - ${this.quaverData.title}`;
                 default:
@@ -92,7 +92,7 @@ export default {
         info2() {
             switch (this.entityType) {
                 case "user":
-                    return `#${this.quaverData.keys4.globalRank}`;
+                    return ``;
                 case "map":
                     return `${
                         this.quaverData.difficulty_name
