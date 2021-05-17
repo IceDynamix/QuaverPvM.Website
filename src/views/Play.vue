@@ -1,7 +1,7 @@
 <template>
     <div class="play">
         <div v-if="userId != null">
-            <div class="flavor tutorial" v-if="rd > 300">
+            <div class="flavor tutorial" v-if="matches == 0">
                 Welcome to QuaverPvM! This is your first time playing, so here's
                 what you need to know to get going. The instructions will
                 disappear after a match, but will be available in the FAQ at any
@@ -33,7 +33,7 @@
                     </li>
                 </ol>
             </div>
-            <div class="flavor helper" v-if="rd > 100">
+            <div class="flavor helper" v-if="rd > 100 && matches > 0">
                 Your Rating Deviation (RD) is above 100 (currently
                 {{ rd.toFixed(0) }}), which means you're <b>unranked</b>. Once
                 your RD is below 100, you will receive a letter rank and appear

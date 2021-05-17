@@ -2,16 +2,13 @@
     <div class="stats" v-if="entityStats != null">
         <div class="numbers">
             <div v-if="entityStats.matches >= 10" class="number-row">
-                <div
-                    class="number left-number"
-                    v-tooltip.left="'Glicko Rating'"
-                >
+                <div class="number left-number" v-tooltip.left="glickoTooltip">
                     <Number :value="entityStats.rating" />
                 </div>
                 <div class="middle-char">±</div>
                 <div
                     class="number right-number"
-                    v-tooltip.left="'Rating Deviation (RD)'"
+                    v-tooltip.right="'Rating Deviation (RD)'"
                 >
                     <Number :value="entityStats.rd" />
                 </div>
@@ -76,6 +73,11 @@ export default {
                     : 0;
 
             return `${winPercentage.toFixed(2)}%`;
+        },
+        glickoTooltip() {
+            return `Glicko rating, cv. ${this.entityStats.quaverRating.toFixed(
+                2
+            )}QR`;
         },
     },
 };
