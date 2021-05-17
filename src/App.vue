@@ -3,7 +3,7 @@
         <div class="container">
             <Header />
             <hr />
-            <div class="content" v-if="false">
+            <div class="content" v-if="true">
                 <transition name="transition" mode="out-in">
                     <router-view />
                 </transition>
