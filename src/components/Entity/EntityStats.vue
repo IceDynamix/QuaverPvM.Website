@@ -89,7 +89,7 @@ export default {
     justify-content: space-around;
     flex-direction: row;
     text-align: center;
-    width: 130px;
+    width: 175px;
 }
 .numbers {
     flex-direction: column;
