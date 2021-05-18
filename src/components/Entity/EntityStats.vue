@@ -24,13 +24,14 @@
             </div>
         </div>
         <div class="letter-rank" v-tooltip.right="letterRankTooltip">
-            {{ letterRank }}
+            <EntityLetterRank :letter-rank="this.entityStats.letterRank" />
         </div>
     </div>
 </template>
 
 <script>
 import Number from "../Elements/Number.vue";
+import EntityLetterRank from "./EntityLetterRank";
 
 export default {
     props: {
@@ -38,6 +39,7 @@ export default {
     },
     components: {
         Number,
+        EntityLetterRank
     },
     created() {
         if (!this.entityStats) // Use cached if initializing
@@ -53,11 +55,6 @@ export default {
             return this.$store.getters["currentEntityDatapoints"].find(
                 (dp) => dp.entity._id === this.entityId
             );
-        },
-        letterRank() {
-            const lRank = this.entityStats.letterRank;
-            if (lRank === "z") return "?";
-            return lRank.toUpperCase();
         },
         letterRankTooltip() {
             if (this.entityStats.rd > 100) return "Unranked";
@@ -117,9 +114,6 @@ export default {
     text-align: left;
 }
 .letter-rank {
-    top: 50%;
-    font-size: 30px;
-    line-height: 100%;
     flex-basis: 50px;
 }
 </style>
