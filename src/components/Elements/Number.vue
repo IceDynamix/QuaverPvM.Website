@@ -1,7 +1,7 @@
 <template>
     <animated-number
         :value="value"
-        :duration="2000"
+        :duration="1000"
         :formatValue="trim"
         :delay="100"
         easing="easeInOutQuint"
