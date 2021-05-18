@@ -65,8 +65,7 @@
                 Why do I have to play 10 matches before I can see any stats?
             </h1>
             <p>
-                The RD is the largest for an unranked player, which means that
-                the rating will fluctuate a lot at the beginning. This can lead
+                The rating is the most inaccurate at the beginning. This can lead
                 to false expectations, so you need to play a few matches until
                 the system is confident that your rating is roughly accurate.
             </p>
@@ -80,16 +79,16 @@
                 While you need to play 10 matches to see your Glicko rating,
                 being able to see it does not mean that you are ranked. You will
                 be ranked as soon as you get a letter rank, which requires
-                having 100 RD or less. Once you have it, you will be considered
-                in the leaderboards. Only one way to get there: play more
-                matches.
+                having 100 RD or less, which takes around 12-16 matches.
+                Once you have it, you will be considered in the leaderboards.
+                Only one way to get there: play more matches!
             </p>
         </div>
         <div class="entry">
             <h1>What does my letter rank mean?</h1>
             <p>
-                Your letter rank is determined by the current percentile you're
-                currently in. This means that for example at rank #150 of 2000
+                Your letter rank is determined by the percentile you're
+                currently in. This means that for example at rank #15 of 200
                 players, you would be in the 7.5th percentile, which is
                 considered SS rank. The thresholds are the same as in
                 <a href="https://tetr.io/">Tetr.io</a> and as following:
@@ -137,7 +136,7 @@ h1 {
 p {
     text-align: justify;
     margin: 10px 25px;
-    font-family: "Lexend";
+    font-family: Lexend, sans-serif;
 }
 .ranks {
     margin: 10px 25px;
