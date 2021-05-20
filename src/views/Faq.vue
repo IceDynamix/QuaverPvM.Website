@@ -3,51 +3,30 @@
         <div class="entry">
             <h1>How do I play?</h1>
             <p>
-                After getting matched against a map around your current rating,
-                you will have 10 minutes to submit an S Rank score or higher
-                (&ge; 95.00% accuracy) in Quaver on that map. This also means
-                that you're allowed to retry as long as you have time left to
-                submit the score. If you're unable to get the S rank, then you
-                can resign. Please make sure that you're playing the correct
-                rate.
+                QuaverPvM is based on <a href="https://quavergame.com/">Quaver</a> and all of the gameplay
+                will happen in the Quaver client. Make sure you've downloaded and installed Quaver over Steam and are
+                familiar with how the game works. QuaverPvM's role is matching you against maps and computing the
+                ratings based on the match outcome.
             </p>
             <p>
-                Mirror mod is allowed. Rates below the provided map rate are not
-                allowed (higher rates are allowed). NF/NLN/FLN/INV mods and
-                pausing are not allowed, as those will make your play not submit
-                to the server. NSV is also not allowed, but not necessary
-                because of the maps chosen to get added to QuaverPvM.
+                After getting matched against a map around your current rating, you will have 10 minutes to submit an S
+                Rank score or higher (&ge; 95.00% accuracy) in Quaver on that map. This also means that you're allowed
+                to retry as long as you have time left to submit the score. If you're unable to get the S rank, then
+                you're free to resign. Please make sure that you're playing the correct rate.
             </p>
-        </div>
-        <div class="entry">
-            <h1>Are the maps added to the database randomly?</h1>
             <p>
-                Yes and no. A specific set of filters have been implemented: 4K
-                only, map must be ranked, length between 2-5 minutes, &lt; 60%
-                LN and no SVs in the map file. The system chooses maps randomly
-                from this filtered pool of maps. The total pool is around 2200
-                maps, from which 10 get added to the database every midnight.
-                The initial rating of a map scales off its Quaver difficulty and
-                its initial RD is reduced to 200 as opposed to 350.
+                Mirror mod is allowed. Rates below the provided map rate are not allowed (higher rates are allowed).
+                NF/NLN/FLN/INV mods and pausing are not allowed, as those will make your play not submit to the Quaver
+                server. NSV is also not allowed, but not necessary because of the maps chosen to get added to QuaverPvM.
             </p>
         </div>
         <div class="entry">
-            <h1>I played against a map that was over/underrated in rating!</h1>
+            <h1>
+                Where can I submit feedback or find a community to talk about
+                QuaverPvM?
+            </h1>
             <p>
-                This happens. Remember, a map's initial rating scales off Quaver
-                difficulty rating, so it's as accurate as that when it hasn't
-                played against anyone. It will get more accurate as more players
-                play against it, so please play more!
-            </p>
-        </div>
-        <div class="entry">
-            <h1>How does the rating work? / What is Glicko/RD?</h1>
-            <p>
-                The Glicko-2 system is a rating system that has a regular skill
-                rating, but also considers how inaccurate the rating is by
-                computing a value called rating deviation (RD). The more matches
-                you play, the smaller RD becomes, which means that the system
-                thinks your rating is more accurate. RD increases over time.
+                You can refer to the Discord server at the bottom of the page.
             </p>
         </div>
         <div class="entry">
@@ -96,31 +75,54 @@
             <div class="ranks">
                 <div class="thresholds">
                     <span>X</span><span>U</span><span>SS</span><span>S+</span
-                    ><span>S</span><span>S-</span><span>A+</span><span>A</span
-                    ><span>A-</span><span>B+</span><span>B</span><span>B-</span
-                    ><span>C+</span><span>C</span><span>C-</span><span>D+</span>
+                ><span>S</span><span>S-</span><span>A+</span><span>A</span
+                ><span>A-</span><span>B+</span><span>B</span><span>B-</span
+                ><span>C+</span><span>C</span><span>C-</span><span>D+</span>
                     <span>D</span>
                 </div>
                 <div class="thresholds">
                     <span>1%</span><span>5%</span><span>11%</span
-                    ><span>17%</span><span>23%</span><span>30%</span
-                    ><span>38%</span><span>46%</span><span>54%</span
-                    ><span>62%</span><span>70%</span><span>78%</span
-                    ><span>84%</span><span>90%</span><span>95%</span
-                    ><span>97.5%</span>
+                ><span>17%</span><span>23%</span><span>30%</span
+                ><span>38%</span><span>46%</span><span>54%</span
+                ><span>62%</span><span>70%</span><span>78%</span
+                ><span>84%</span><span>90%</span><span>95%</span
+                ><span>97.5%</span>
                     <span>100%</span>
                 </div>
             </div>
         </div>
         <div class="entry">
-            <h1>
-                Where can I submit feedback or find a community to talk about
-                QuaverPvM?
-            </h1>
+            <h1>Are the maps added to the database randomly?</h1>
             <p>
-                You can refer to the Discord server at the bottom of the page.
+                Yes and no. A specific set of filters have been implemented: 4K
+                only, map must be ranked, length between 2-5 minutes, &lt; 60%
+                LN and no SVs in the map file. The system chooses maps randomly
+                from this filtered pool of maps. The total pool covers around 2200
+                maps, from a subset is in the active matchmaking pool.
+                The initial rating of a map scales off its Quaver difficulty and
+                its initial RD is reduced to 200 as opposed to 350.
             </p>
         </div>
+        <div class="entry">
+            <h1>I played against a map that was over/underrated in rating!</h1>
+            <p>
+                This happens. Remember, a map's initial rating scales off Quaver
+                difficulty rating, so it's as accurate as that when it hasn't
+                played against anyone. It will get more accurate as more players
+                play against it, so please play more!
+            </p>
+        </div>
+        <div class="entry">
+            <h1>How does the rating work? / What is Glicko/RD?</h1>
+            <p>
+                QuaverPvM uses the the Glicko-2 system, which is most commonly used for chess. It's a rating system that
+                has a regular skill rating, but also considers how inaccurate the rating is by computing a value called
+                rating deviation (RD). The more matches you play, the smaller RD becomes, which means that the system
+                thinks your rating is more accurate. RD increases over time.
+            </p>
+        </div>
+
+
     </div>
 </template>
 

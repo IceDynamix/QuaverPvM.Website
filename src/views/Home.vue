@@ -3,10 +3,10 @@
         <div class="title">
             <h1>QuaverPvM</h1>
             <p class="sub">
-                <i
-                    >The ultimate Player vs. Map experience based on
-                    <a href="https://quavergame.com/">Quaver</a></i
-                >
+                <i>
+                    The ultimate Player vs. Map experience based on
+                    <a href="https://quavergame.com/">Quaver</a>
+                </i>
             </p>
         </div>
         <transition name="transition" mode="out-in">
@@ -38,22 +38,20 @@
                 <span class="material-icons">emoji_events</span>
                 <h3>Rating System</h3>
                 <p>
-                    Glicko-2 rating system applied to a PvE environment. Your
-                    rating and the map's rating change after each match. The
-                    system takes rating inaccuracy over time into account. It's
-                    destined to become the best skill and difficulty measurement
-                    system over time.
+                    Imagine chess, where two players play against each other. Each of them has an rating, that
+                    goes up or down depending on whether they win or lose. QuaverPvM uses that concept and applies it to
+                    a VSRG environment. You have a rating that goes up or down as you win or lose, and the map also has
+                    a rating that goes up or down. The win condition in QuaverPvM is reaching 95%.
                 </p>
             </div>
             <div class="col">
                 <span class="material-icons">recommend</span>
                 <h3>Skill Range</h3>
                 <p>
-                    Get map "recommendations" in your skill range. You'll always
-                    have something challenging to play. The rating system will
-                    make sure it's mostly accurate, and if it's not, then the
-                    outcome will make sure that it becomes more accurate over
-                    time.
+                    Get map "recommendations" in your skill range. You'll always have something challenging to play. The
+                    rating system will make sure it's mostly accurate, and if it's not, then the outcome will make sure
+                    that it becomes more accurate over time. If you're not feeling the thrill of playing the ranked
+                    mode, then you can always play the unranked mode without worrying about your rating.
                 </p>
             </div>
         </div>
