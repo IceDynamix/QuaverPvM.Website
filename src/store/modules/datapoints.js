@@ -7,6 +7,9 @@ const datapointsStore = {
     state: {
         entityDatapoints: [],
         generalDatapoints: [],
+        leaderboardLoading: true,
+        randomLoading: false,
+        selectedRandom: null,
     },
     getters: {
         currentEntityDatapoints: state => {
@@ -42,6 +45,7 @@ const datapointsStore = {
             }
         },
         async fetchLeaderboard({ commit }, params) {
+            commit("setLeaderboardLoading", true)
             try {
                 const { data } = await axios.get("leaderboard", { params });
                 const { datapoints, entities } = data;
@@ -50,6 +54,8 @@ const datapointsStore = {
             } catch (err) {
                 console.error(err);
                 Vue.toasted.show(JSON.stringify(err), { type: "error" });
+            } finally {
+                commit("setLeaderboardLoading", false)
             }
         },
         async fetchGeneralDatapoints({ commit }) {
@@ -61,6 +67,22 @@ const datapointsStore = {
                 Vue.toasted.show(JSON.stringify(err), { type: "error" });
             }
         },
+        async fetchRandom({ commit }, params) {
+            commit("setRandomLoading", true)
+            try {
+                const { data } = await axios.get("random", { params });
+                const { datapoint, entity } = data;
+                commit("addEntityDatapoints", { datapoints: [datapoint] });
+                commit("setEntities", { entities: [entity] });
+                commit("setSelectedRandom", entity._id);
+            } catch (err) {
+                console.error(err);
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err ?? err, { type: "error" });
+            } finally {
+                commit("setRandomLoading", false)
+            }
+        },
     },
     mutations: {
         addEntityDatapoints(state, { datapoints }) {
@@ -70,6 +92,15 @@ const datapointsStore = {
         addGeneralDatapoints(state, { datapoints }) {
             for (const dp of datapoints) state.generalDatapoints[dp._id] = dp;
             state.generalDatapoints = { ...state.generalDatapoints }
+        },
+        setLeaderboardLoading(state, bool) {
+            state.leaderboardLoading = bool
+        },
+        setRandomLoading(state, bool) {
+            state.randomLoading = bool
+        },
+        setSelectedRandom(state, id) {
+            state.selectedRandom = id;
         },
     },
 };

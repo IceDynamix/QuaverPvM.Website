@@ -13,13 +13,6 @@
                 </div>
             </div>
         </div>
-        <div class="header-row">
-            <Banner
-                color="blue"
-                icon="info"
-                content="A new rating scaling has been applied. All ratings went down, but the leaderboard positions relative to other players will stay the same."
-            />
-        </div>
         <div class="header-row" v-if="!inProduction">
             <Banner
                 color="yellow"
@@ -27,12 +20,16 @@
                 content="In development mode"
             />
         </div>
+        <div class="nav" v-if="loggedIn">
+            <router-link to="/play">Ranked Mode</router-link>
+            <router-link to="/random">Unranked Mode</router-link>
+        </div>
     </div>
 </template>
 
 <script>
 import config from "../../config/config";
-import Banner from "./Banner.vue";
+import Banner from "./ElementBanner.vue";
 
 export default {
     components: {
@@ -76,5 +73,13 @@ export default {
 .login {
     flex: 1;
     text-align: right;
+}
+.nav {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 25px;
 }
 </style>

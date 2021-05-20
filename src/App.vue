@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import Header from "@/components/Elements/Header.vue";
-import Footer from "@/components/Elements/Footer.vue";
-import Banner from "@/components/Elements/Banner.vue";
+import Header from "@/components/Elements/ElementHeader.vue";
+import Footer from "@/components/Elements/ElementFooter.vue";
+import Banner from "@/components/Elements/ElementBanner.vue";
 
 export default {
     components: {
@@ -84,5 +84,10 @@ hr {
     border-top: 2px solid white;
     padding: 0;
     margin: 25px 0;
+}
+input {
+    border: none;
+    font-size: 30px;
+    text-align: center;
 }
 </style>

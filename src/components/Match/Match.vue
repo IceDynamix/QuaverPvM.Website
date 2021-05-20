@@ -22,7 +22,7 @@
 <script>
 // import axios from "axios";
 import Entity from "../Entity/Entity.vue";
-import Button from "../Elements/Button";
+import Button from "../Elements/ElementButton";
 import MatchSubmission from "./MatchSubmission";
 
 export default {

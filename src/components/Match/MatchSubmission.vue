@@ -26,10 +26,7 @@
                 </div>
             </div>
             <transition name="fade" mode="in-out">
-                <div
-                    class="submission-scan-loading"
-                    v-if="scanLoading === true"
-                >
+                <div class="submission-scan-loading" v-if="scanLoading === true">
                     <LoadingSpinner/>
                 </div>
             </transition>
@@ -39,8 +36,8 @@
 
 <script>
 import axios from "axios";
-import Button from "../Elements/Button";
-import LoadingSpinner from "../Elements/LoadingSpinner";
+import Button from "../Elements/ElementButton";
+import LoadingSpinner from "../Elements/ElementLoadingSpinner";
 import MatchTimer from "./MatchTimer";
 
 export default {

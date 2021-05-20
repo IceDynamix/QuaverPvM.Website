@@ -70,7 +70,7 @@
 
 <script>
 import config from "../config/config";
-import Number from "../components/Elements/Number.vue";
+import Number from "../components/Elements/ElementNumber.vue";
 
 export default {
     components: {

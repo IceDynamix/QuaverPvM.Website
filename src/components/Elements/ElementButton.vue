@@ -1,7 +1,9 @@
 <template>
     <button @click="click">
-        <span class="button-text">{{ buttonText }}</span>
-        <span class="material-icons button-icon" v-if="icon">{{ icon }}</span>
+        <div class="button">
+            <span class="button-text">{{ buttonText }}</span>
+            <span class="material-icons button-icon" v-if="icon">{{ icon }}</span>
+        </div>
     </button>
 </template>
 
@@ -22,14 +24,25 @@ button {
     padding: 0;
     cursor: pointer;
     font-size: 18px;
+    height: 25px;
+    margin: 5px;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .button-icon {
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 5px;
+    flex: auto;
 }
 
 .button-text {
+    flex: auto;
     text-decoration: underline;
 }
 </style>

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Number from "../Elements/Number.vue";
+import Number from "../Elements/ElementNumber.vue";
 import EntityLetterRank from "./EntityLetterRank";
 
 export default {
