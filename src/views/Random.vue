@@ -61,6 +61,10 @@ export default {
     },
     methods: {
         onRollClick() {
+            if (this.loading) {
+                this.$toasted.show("Already rolling!");
+                return;
+            }
             this.$store.dispatch("fetchRandom", { min: this.rating - this.rd, max: this.rating + this.rd })
         },
     },
