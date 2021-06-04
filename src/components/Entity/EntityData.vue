@@ -47,7 +47,7 @@ export default {
                 case "user":
                     return `${config.quaverBaseUrl}/user/${this.quaverId}`;
                 case "map":
-                    return `quaver://map/${this.quaverId}`;
+                    return `${config.quaverBaseUrl}/mapset/map/${this.quaverId}`;
                 default:
                     return "";
             }
