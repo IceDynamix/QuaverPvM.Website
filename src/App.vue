@@ -1,12 +1,17 @@
 <template>
     <div id="app">
-        <div class="container">Hello world!</div>
+        <div class="container">
+            <ElementHeader></ElementHeader>
+            Hello world!
+        </div>
     </div>
 </template>
 
 <script>
+import ElementHeader from "@/components/Elements/ElementHeader.vue";
+
 export default {
-    components: {},
+    components: { ElementHeader },
     created() {},
 };
 </script>
@@ -30,5 +35,14 @@ export default {
 
 .container {
     margin: 0 auto;
+    width: 700px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 700px) {
+    .container {
+        margin: 0 auto;
+        width: 90%;
+    }
 }
 </style>
