@@ -66,17 +66,18 @@ export default {
 .title {
     font-size: 30px;
     flex: 1;
-    font-weight: bold;
 }
 .title > a {
     text-decoration: none;
+    font-family: Lexend Deca;
+    font-weight: bold;
 }
 .login {
     flex: 1;
     text-align: right;
 }
 .loggedIn > p {
-    color: gray;
+    color: var(--foreground-sub-color);
     margin: 0;
 }
 .loggedIn > * {

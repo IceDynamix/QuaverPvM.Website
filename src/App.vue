@@ -27,7 +27,18 @@ export default {
 :root {
     --background-color: #232323;
     --foreground-color: white;
-    --main-font: Lexend Deca, sans-serif;
+    --foreground-sub-color: gray;
+    --main-font: Lexend, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Lexend Deca, Lexend, sans-serif;
+    font-weight: bold;
 }
 
 * {
