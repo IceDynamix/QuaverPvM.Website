@@ -2,12 +2,15 @@
 <template>
     <div class="header">
         <div class="header-row">
-            <div class="title">
-                <router-link to="/">QuaverPvM</router-link>
-            </div>
+            <div class="title">QuaverPvM</div>
             <div class="login">
-                <div class="login-content loggedIn" v-if="loggedIn">
-                    <p>Logged in as <a href="">IceDynamix</a></p>
+                <div class="login-content loggedIn" v-if="$store.state.user">
+                    <p>
+                        Logged in as
+                        <a v-tooltip.left="'Profile page is coming soon!'">
+                            {{ $store.state.user.username }}
+                        </a>
+                    </p>
                     <a :href="logoutUrl">Logout</a>
                 </div>
                 <div class="login-content" v-else>
@@ -39,9 +42,6 @@ export default {
         },
         logoutUrl() {
             return config.apiUrl + "/logout";
-        },
-        loggedIn() {
-            return true;
         },
         inProduction() {
             return process.env.NODE_ENV === "production";

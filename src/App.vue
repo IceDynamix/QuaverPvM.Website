@@ -12,7 +12,9 @@ import ElementHeader from "@/components/Elements/ElementHeader.vue";
 
 export default {
     components: { ElementHeader },
-    created() {},
+    created() {
+        this.$store.dispatch("login");
+    },
 };
 </script>
 
