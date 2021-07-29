@@ -27,7 +27,6 @@
                 content="In development mode"
             />
         </div>
-        <hr />
     </div>
 </template>
 
@@ -89,14 +88,6 @@ export default {
     list-style-type: none;
     align-items: center;
     justify-content: space-around;
-    margin: 25px 0;
-}
-hr {
-    display: block;
-    height: 2px;
-    border: 0;
-    border-top: 2px solid white;
-    padding: 0;
     margin: 25px 0;
 }
 </style>

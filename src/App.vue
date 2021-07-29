@@ -2,18 +2,22 @@
     <div id="app">
         <div class="container">
             <ElementHeader></ElementHeader>
+            <hr />
             <transition name="transition" mode="out-in">
                 <router-view />
             </transition>
+            <hr />
+            <ElementFooter></ElementFooter>
         </div>
     </div>
 </template>
 
 <script>
 import ElementHeader from "@/components/Elements/ElementHeader.vue";
+import ElementFooter from "@/components/Elements/ElementFooter.vue";
 
 export default {
-    components: { ElementHeader },
+    components: { ElementHeader, ElementFooter },
     created() {
         this.$store.dispatch("login");
     },
@@ -59,5 +63,14 @@ h6 {
         margin: 0 auto;
         width: 90%;
     }
+}
+
+hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 2px solid white;
+    padding: 0;
+    margin: 25px 0;
 }
 </style>
