@@ -2,7 +2,9 @@
     <div id="app">
         <div class="container">
             <ElementHeader></ElementHeader>
-            Hello world!
+            <transition name="transition" mode="out-in">
+                <router-view />
+            </transition>
         </div>
     </div>
 </template>
@@ -41,7 +43,7 @@ export default {
     padding: 10px;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 770px) {
     .container {
         margin: 0 auto;
         width: 90%;

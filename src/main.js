@@ -5,6 +5,7 @@ import config from './config/config'
 import VTooltip from 'v-tooltip'
 import Toasted from "vue-toasted";
 import store from '@/store'
+import router from '@/router'
 
 Vue.use(VTooltip)
 Vue.use(Toasted, { duration: 10 * 1000, position: "bottom-center" })
@@ -17,5 +18,6 @@ axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 new Vue({
     render: h => h(App),
-    store
+    store,
+    router
 }).$mount('#app')

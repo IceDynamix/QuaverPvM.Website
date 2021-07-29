@@ -2,7 +2,9 @@
 <template>
     <div class="header">
         <div class="header-row">
-            <div class="title">QuaverPvM</div>
+            <div class="title">
+                <router-link to="/">QuaverPvM</router-link>
+            </div>
             <div class="login">
                 <div class="login-content loggedIn" v-if="$store.state.user">
                     <p>
