@@ -3,16 +3,16 @@
         <div class="container">
             <Header />
             <hr />
-            <div class="content" v-if="true">
+            <div class="content" v-if="false">
                 <transition name="transition" mode="out-in">
                     <router-view />
                 </transition>
             </div>
             <div class="content" v-else>
                 <Banner
-                    color="blue"
+                    color="red"
                     icon="settings"
-                    content="Maintenance ongoing, please refer to the Discord for more information!"
+                    content="This site will be under maintenance until the rewrite has finished. Please refer to the Discord to find out more!"
                 />
             </div>
             <hr />
