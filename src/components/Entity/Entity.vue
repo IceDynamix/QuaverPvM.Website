@@ -17,17 +17,32 @@
         </div>
         <div>
             <div class="info stats">
-                <span class="left-col"><Number :value="rating" /> </span>
-                <span class="mid-col">±</span>
-                <span class="right-col"><Number :value="rd" /></span>
-                <span class="left-col"><Number :value="wins" />W</span>
-                <span class="mid-col">/</span>
-                <span class="right-col">
-                    <Number :value="matchesPlayed - wins" />L
-                </span>
+                <div
+                    class="stats-row"
+                    v-if="ranked"
+                    v-tooltip.left="glickoTooltip"
+                >
+                    <span class="left-col">
+                        <Number :value="rating" />
+                    </span>
+                    <span class="mid-col"> ± </span>
+                    <span class="right-col">
+                        <Number :value="rd" />
+                    </span>
+                </div>
+                <div class="stats-row" v-tooltip.left="wlTooltip">
+                    <span class="left-col"> <Number :value="wins" />W </span>
+                    <span class="mid-col">/</span>
+                    <span class="right-col">
+                        <Number :value="matchesPlayed - wins" />L
+                    </span>
+                </div>
             </div>
             <div class="info letterRank">
-                <LetterRank :letterRank="letterRank" />
+                <LetterRank
+                    :letterRank="letterRank"
+                    v-tooltip.left="letterRankTooltip"
+                />
             </div>
         </div>
     </div>
@@ -52,6 +67,25 @@ export default {
         wins: Number,
         matchesPlayed: Number,
         letterRank: String,
+    },
+    computed: {
+        glickoTooltip() {
+            const qr = Math.sqrt(Math.max(0, this.rating - 500) / 1.28);
+            return `Glicko rating, cv. ${qr.toFixed(2)}QR`;
+        },
+        wlTooltip() {
+            const winPercentage =
+                this.wins > 0 ? (100 * this.wins) / this.matchesPlayed : 0;
+            return `${winPercentage.toFixed(2)}%`;
+        },
+        letterRankTooltip() {
+            if (this.rd > 100) return "Unranked";
+            let percentile = (100 * this.percentile).toFixed(1);
+            return `Top ${percentile}%`;
+        },
+        ranked() {
+            return this.rd <= 100;
+        },
     },
 };
 </script>
@@ -85,6 +119,11 @@ img {
     margin: 10px;
 }
 .stats {
+    display: grid;
+    flex: content;
+    width: 100px;
+}
+.stats-row {
     display: grid;
     grid-template-columns: 1fr 15px 1fr;
     flex: content;
