@@ -1,6 +1,6 @@
 <template>
     <div class="play">
-        <div class="flavor tutorial" v-if="!user || user.matchesPlayed < 5">
+        <div class="flavor" v-if="showTutorial">
             Welcome to QuaverPvM! This is your first time playing, so here's
             what you need to know to get going. The instructions will disappear
             after a match, but will be available in the FAQ at any time.
@@ -28,24 +28,53 @@
                 </li>
             </ol>
         </div>
-        <div
-            class="flavor helper"
-            v-if="user.rd > 100 && user.matchesPlayed > 0"
-        >
-            Your Rating Deviation (currentlt {{ user.rd.toFixed(0) }} RD) is
+        <div class="flavor" v-if="showUnranked">
+            Your Rating Deviation (currently {{ user.rd.toFixed(0) }} RD) is
             above 100, which means you're <b>unranked</b>. Once your RD is below
             100, you will receive a letter rank and appear on the leaderboards
             (coming soon!).
             <!-- TODO Edit when leaderboards are out -->
         </div>
+        <hr v-if="showTutorial || showUnranked" />
+        <User :user="user" v-if="user" />
+        <div v-if="matchLoading"><ElementSpinner /></div>
+        <div v-else>
+            <div v-if="!match">No match ongoing</div>
+            <div v-else>{{ JSON.stringify(match) }}</div>
+        </div>
     </div>
 </template>
 
 <script>
+import ElementSpinner from "@/components/Elements/ElementSpinner.vue";
+import User from "@/components/Entity/User.vue";
+
 export default {
+    components: {
+        ElementSpinner,
+        User,
+    },
+    created() {
+        console.log(this.$store.state);
+        this.$store.dispatch("fetchOngoingMatch");
+    },
     computed: {
         user() {
             return this.$store.state.user;
+        },
+        matchLoading() {
+            return this.$store.state.matchLoading;
+        },
+        match() {
+            return this.$store.state.match;
+        },
+        showTutorial() {
+            return this.user && this.user.matchesPlayed === 0;
+        },
+        showUnranked() {
+            return (
+                this.user && this.user.rd > 100 && this.user.matchesPlayed > 0
+            );
         },
     },
 };
