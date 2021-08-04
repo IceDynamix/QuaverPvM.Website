@@ -75,6 +75,11 @@ export default {
 }
 img {
     height: 50px;
+    width: 50px;
+    vertical-align: middle;
+    background-size: cover;
+    object-fit: cover;
+    object-position: center;
 }
 .info {
     margin: 10px;

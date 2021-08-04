@@ -40,7 +40,10 @@
         <div v-if="matchLoading"><Spinner /></div>
         <div v-else>
             <div v-if="!match">No match ongoing</div>
-            <div v-else>{{ JSON.stringify(match) }}</div>
+            <div v-else>
+                <div id="vs">vs.</div>
+                <Map :map="match.map" v-if="match.map" />
+            </div>
         </div>
     </div>
 </template>
@@ -48,11 +51,13 @@
 <script>
 import Spinner from "@/components/Elements/Spinner.vue";
 import User from "@/components/Entity/User.vue";
+import Map from "@/components/Entity/Map.vue";
 
 export default {
     components: {
         Spinner,
         User,
+        Map,
     },
     created() {
         console.log(this.$store.state);
@@ -83,5 +88,9 @@ export default {
 <style scoped>
 .flavor {
     margin: 25px;
+}
+#vs {
+    text-align: center;
+    font-size: 24px;
 }
 </style>

@@ -25,7 +25,9 @@ export default new Vuex.Store({
         async fetchOngoingMatch({ commit }) {
             commit("setMatchLoading", true);
             try {
-                const { data: match } = await axios.get("match/ongoing");
+                const { data } = await axios.get("match/ongoing");
+                let { match, map } = data
+                match.map = map;
                 commit("setMatch", match);
             } catch (err) {
                 console.error(err.response.data.err);
