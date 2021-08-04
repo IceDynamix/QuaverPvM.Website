@@ -69,7 +69,7 @@
 
 <script>
 import axios from "axios";
-import Number from "@/components/Elements/ElementNumber.vue";
+import Number from "@/components/Elements/Number.vue";
 
 export default {
     components: { Number },

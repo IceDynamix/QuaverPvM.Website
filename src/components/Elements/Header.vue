@@ -32,7 +32,7 @@
 
 <script>
 import config from "../../config/config";
-import Banner from "./ElementBanner.vue";
+import Banner from "./Banner.vue";
 export default {
     components: {
         Banner,

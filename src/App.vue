@@ -1,23 +1,23 @@
 <template>
     <div id="app">
         <div class="container">
-            <ElementHeader></ElementHeader>
+            <Header />
             <hr />
             <transition name="transition" mode="out-in">
                 <router-view />
             </transition>
             <hr />
-            <ElementFooter></ElementFooter>
+            <Footer />
         </div>
     </div>
 </template>
 
 <script>
-import ElementHeader from "@/components/Elements/ElementHeader.vue";
-import ElementFooter from "@/components/Elements/ElementFooter.vue";
+import Header from "@/components/Elements/Header.vue";
+import Footer from "@/components/Elements/Footer.vue";
 
 export default {
-    components: { ElementHeader, ElementFooter },
+    components: { Header, Footer },
     created() {
         this.$store.dispatch("login");
     },

@@ -37,7 +37,7 @@
         </div>
         <hr v-if="showTutorial || showUnranked" />
         <User :user="user" v-if="user" />
-        <div v-if="matchLoading"><ElementSpinner /></div>
+        <div v-if="matchLoading"><Spinner /></div>
         <div v-else>
             <div v-if="!match">No match ongoing</div>
             <div v-else>{{ JSON.stringify(match) }}</div>
@@ -46,12 +46,12 @@
 </template>
 
 <script>
-import ElementSpinner from "@/components/Elements/ElementSpinner.vue";
+import Spinner from "@/components/Elements/Spinner.vue";
 import User from "@/components/Entity/User.vue";
 
 export default {
     components: {
-        ElementSpinner,
+        Spinner,
         User,
     },
     created() {

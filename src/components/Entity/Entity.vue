@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import Number from "@/components/Elements/ElementNumber.vue";
+import Number from "@/components/Elements/Number.vue";
 import LetterRank from "@/components/Entity/LetterRank.vue";
 
 export default {
