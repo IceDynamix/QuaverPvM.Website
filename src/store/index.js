@@ -36,6 +36,20 @@ export default new Vuex.Store({
                 commit("setMatchLoading", false);
             }
         },
+        async createNewMatch({ commit }) {
+            commit("setMatchLoading", true);
+            try {
+                const { data } = await axios.get("match/new");
+                let { match, map } = data
+                match.map = map;
+                commit("setMatch", match);
+            } catch (err) {
+                console.error(err.response.data.err);
+                Vue.toasted.show(err.response.data.err, { type: "error" });
+            } finally {
+                commit("setMatchLoading", false);
+            }
+        },
     },
     mutations: {
         setUser(state, { user }) {

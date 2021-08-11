@@ -39,7 +39,13 @@
         <User :user="user" v-if="user" />
         <div v-if="matchLoading"><Spinner /></div>
         <div v-else>
-            <div v-if="!match">No match ongoing</div>
+            <div v-if="!match">
+                <IconButton
+                    buttonText="MATCH"
+                    icon="search"
+                    :click="onMatchButton"
+                />
+            </div>
             <div v-else>
                 <div id="vs">vs.</div>
                 <Map :map="match.map" v-if="match.map" />
@@ -50,6 +56,7 @@
 
 <script>
 import Spinner from "@/components/Elements/Spinner.vue";
+import IconButton from "@/components/Elements/IconButton.vue";
 import User from "@/components/Entity/User.vue";
 import Map from "@/components/Entity/Map.vue";
 
@@ -58,6 +65,7 @@ export default {
         Spinner,
         User,
         Map,
+        IconButton,
     },
     created() {
         console.log(this.$store.state);
@@ -80,6 +88,11 @@ export default {
             return (
                 this.user && this.user.rd > 100 && this.user.matchesPlayed > 0
             );
+        },
+    },
+    methods: {
+        onMatchButton() {
+            this.$store.dispatch("createNewMatch");
         },
     },
 };
