@@ -1,0 +1,61 @@
+<template>
+    <div class="match">
+        <User :user="user" v-if="user" />
+        <div v-if="matchLoading"><Spinner /></div>
+        <div v-else>
+            <div v-if="!match">
+                <IconButton
+                    buttonText="MATCH"
+                    icon="search"
+                    :click="onMatchButton"
+                />
+            </div>
+            <div v-else>
+                <div id="vs">vs.</div>
+                <Map :map="match.map" v-if="match.map" />
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import Spinner from "@/components/Elements/Spinner.vue";
+import IconButton from "@/components/Elements/IconButton.vue";
+import User from "@/components/Entity/User.vue";
+import Map from "@/components/Entity/Map.vue";
+
+export default {
+    components: {
+        Spinner,
+        User,
+        Map,
+        IconButton,
+    },
+    created() {
+        this.$store.dispatch("fetchOngoingMatch");
+    },
+    computed: {
+        user() {
+            return this.$store.state.user;
+        },
+        matchLoading() {
+            return this.$store.state.matchLoading;
+        },
+        match() {
+            return this.$store.state.match;
+        },
+    },
+    methods: {
+        onMatchButton() {
+            this.$store.dispatch("createNewMatch");
+        },
+    },
+};
+</script>
+
+<style scoped>
+#vs {
+    text-align: center;
+    font-size: 24px;
+}
+</style>
