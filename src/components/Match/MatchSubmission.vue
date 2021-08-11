@@ -5,23 +5,26 @@
             <p class="timer-text bold">{{ timer }}</p>
         </div>
         <div class="submission-buttons">
-            <IconButton buttonText="SUBMIT" icon="send" :click="() => null" />
-            <IconButton buttonText="RESIGN" icon="flag" :click="() => null" />
+            <IconButton buttonText="SUBMIT" icon="send" :click="onSubmit" />
+            <IconButton buttonText="RESIGN" icon="flag" :click="onResign" />
         </div>
     </div>
 </template>
 
 <script>
 import IconButton from "@/components/Elements/IconButton.vue";
+import axios from "axios";
 
 export default {
     components: { IconButton },
     created() {
+        this.updateTimer();
         setInterval(this.updateTimer, 1000);
     },
     data() {
         return {
             secondsLeft: null,
+            submitting: false,
         };
     },
     computed: {
@@ -44,7 +47,10 @@ export default {
         },
         stopTimer() {
             this.secondsLeft = null;
-            if (this.match) this.$store.commit("setMatch", null);
+            if (this.match) {
+                this.$store.commit("setMatch", null);
+                this.$store.dispatch("login");
+            }
         },
         decrementTimer() {
             this.secondsLeft -= 1;
@@ -53,6 +59,28 @@ export default {
             if (this.match && this.secondsLeft === null) this.startTimer();
             else if (!this.match || this.secondsLeft <= 0) this.stopTimer();
             else if (this.secondsLeft > 0) this.decrementTimer();
+        },
+        onSubmit() {
+            this.submitResult(false);
+        },
+        onResign() {
+            this.submitResult(true);
+        },
+        async submitResult(resign) {
+            if (this.submitting) {
+                this.$toasted.show("Already scanning!");
+                return;
+            }
+            try {
+                this.submitting = true;
+                const { data } = await axios.post("/match/submit", { resign });
+                this.$toasted.show(data.message, { type: "info" });
+                if (data.success) this.stopTimer();
+            } catch (error) {
+                this.$toasted.show(error, { type: "error" });
+            } finally {
+                this.submitting = false;
+            }
         },
     },
 };
