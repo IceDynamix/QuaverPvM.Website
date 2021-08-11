@@ -5,8 +5,18 @@
             <p class="timer-text bold">{{ timer }}</p>
         </div>
         <div class="submission-buttons">
-            <IconButton buttonText="SUBMIT" icon="send" :click="onSubmit" />
-            <IconButton buttonText="RESIGN" icon="flag" :click="onResign" />
+            <IconButton
+                buttonText="SUBMIT"
+                icon="send"
+                :click="onSubmit"
+                v-tooltip.right="submitTooltip"
+            />
+            <IconButton
+                buttonText="RESIGN"
+                icon="flag"
+                :click="onResign"
+                v-tooltip.right="resignTooltip"
+            />
         </div>
     </div>
 </template>
@@ -37,6 +47,12 @@ export default {
             const seconds = date.getSeconds().toString().padStart(2, "0");
             return `${minutes}:${seconds}`;
         },
+        submitTooltip() {
+            return "Scan for recent plays";
+        },
+        resignTooltip() {
+            return "Give up on this one";
+        },
     },
     methods: {
         startTimer() {
@@ -64,6 +80,8 @@ export default {
             this.submitResult(false);
         },
         onResign() {
+            let confirmation = confirm("Are you sure you want to resign?");
+            if (!confirmation) return;
             this.submitResult(true);
         },
         async submitResult(resign) {

@@ -66,6 +66,8 @@ export default {
         rd: Number,
         wins: Number,
         matchesPlayed: Number,
+        percentile: Number,
+        rank: Number,
         letterRank: String,
     },
     computed: {
@@ -74,14 +76,14 @@ export default {
             return `Glicko rating, cv. ${qr.toFixed(2)}QR`;
         },
         wlTooltip() {
-            const winPercentage =
-                this.wins > 0 ? (100 * this.wins) / this.matchesPlayed : 0;
-            return `${winPercentage.toFixed(2)}%`;
+            let winPercentage = 0;
+            if (this.wins > 0) winPercentage = this.wins / this.matchesPlayed;
+            return `${100 * winPercentage.toFixed(2)}%`;
         },
         letterRankTooltip() {
             if (this.rd > 100) return "Unranked";
-            let percentile = (100 * this.percentile).toFixed(1);
-            return `Top ${percentile}%`;
+            const percentile = 100 * this.percentile.toFixed(1);
+            return `#${this.rank}, Top ${percentile}%`;
         },
         ranked() {
             return this.rd <= 100;

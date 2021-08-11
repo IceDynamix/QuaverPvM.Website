@@ -7,6 +7,8 @@
         :rd="user.rd"
         :wins="user.wins"
         :matchesPlayed="user.matchesPlayed"
+        :percentile="user.percentile"
+        :rank="user.rank"
         :letterRank="user.letterRank"
     />
 </template>
