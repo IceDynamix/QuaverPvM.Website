@@ -39,7 +39,7 @@ button {
 }
 .button-icon {
     font-size: 18px;
-    margin-left: 5px;
+    margin: 0 5px;
     flex: auto;
 }
 .button-text {

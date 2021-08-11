@@ -3,7 +3,7 @@
         <User :user="user" v-if="user" />
         <div v-if="matchLoading"><Spinner /></div>
         <div v-else>
-            <div v-if="!match">
+            <div v-if="!match" class="match-button">
                 <IconButton
                     buttonText="MATCH"
                     icon="search"
@@ -57,5 +57,8 @@ export default {
 #vs {
     text-align: center;
     font-size: 24px;
+}
+.match-button {
+    text-align: center;
 }
 </style>
