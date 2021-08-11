@@ -60,7 +60,6 @@ export default {
 #vs {
     text-align: center;
     font-size: 24px;
-    margin: -15px 0;
 }
 .match-button {
     text-align: center;

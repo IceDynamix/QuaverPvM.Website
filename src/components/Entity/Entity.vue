@@ -81,7 +81,7 @@ export default {
             return `${100 * winPercentage.toFixed(2)}%`;
         },
         letterRankTooltip() {
-            if (this.rd > 100) return "Unranked";
+            if (this.rd > 100 || !percentile) return "Unranked";
             const percentile = 100 * this.percentile.toFixed(1);
             return `#${this.rank}, Top ${percentile}%`;
         },
@@ -94,7 +94,6 @@ export default {
 
 <style>
 .entity {
-    margin: 25px;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
