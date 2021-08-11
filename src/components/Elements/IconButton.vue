@@ -4,7 +4,7 @@
             <span class="material-icons button-icon" v-if="icon">
                 {{ icon }}
             </span>
-            <span class="button-text">
+            <span class="button-text bold">
                 {{ buttonText }}
             </span>
         </div>

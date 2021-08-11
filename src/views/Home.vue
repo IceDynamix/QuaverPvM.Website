@@ -64,12 +64,21 @@
                 </p>
             </div>
         </div>
+        <h2>
+            <div v-if="!loggedIn">
+                <a :href="loginUrl">LOGIN TO PLAY</a>
+            </div>
+            <div v-else>
+                <router-link to="/play">CLICK TO PLAY</router-link>
+            </div>
+        </h2>
     </div>
 </template>
 
 <script>
 import axios from "axios";
 import Number from "@/components/Elements/Number.vue";
+import config from "../config/config";
 
 export default {
     components: { Number },
@@ -77,6 +86,14 @@ export default {
         return {
             stats: null,
         };
+    },
+    computed: {
+        loginUrl() {
+            return config.apiUrl + "/auth/quaver";
+        },
+        loggedIn() {
+            return this.$store.state.user !== null;
+        },
     },
     async created() {
         const { data } = await axios.get("stats");
