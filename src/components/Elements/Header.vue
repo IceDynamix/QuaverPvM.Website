@@ -7,7 +7,7 @@
             </div>
             <div class="login">
                 <div class="login-content loggedIn" v-if="$store.state.user">
-                    <p>
+                    <p class="light-font">
                         Logged in as
                         <a v-tooltip.left="'Profile page is coming soon!'">
                             {{ $store.state.user.username }}
@@ -76,7 +76,6 @@ export default {
     text-align: right;
 }
 .loggedIn > p {
-    color: var(--foreground-sub-color);
     margin: 0;
 }
 .loggedIn > * {

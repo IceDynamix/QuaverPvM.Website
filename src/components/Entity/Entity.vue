@@ -10,7 +10,7 @@
                         {{ title }}
                     </a>
                 </div>
-                <div class="sub-title" v-if="subtitle">
+                <div class="sub-title light-font" v-if="subtitle">
                     {{ subtitle }}
                 </div>
             </div>
@@ -154,6 +154,5 @@ img {
 }
 .sub-title {
     font-size: 14px;
-    color: var(--foreground-sub-color);
 }
 </style>

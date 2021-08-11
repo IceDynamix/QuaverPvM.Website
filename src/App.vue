@@ -35,6 +35,7 @@ export default {
     --main-font: Lexend, sans-serif;
 }
 
+.bold,
 h1,
 h2,
 h3,
@@ -72,5 +73,10 @@ hr {
     border-top: 2px solid white;
     padding: 0;
     margin: 25px 0;
+}
+
+.light-font {
+    color: var(--foreground-sub-color);
+    font-size: 14px;
 }
 </style>

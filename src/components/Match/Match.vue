@@ -13,6 +13,7 @@
             <div v-else>
                 <div id="vs">vs.</div>
                 <Map :map="match.map" v-if="match.map" />
+                <MatchSubmission />
             </div>
         </div>
     </div>
@@ -23,6 +24,7 @@ import Spinner from "@/components/Elements/Spinner.vue";
 import IconButton from "@/components/Elements/IconButton.vue";
 import User from "@/components/Entity/User.vue";
 import Map from "@/components/Entity/Map.vue";
+import MatchSubmission from "@/components/Match/MatchSubmission.vue";
 
 export default {
     components: {
@@ -30,6 +32,7 @@ export default {
         User,
         Map,
         IconButton,
+        MatchSubmission,
     },
     created() {
         this.$store.dispatch("fetchOngoingMatch");

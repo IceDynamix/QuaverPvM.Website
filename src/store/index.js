@@ -26,9 +26,11 @@ export default new Vuex.Store({
             commit("setMatchLoading", true);
             try {
                 const { data } = await axios.get("match/ongoing");
-                let { match, map } = data
-                match.map = map;
-                commit("setMatch", match);
+                if (data) {
+                    let { match, map } = data;
+                    match.map = map;
+                    commit("setMatch", match);
+                }
             } catch (err) {
                 console.error(err.response.data.err);
                 Vue.toasted.show(err.response.data.err, { type: "error" });
