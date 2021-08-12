@@ -1,6 +1,6 @@
 <template>
     <div class="entity">
-        <div>
+        <div class="info-container">
             <div class="info img">
                 <img :src="img" />
             </div>
@@ -99,12 +99,18 @@ export default {
     align-items: center;
     justify-content: space-between;
 }
+
 .entity > div {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
+
+.info-container {
+    max-width: 460px;
+}
+
 .img {
     flex: content;
 }

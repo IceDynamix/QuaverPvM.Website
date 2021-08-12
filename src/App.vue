@@ -79,4 +79,10 @@ hr {
     color: var(--foreground-sub-color);
     font-size: 14px;
 }
+
+input {
+    border: none;
+    font-size: 30px;
+    text-align: center;
+}
 </style>
