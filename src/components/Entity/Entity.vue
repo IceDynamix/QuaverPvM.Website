@@ -1,8 +1,10 @@
 <template>
     <div class="entity">
         <div class="info-container">
-            <div class="info img">
-                <img :src="img" />
+            <div class="info img" v-tooltip.right="imgTooltip">
+                <a :href="imgUrl">
+                    <img :src="img" />
+                </a>
             </div>
             <div class="info title">
                 <div class="main-title">
@@ -59,6 +61,8 @@ export default {
     },
     props: {
         img: String,
+        imgUrl: String,
+        imgTooltip: String,
         url: String,
         title: String,
         subtitle: String,

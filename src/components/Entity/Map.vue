@@ -1,7 +1,9 @@
 <template>
     <Entity
         :img="`${config.quaverCdnUrl}/mapsets/${map.mapsetId}.jpg`"
-        :url="`quaver://map/${map.mapId}`"
+        :url="`https://quavergame.com/mapset/map/${map.mapId}`"
+        :imgUrl="`quaver://map/${map.mapId}`"
+        :imgTooltip="`Click to open in-game!`"
         :title="`${map.artist} - ${map.title}`"
         :subtitle="`${map.difficultyName} ${map.mapRate.toFixed(1)}x`"
         :rating="map.rating"
