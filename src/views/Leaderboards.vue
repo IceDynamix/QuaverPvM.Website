@@ -9,6 +9,7 @@
                 <div class="rank light-font">#{{ index + 1 }}</div>
                 <User :user="user" class="user" />
             </div>
+            <div v-if="users.length === 0">No users ranked so far...</div>
         </div>
     </div>
 </template>
