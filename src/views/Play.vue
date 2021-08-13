@@ -24,8 +24,10 @@
                         button.
                     </li>
                     <li>
-                        Your rating is going to be hidden until you've finished
-                        your 10 placement matches.
+                        Your rating is going to be hidden until your rating
+                        deviation is below 100 (currently
+                        {{ user.rd.toFixed(0) }} RD). It will decrease with
+                        every match.
                     </li>
                     <li>
                         Feel free to check out the FAQ or ask questions in the
@@ -73,5 +75,8 @@ export default {
 <style scoped>
 .flavor {
     margin: 25px;
+}
+li {
+    margin: 10px;
 }
 </style>

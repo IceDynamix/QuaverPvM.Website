@@ -14,7 +14,7 @@ export default new Vuex.Store({
         async login({ commit }) {
             try {
                 const { data: user } = await axios.get("me");
-                if (!user) return; // Not logged in
+                if (!user.userId) return; // Not logged in
 
                 commit("setUser", { user });
             } catch (err) {
