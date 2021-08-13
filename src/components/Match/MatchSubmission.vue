@@ -1,196 +1,127 @@
 <template>
-    <div
-        class="submission-container"
-        v-if="secondsLeft > 0"
-    >
-        <div class="left-side side">
-            <MatchTimer :secondsLeft="secondsLeft"/>
+    <div class="submission" v-if="match">
+        <div class="submission-timer">
+            <p class="light-font">Time left to play</p>
+            <p class="timer-text bold">{{ timer }}</p>
         </div>
-        <div class="right-side side">
-            <div class="submission-buttons">
-                <div class="submission-selection">
-                    <Button
-                        :click="onYesButton"
-                        v-tooltip.right="submitYesTooltip"
-                        buttonText="SUBMIT"
-                        icon="send"
-                    />
-                </div>
-                <div class="submission-selection">
-                    <Button
-                        :click="onNoButton"
-                        v-tooltip.right="submitNoTooltip"
-                        buttonText="RESIGN"
-                        icon="flag"
-                    />
-                </div>
-            </div>
-            <transition name="fade" mode="in-out">
-                <div class="submission-scan-loading" v-if="scanLoading === true">
-                    <LoadingSpinner/>
-                </div>
-            </transition>
+        <div class="submission-buttons">
+            <IconButton
+                buttonText="SUBMIT"
+                icon="send"
+                :click="onSubmit"
+                v-tooltip.right="submitTooltip"
+            />
+            <IconButton
+                buttonText="RESIGN"
+                icon="flag"
+                :click="onResign"
+                v-tooltip.right="resignTooltip"
+            />
         </div>
     </div>
 </template>
 
 <script>
+import IconButton from "@/components/Elements/IconButton.vue";
 import axios from "axios";
-import Button from "../Elements/ElementButton";
-import LoadingSpinner from "../Elements/ElementLoadingSpinner";
-import MatchTimer from "./MatchTimer";
 
 export default {
-    name: "MatchSubmission",
-    components: { Button, LoadingSpinner, MatchTimer },
-    props: {
-        endsAt: Date
-    },
-    data: function () {
-        return { secondsLeft: null, scanLoading: false };
-    },
+    components: { IconButton },
     created() {
-        setTimeout(this.countdown, 1000);
+        this.updateTimer();
+        setInterval(this.updateTimer, 1000);
+    },
+    data() {
+        return {
+            secondsLeft: null,
+            submitting: false,
+        };
+    },
+    computed: {
+        match() {
+            return this.$store.state.match;
+        },
+        timer() {
+            const date = new Date(this.secondsLeft * 1000);
+            const minutes = date.getMinutes().toString().padStart(2, "0");
+            const seconds = date.getSeconds().toString().padStart(2, "0");
+            return `${minutes}:${seconds}`;
+        },
+        submitTooltip() {
+            return "Scan for recent plays";
+        },
+        resignTooltip() {
+            return "Give up on this one";
+        },
     },
     methods: {
-        onYesButton: async function () {
-            if (this.scanLoading) {
+        startTimer() {
+            const now = new Date();
+            const matchStart = new Date(this.match.createdAt);
+            const secondsPassed = Math.floor((now - matchStart) / 1000);
+            this.secondsLeft = 10 * 60 - secondsPassed;
+        },
+        stopTimer() {
+            this.secondsLeft = null;
+            if (this.match) {
+                this.$store.commit("setMatch", null);
+                this.$store.dispatch("login");
+            }
+        },
+        decrementTimer() {
+            this.secondsLeft -= 1;
+        },
+        updateTimer() {
+            if (this.match && this.secondsLeft === null) this.startTimer();
+            else if (!this.match || this.secondsLeft <= 0) this.stopTimer();
+            else if (this.secondsLeft > 0) this.decrementTimer();
+        },
+        onSubmit() {
+            this.submitResult(false);
+        },
+        onResign() {
+            let confirmation = confirm("Are you sure you want to resign?");
+            if (!confirmation) return;
+            this.submitResult(true);
+        },
+        async submitResult(resign) {
+            if (this.submitting) {
                 this.$toasted.show("Already scanning!");
                 return;
             }
             try {
-                this.scanLoading = true;
-                let response = await axios.post("results");
-                let { success, message, plays } = response.data;
-                if (success) {
-                    this.$toasted.show(
-                        `Submitted a win successfully (${ plays[0].accuracy.toFixed(
-                            2,
-                        ) }%)`,
-                    );
-                    this.secondsLeft = null;
-                    this.$store.commit("setMatch", null);
-                    this.$store.dispatch(
-                        "fetchEntityDatapointsCurrent",
-                        this.$store.state.user.loggedInUser,
-                    );
-                } else {
-                    this.$toasted.show(message, { type: "info" });
-                }
-            } catch (e) {
-                this.$toasted.show(e.response.data.err, { type: "error" });
-                this.$store.dispatch("requestMatch");
-                this.$store.dispatch(
-                    "fetchEntityDatapointsCurrent",
-                    this.$store.state.user.loggedInUser,
-                );
+                this.submitting = true;
+                const { data } = await axios.post("/match/submit", { resign });
+                this.$toasted.show(data.message, { type: "info" });
+                if (data.success) this.stopTimer();
+            } catch (error) {
+                this.$toasted.show(error, { type: "error" });
+            } finally {
+                this.submitting = false;
             }
-            this.scanLoading = false;
-        },
-        onNoButton: async function () {
-            if (this.scanLoading) {
-                this.$toasted.show("Already resigning!");
-                return;
-            }
-            let confirmation = confirm("Are you sure you want to resign?");
-            if (!confirmation) return;
-            try {
-                this.scanLoading = true;
-                let response = await axios.post("results", { giveUp: true });
-                let { success, message } = response.data;
-                if (success) {
-                    this.$toasted.show("Resigned successfully");
-                    this.secondsLeft = null;
-                    this.$store.commit("setMatch", null);
-                    this.$store.dispatch(
-                        "fetchEntityDatapointsCurrent",
-                        this.$store.state.user.loggedInUser,
-                    );
-                } else {
-                    this.$toasted.show(message, { type: "info" });
-                }
-            } catch (e) {
-                this.$toasted.show(e, { type: "error" });
-            }
-            this.scanLoading = false;
-        },
-        countdown: function () {
-            if (this.match) {
-                const currentTime = new Date();
-                this.secondsLeft =
-                    (new Date(this.match.endsAt).getTime() -
-                        currentTime.getTime()) /
-                    1000;
-
-                // User timed out
-                if (this.secondsLeft < 0) {
-                    this.secondsLeft = null;
-                    this.$toasted.show("Timed out, match is considered lost");
-                    this.$store.commit("setMatch", null);
-                    this.$store.dispatch(
-                        "fetchEntityDatapointsCurrent",
-                        this.$store.state.user.loggedInUser,
-                    );
-                }
-            }
-            setTimeout(this.countdown, 1000);
         },
     },
-    computed: {
-        submitYesTooltip() {
-            return "Scan for recent plays";
-        },
-        submitNoTooltip() {
-            return "Give up on this one";
-        },
-        match() {
-            return this.$store.state.match.match;
-        },
-    },
-}
+};
 </script>
 
 <style scoped>
-.submission-container {
+.submission {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    margin-top: 30px;
+    justify-content: center;
 }
-
-.submission-selection {
-    flex: 1;
-}
-
 .submission-buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: inherit;
+    flex-flow: column wrap;
 }
-
-.submission-scan-loading {
-    margin: 10px;
+.submission-timer > p {
+    margin: 0 10px;
 }
-.side {
-    margin: 10px;
-    height: inherit;
-}
-
-.left-side {
-    flex: 1;
+.submission-timer {
     text-align: right;
 }
-
-.right-side {
-    flex: 1;
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+.timer-text {
+    font-size: 30px;
 }
 </style>

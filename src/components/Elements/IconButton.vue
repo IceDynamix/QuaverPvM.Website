@@ -1,8 +1,12 @@
 <template>
     <button @click="click">
         <div class="button">
-            <span class="button-text">{{ buttonText }}</span>
-            <span class="material-icons button-icon" v-if="icon">{{ icon }}</span>
+            <span class="material-icons button-icon" v-if="icon">
+                {{ icon }}
+            </span>
+            <span class="button-text bold">
+                {{ buttonText }}
+            </span>
         </div>
     </button>
 </template>
@@ -13,9 +17,9 @@ export default {
     props: {
         buttonText: String,
         icon: String,
-        click: Function
+        click: Function,
     },
-}
+};
 </script>
 
 <style scoped>
@@ -27,20 +31,17 @@ button {
     height: 25px;
     margin: 5px;
 }
-
 .button {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
-
 .button-icon {
     font-size: 18px;
-    margin-left: 5px;
+    margin: 0 5px;
     flex: auto;
 }
-
 .button-text {
     flex: auto;
     text-decoration: underline;

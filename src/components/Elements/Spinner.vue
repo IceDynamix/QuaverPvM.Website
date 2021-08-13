@@ -10,7 +10,6 @@
 
 <script>
 import { HalfCircleSpinner } from "epic-spinners";
-
 export default {
     components: { HalfCircleSpinner },
 };

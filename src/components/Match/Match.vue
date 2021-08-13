@@ -1,57 +1,67 @@
 <template>
     <div class="match">
-        <transition name="transition" mode="out-in">
-            <div class="submission" v-if="matchLoading === false">
-                <transition name="transition" mode="out-in">
-                    <div v-if="match" key="playing">
-                        <div class="vs">VS</div>
-                        <Entity :entityId="match.map._id" />
-                        <transition name="transition" mode="out-in">
-                            <MatchSubmission :endsAt="new Date(match.endsAt)"/>
-                        </transition>
-                    </div>
-                    <div v-else key="idling">
-                        <Button :click="onMatchButton" button-text="MATCH" icon="search"/>
-                    </div>
-                </transition>
+        <User :user="user" v-if="user" />
+        <div v-if="matchLoading"><Spinner /></div>
+        <div v-else>
+            <div v-if="!match" class="match-button">
+                <IconButton
+                    buttonText="MATCH"
+                    icon="search"
+                    :click="onMatchButton"
+                />
             </div>
-        </transition>
+            <div v-else>
+                <div id="vs">vs.</div>
+                <Map :map="match.map" v-if="match.map" />
+                <MatchSubmission />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-// import axios from "axios";
-import Entity from "../Entity/Entity.vue";
-import Button from "../Elements/ElementButton";
-import MatchSubmission from "./MatchSubmission";
+import Spinner from "@/components/Elements/Spinner.vue";
+import IconButton from "@/components/Elements/IconButton.vue";
+import User from "@/components/Entity/User.vue";
+import Map from "@/components/Entity/Map.vue";
+import MatchSubmission from "@/components/Match/MatchSubmission.vue";
 
 export default {
     components: {
-        Entity,
+        Spinner,
+        User,
+        Map,
+        IconButton,
         MatchSubmission,
-        Button,
     },
     created() {
-        this.$store.dispatch("fetchMatch");
-    },
-    methods: {
-        onMatchButton: function () {
-            this.$store.dispatch("requestMatch");
-        },
+        this.$store.dispatch("fetchOngoingMatch");
     },
     computed: {
-        match() {
-            return this.$store.state.match.match;
+        user() {
+            return this.$store.state.user;
         },
         matchLoading() {
-            return this.$store.state.match.loading;
+            return this.$store.state.matchLoading;
+        },
+        match() {
+            return this.$store.state.match;
+        },
+    },
+    methods: {
+        onMatchButton() {
+            this.$store.dispatch("createNewMatch");
         },
     },
 };
 </script>
 
 <style scoped>
-.submission {
+#vs {
+    text-align: center;
+    font-size: 24px;
+}
+.match-button {
     text-align: center;
 }
 </style>

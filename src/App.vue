@@ -3,18 +3,9 @@
         <div class="container">
             <Header />
             <hr />
-            <div class="content" v-if="false">
-                <transition name="transition" mode="out-in">
-                    <router-view />
-                </transition>
-            </div>
-            <div class="content" v-else>
-                <Banner
-                    color="red"
-                    icon="settings"
-                    content="This site will be under maintenance until the rewrite has finished. Please refer to the Discord to find out more!"
-                />
-            </div>
+            <transition name="transition" mode="out-in">
+                <router-view />
+            </transition>
             <hr />
             <Footer />
         </div>
@@ -22,16 +13,11 @@
 </template>
 
 <script>
-import Header from "@/components/Elements/ElementHeader.vue";
-import Footer from "@/components/Elements/ElementFooter.vue";
-import Banner from "@/components/Elements/ElementBanner.vue";
+import Header from "@/components/Elements/Header.vue";
+import Footer from "@/components/Elements/Footer.vue";
 
 export default {
-    components: {
-        Header,
-        Footer,
-        Banner,
-    },
+    components: { Header, Footer },
     created() {
         this.$store.dispatch("login");
     },
@@ -41,40 +27,43 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lexend&display=swap");
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Lexend Deca, sans-serif;
-    background-color: #434343;
-    color: white;
-    hyphens: auto;
-}
-p {
-    font-family: Lexend, sans-serif;
-    hyphens: auto;
-}
-.content {
-    margin: 25px;
-}
-.container {
-    max-width: 750px;
-    margin: 25px auto;
-    padding: 30px;
-    height: auto;
-}
-a {
-    color: white;
-    text-decoration: underline;
+
+:root {
+    --background-color: #232323;
+    --foreground-color: white;
+    --foreground-sub-color: gray;
+    --main-font: Lexend, sans-serif;
 }
 
-.transition-enter-active,
-.transition-leave-active {
-    transition: opacity 0.2s;
+.bold,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Lexend Deca, Lexend, sans-serif;
+    font-weight: bold;
 }
-.transition-enter,
-.transition-leave-to {
-    opacity: 0;
+
+* {
+    font-family: var(--main-font);
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    hyphens: auto;
+}
+
+.container {
+    margin: 0 auto;
+    width: 700px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 770px) {
+    .container {
+        margin: 0 auto;
+        width: 90%;
+    }
 }
 
 hr {
@@ -85,6 +74,12 @@ hr {
     padding: 0;
     margin: 25px 0;
 }
+
+.light-font {
+    color: var(--foreground-sub-color);
+    font-size: 14px;
+}
+
 input {
     border: none;
     font-size: 30px;

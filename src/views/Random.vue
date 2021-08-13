@@ -2,74 +2,71 @@
     <div class="random">
         <div class="content-row">
             <div class="content-row input">
-                <input v-model.number="rating" placeholder="Rating" id="rating">
+                <input
+                    v-model.number.lazy="rating"
+                    placeholder="Rating"
+                    id="rating"
+                />
                 <p>±</p>
-                <input v-model.number.lazy="rd" placeholder="RD" id="rd">
+                <input v-model.number.lazy="rd" placeholder="RD" id="rd" />
             </div>
             <div class="content-row extra">
-                <EntityLetterRank class="rank" :letter-rank="letterRank" v-if="generalDp != null"/>
-                <Button class="roll" button-text="ROLL" icon="casino" :click="onRollClick"/>
+                <IconButton
+                    class="roll"
+                    button-text="ROLL"
+                    icon="casino"
+                    :click="onRollClick"
+                />
             </div>
         </div>
-        <transition name="transition" mode="out-in">
-            <div v-if="loading === true" key="loading">
-                <LoadingSpinner/>
-            </div>
-            <div v-else key="content">
-                <Entity v-if="selected != null" :entity-id="selected"/>
-            </div>
-        </transition>
+        <div v-if="loading === true" key="loading">
+            <Spinner />
+        </div>
+        <div v-else key="content" class="map">
+            <Map v-if="map !== null" :map="map" />
+        </div>
     </div>
 </template>
 
 <script>
-import EntityLetterRank from "../components/Entity/EntityLetterRank";
-import Button from "../components/Elements/ElementButton";
-import LoadingSpinner from "../components/Elements/ElementLoadingSpinner";
-import Entity from "../components/Entity/Entity";
+import IconButton from "../components/Elements/IconButton";
+import Spinner from "../components/Elements/Spinner";
+import Map from "../components/Entity/Map";
+import axios from "axios";
 
 export default {
     name: "Random",
-    components: { EntityLetterRank, Button, LoadingSpinner, Entity },
+    components: { IconButton, Spinner, Map },
     data: function () {
         return {
             rating: null,
             rd: null,
-            rolledEntity: String,
-        }
-    },
-    created() {
-        this.$store.dispatch("fetchGeneralDatapoints");
-    },
-    computed: {
-        loading() {
-            return this.$store.state.datapoints.randomLoading
-        },
-        selected() {
-            return this.$store.state.datapoints.selectedRandom
-        },
-        generalDp() {
-            return this.$store.getters.currentGeneralDatapoint;
-        },
-        rankThresholds() {
-            return this.generalDp["rankThresholds"]
-        },
-        letterRank() {
-            for (const rank of this.rankThresholds) if (this.rating > rank.rating.user) return rank.rank;
-            return "?"
-        },
+            map: {},
+            loading: false,
+        };
     },
     methods: {
-        onRollClick() {
+        async onRollClick() {
             if (this.loading) {
                 this.$toasted.show("Already rolling!");
                 return;
             }
-            this.$store.dispatch("fetchRandom", { min: this.rating - this.rd, max: this.rating + this.rd })
+
+            this.loading = true;
+            const { data: map } = await axios.get("map/random", {
+                params: {
+                    min: this.rating - this.rd,
+                    max: this.rating + this.rd,
+                },
+            });
+
+            if (!map) this.$toasted.show("Already rolling!");
+            else this.map = map;
+
+            this.loading = false;
         },
     },
-
-}
+};
 </script>
 
 <style scoped>
@@ -80,36 +77,33 @@ export default {
     align-items: center;
     margin: 25px 0;
 }
-
 .content-row.extra {
     justify-content: space-around;
 }
-
 .input {
     flex: 2;
 }
-
 .extra {
-    flex: 1
+    flex: 1;
 }
-
 input {
     padding: 0 10px;
     width: 10%;
 }
-
 p {
     flex-basis: 15px;
     padding: 0;
 }
-
 #rating {
     flex: 2;
     text-align: right;
 }
-
 #rd {
     flex: 1;
     text-align: left;
+}
+
+.map {
+    margin: 25px;
 }
 </style>

@@ -6,8 +6,9 @@
             href="https://discord.gg/czxEcwBftm"
             target="_blank"
             rel="noopener noreferrer"
-            >Discord</a
         >
+            Discord
+        </a>
     </div>
 </template>
 

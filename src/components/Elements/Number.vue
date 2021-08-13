@@ -10,7 +10,6 @@
 
 <script>
 import AnimatedNumber from "animated-number-vue";
-
 export default {
     props: {
         value: Number,
@@ -25,6 +24,3 @@ export default {
     },
 };
 </script>
-
-<style>
-</style>

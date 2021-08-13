@@ -2,129 +2,149 @@
     <div class="home">
         <div class="title">
             <h1>QuaverPvM</h1>
-            <p class="sub">
-                <i>
+            <p>
+                <i id="subtitle">
                     The ultimate Player vs. Map experience based on
                     <a href="https://quavergame.com/">Quaver</a>
                 </i>
             </p>
         </div>
         <transition name="transition" mode="out-in">
-            <div class="stats cols" v-if="generalDatapoint != null">
-                <div class="col">
-                    <h4>Users (ranked)</h4>
-                    <p class="stat">
-                        <Number :value="generalDatapoint['userCount']"/>
-                        (<Number :value="generalDatapoint['rankedUserCount']"/>)
+            <div class="stats" v-if="stats != null">
+                <div class="stat">
+                    <h4 class="stat-title">Users (ranked)</h4>
+                    <p class="stat-value">
+                        <Number :value="stats['userCount']" />
+                        (<Number :value="stats['rankedUserCount']" />)
                     </p>
                 </div>
-                <div class="col">
-                    <h4>Maps (ranked)</h4>
-                    <p class="stat">
-                        <Number :value="generalDatapoint['mapCount']"/>
-                        (<Number :value="generalDatapoint['rankedMapCount']"/>)
+                <div class="stat">
+                    <h4 class="stat-title">Maps (ranked)</h4>
+                    <p class="stat-value">
+                        <Number :value="stats['mapCount']" />
+                        (<Number :value="stats['rankedMapCount']" />)
                     </p>
                 </div>
-                <div class="col">
-                    <h4>Matches played</h4>
-                    <p class="stat">
-                        <Number :value="generalDatapoint['matchCount']"/>
+                <div class="stat">
+                    <h4 class="stat-title">Matches played</h4>
+                    <p class="stat-value">
+                        <Number :value="stats['matchCount']" />
                     </p>
                 </div>
             </div>
         </transition>
-        <div class="features cols">
-            <div class="col">
-                <span class="material-icons">emoji_events</span>
+        <div class="features">
+            <div class="col feature">
                 <h3>Rating System</h3>
-                <p>
-                    Imagine chess, where two players play against each other. Each of them has an rating, that
-                    goes up or down depending on whether they win or lose. QuaverPvM uses that concept and applies it to
-                    a VSRG environment. You have a rating that goes up or down as you win or lose, and the map also has
-                    a rating that goes up or down. The win condition in QuaverPvM is reaching 95%.
+                <p class="feature-text">
+                    Imagine chess, where two players play against each other.
+                    Each of them has a rating, that goes up or down depending on
+                    whether they win or lose. QuaverPvM uses that concept and
+                    applies it to a VSRG environment.
+                </p>
+                <p class="feature-text">
+                    You have a rating that goes up or down as you win or lose,
+                    and the map also has a rating that goes up or down. The win
+                    condition in QuaverPvM is reaching 95%.
                 </p>
             </div>
-            <div class="col">
-                <span class="material-icons">recommend</span>
+            <div class="col feature">
                 <h3>Skill Range</h3>
-                <p>
-                    Get map "recommendations" in your skill range. You'll always have something challenging to play. The
-                    rating system will make sure it's mostly accurate, and if it's not, then the outcome will make sure
-                    that it becomes more accurate over time. If you're not feeling the thrill of playing the ranked
-                    mode, then you can always play the unranked mode without worrying about your rating.
+                <p class="feature-text">
+                    Get map "recommendations" in your skill range. You'll always
+                    have something challenging to play. The rating system will
+                    make sure it's mostly accurate. If it's not, then the
+                    outcome will make sure that it becomes more accurate over
+                    time.
+                </p>
+                <p class="feature-text">
+                    If you're not feeling the thrill of playing the ranked mode,
+                    then you can always play the unranked mode without worrying
+                    about your rating (coming soon).
                 </p>
             </div>
         </div>
-        <div class="play">
-            <div v-if="loggedIn == null">
-                <h2><a :href="loginUrl">LOGIN TO PLAY</a></h2>
+        <h2>
+            <div v-if="!loggedIn">
+                <a :href="loginUrl">LOGIN TO PLAY</a>
             </div>
             <div v-else>
-                <h2><router-link to="/play">PLAY</router-link></h2>
+                <router-link to="/play">CLICK TO PLAY</router-link>
             </div>
-        </div>
+        </h2>
     </div>
 </template>
 
 <script>
+import axios from "axios";
+import Number from "@/components/Elements/Number.vue";
 import config from "../config/config";
-import Number from "../components/Elements/ElementNumber.vue";
 
 export default {
-    components: {
-        Number
+    components: { Number },
+    data() {
+        return {
+            stats: null,
+        };
     },
     computed: {
         loginUrl() {
             return config.apiUrl + "/auth/quaver";
         },
         loggedIn() {
-            return this.$store.state.user.loggedInUser;
-        },
-        generalDatapoint() {
-            return this.$store.getters.currentGeneralDatapoint;
+            return this.$store.state.user !== null;
         },
     },
-    created() {
-        this.$store.dispatch("fetchGeneralDatapoints");
+    async created() {
+        const { data } = await axios.get("stats");
+        this.stats = data;
     },
 };
 </script>
 
 <style scoped>
-.sub {
-    text-align: center;
-}
 .home {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.title {
+    width: 100%;
+}
+#subtitle {
+    color: var(--foreground-sub-color);
+}
+.title > * {
     text-align: center;
 }
-.cols {
+.stats {
     display: flex;
+    align-items: center;
     flex-direction: row;
-}
-@media only screen and (max-width: 600px) {
-    .cols {
-        flex-direction: column;
-    }
-}
-.col {
-    flex: 1;
-    margin: 15px;
-}
-p {
-    font-family: Lexend, sans-serif;
-    text-align: justify;
-}
-.play {
-    margin: 10px;
-}
-.col > h3 {
-    margin: 5px;
-}
-.stats > .col > h4 {
-    margin-bottom: 5px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 .stat {
+    flex: 200px;
     text-align: center;
+}
+.stat-value {
+    margin-top: -10px;
+}
+.features {
+    display: flex;
+    align-items: top;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.feature {
+    flex: 300px;
+    margin: 25px;
+}
+.feature-icon {
+    height: 35px;
+    line-height: 35px;
 }
 </style>

@@ -1,3 +1,4 @@
+
 <template>
     <div class="banner" :style="style">
         <div class="excl-point">
@@ -31,8 +32,8 @@ export default {
             };
             let col = this.color in colors ? colors[this.color] : this.color;
             return `background-color: ${col}`;
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -49,12 +50,12 @@ export default {
 .banner-content > p {
     background-color: inherit;
     text-align: center;
-    color: #434343;
+    color: var(--background-color);
     font-family: Lexend Deca, sans-serif;
 }
 .excl-point > span {
     background-color: inherit;
-    color: #434343;
+    color: var(--background-color);
     font-size: 30px;
     padding: 10px;
 }

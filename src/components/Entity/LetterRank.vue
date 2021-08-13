@@ -1,14 +1,21 @@
 <template>
     <div class="letter-rank" :style="`background-color: ${color}`">
-        <div class="letter" :style="`background-color: ${color}`">{{ rank }}</div>
-        <div v-if="modifier != null" class="modifier" :style="`background-color: ${color}`">{{ modifier }}</div>
+        <div class="letter" :style="`background-color: ${color}`">
+            {{ rank }}
+        </div>
+        <div
+            v-if="modifier != null"
+            class="modifier"
+            :style="`background-color: ${color}`"
+        >
+            {{ modifier }}
+        </div>
     </div>
 </template>
 
 <script>
-
 export default {
-    name: "EntityLetterRank",
+    name: "LetterRank",
     props: {
         letterRank: String,
     },
@@ -64,9 +71,8 @@ export default {
             }
         },
     },
-}
+};
 </script>
-
 <style scoped>
 .letter-rank {
     width: 50px;
@@ -76,13 +82,13 @@ export default {
     align-items: center;
     justify-content: center;
 }
-
 .letter {
+    font-family: Lexend Deca;
     font-size: 25px;
-    color: #434343;
+    color: var(--background-color);
 }
 .modifier {
     font-size: 20px;
-    color: #434343;
+    color: var(--background-color);
 }
 </style>

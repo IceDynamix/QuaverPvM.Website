@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Faq from '../views/Faq.vue'
 import Play from '../views/Play.vue'
 import Leaderboards from '../views/Leaderboards.vue'
-import Random from "../views/Random";
+import Random from '../views/Random.vue'
 
 Vue.use(VueRouter);
 
@@ -16,7 +16,7 @@ const routes = [
     },
     {
         path: '/faq',
-        name: 'FAQ',
+        name: 'Frequently asked questions',
         component: Faq
     },
     {
@@ -33,7 +33,7 @@ const routes = [
         path: '/random',
         name: 'Random',
         component: Random
-    },
+    }
 ]
 
 const router = new VueRouter({
