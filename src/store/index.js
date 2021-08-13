@@ -33,7 +33,7 @@ export default new Vuex.Store({
                 }
             } catch (err) {
                 console.error(err.response.data.err);
-                Vue.toasted.show(err.response.data.err, { type: "error" });
+                Vue.toasted.show(err, { type: "error" });
             } finally {
                 commit("setMatchLoading", false);
             }
@@ -42,12 +42,16 @@ export default new Vuex.Store({
             commit("setMatchLoading", true);
             try {
                 const { data } = await axios.get("match/new");
-                let { match, map } = data
-                match.map = map;
-                commit("setMatch", match);
+                if (data.error) {
+                    Vue.toasted.show(data.error, { type: "error" });
+                } else {
+                    let { match, map } = data;
+                    match.map = map;
+                    commit("setMatch", match);
+                }
             } catch (err) {
                 console.error(err.response.data.err);
-                Vue.toasted.show(err.response.data.err, { type: "error" });
+
             } finally {
                 commit("setMatchLoading", false);
             }
@@ -64,5 +68,5 @@ export default new Vuex.Store({
             state.loading = loading;
         },
     },
-    plugins: [Vuex.createLogger()]
+    plugins: process.env.NODE_ENV === "production" ? [] : [Vuex.createLogger()]
 })
