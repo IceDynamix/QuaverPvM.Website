@@ -1,15 +1,21 @@
 <template>
     <div class="leaderboard">
         <div class="list">
+            <div v-if="loading">
+                <Spinner />
+            </div>
+            <div v-else-if="!loading && users.length === 0">
+                No users ranked so far...
+            </div>
             <div
                 class="user-container"
                 v-for="(user, index) in users"
                 :key="user.userId"
+                v-else
             >
                 <div class="rank light-font">#{{ index + 1 }}</div>
                 <User :user="user" class="user" />
             </div>
-            <div v-if="users.length === 0">No users ranked so far...</div>
         </div>
     </div>
 </template>
@@ -17,9 +23,10 @@
 <script>
 import User from "@/components/Entity/User.vue";
 import axios from "axios";
+import Spinner from "@/components/Elements/Spinner.vue";
 
 export default {
-    components: { User },
+    components: { User, Spinner },
     data() {
         return {
             users: [],
