@@ -59,8 +59,9 @@
                 </p>
                 <p class="feature-text">
                     If you're not feeling the thrill of playing the ranked mode,
-                    then you can always play the unranked mode without worrying
-                    about your rating (coming soon).
+                    then you can always play the
+                    <router-link to="/random">unranked mode</router-link>
+                    without worrying about your rating.
                 </p>
             </div>
         </div>

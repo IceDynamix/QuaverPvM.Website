@@ -1,14 +1,23 @@
 <template>
     <div class="random">
+        <div class="tutorial">
+            Enter the rating range you want to play and you'll get a random map!
+        </div>
         <div class="content-row">
             <div class="content-row input">
                 <input
                     v-model.number.lazy="rating"
                     placeholder="Rating"
                     id="rating"
+                    type="number"
                 />
                 <p>±</p>
-                <input v-model.number.lazy="rd" placeholder="RD" id="rd" />
+                <input
+                    v-model.number.lazy="rd"
+                    placeholder="RD"
+                    id="rd"
+                    type="number"
+                />
             </div>
             <div class="content-row extra">
                 <IconButton
@@ -41,12 +50,17 @@ export default {
         return {
             rating: null,
             rd: null,
-            map: {},
+            map: null,
             loading: false,
         };
     },
     methods: {
         async onRollClick() {
+            if (!this.rating || !this.rd) {
+                this.$toasted.show("Please enter values for Rating and RD!");
+                return;
+            }
+
             if (this.loading) {
                 this.$toasted.show("Already rolling!");
                 return;
@@ -60,7 +74,7 @@ export default {
                 },
             });
 
-            if (!map) this.$toasted.show("Already rolling!");
+            if (!map) this.$toasted.show("No map in rating range!");
             else this.map = map;
 
             this.loading = false;
@@ -102,8 +116,10 @@ p {
     flex: 1;
     text-align: left;
 }
-
 .map {
     margin: 25px;
+}
+.tutorial {
+    text-align: center;
 }
 </style>
