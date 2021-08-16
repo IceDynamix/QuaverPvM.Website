@@ -21,7 +21,6 @@
             <div class="info stats">
                 <div
                     class="stats-row"
-                    v-if="ranked"
                     v-tooltip.left="glickoTooltip"
                 >
                     <span class="left-col">
