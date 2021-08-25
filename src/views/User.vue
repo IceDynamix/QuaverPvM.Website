@@ -4,7 +4,6 @@
     </div>
     <div v-else-if="user === null">User not found</div>
     <div v-else>
-        <h3>Information</h3>
         <div class="content">
             <User :user="user" class="user" />
         </div>
