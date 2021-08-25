@@ -1,6 +1,9 @@
 <template>
     <div class="match-result">
-        <div class="icon-flex">
+        <div
+            class="icon-flex"
+            v-tooltip.right="`${match.result}, ${match.createdAt}`"
+        >
             <span
                 :style="`background-color: ${color}`"
                 class="material-icons result-icon"
