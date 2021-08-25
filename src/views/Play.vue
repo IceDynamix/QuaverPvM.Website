@@ -39,7 +39,7 @@
                 Your Rating Deviation (currently {{ user.rd.toFixed(0) }} RD) is
                 above 100, which means you're <b>unranked</b>. Once your RD is
                 below 100, you will receive a letter rank and appear on the
-                leaderboards (coming soon!).
+                leaderboards.
                 <!-- TODO Edit when leaderboards are out -->
             </div>
             <hr v-if="showTutorial || showUnranked" />
