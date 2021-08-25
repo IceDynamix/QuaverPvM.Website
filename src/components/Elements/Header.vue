@@ -9,9 +9,10 @@
                 <div class="login-content loggedIn" v-if="$store.state.user">
                     <p class="light-font">
                         Logged in as
-                        <a v-tooltip.left="'Profile page is coming soon!'">
-                            {{ $store.state.user.username }}
-                        </a>
+                        <router-link
+                            :to="`/user/${$store.state.user.userId}`"
+                            >{{ $store.state.user.username }}</router-link
+                        >
                     </p>
                     <a :href="logoutUrl">Logout</a>
                 </div>
