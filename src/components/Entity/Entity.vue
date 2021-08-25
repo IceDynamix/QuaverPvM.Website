@@ -19,10 +19,7 @@
         </div>
         <div>
             <div class="info stats">
-                <div
-                    class="stats-row"
-                    v-tooltip.left="glickoTooltip"
-                >
+                <div class="stats-row" v-tooltip.left="glickoTooltip">
                     <span class="left-col">
                         <Number :value="rating" />
                     </span>
@@ -84,9 +81,9 @@ export default {
             return `${100 * winPercentage.toFixed(2)}%`;
         },
         letterRankTooltip() {
-            if (this.rd > 100 || !percentile) return "Unranked";
-            const percentile = 100 * this.percentile.toFixed(1);
-            return `#${this.rank}, Top ${percentile}%`;
+            if (!this.ranked) return "Unranked";
+            if (this.percentile == null) return "";
+            return `#${this.rank}, Top ${100 * this.percentile.toFixed(1)}%`;
         },
         ranked() {
             return this.rd <= 100;
