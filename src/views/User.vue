@@ -9,7 +9,7 @@
         </div>
         <hr />
         <h3>Match History</h3>
-        <div class="content" v-if="matchHistory.length > 0">
+        <div class="content" v-if="matchHistory && matchHistory.length > 0">
             <div
                 class="match"
                 v-for="match in matchHistory"
@@ -42,8 +42,10 @@ export default {
         const params = { id: this.id };
         const userResponse = await axios.get("user", { params });
         this.user = userResponse.data;
-        const matchesResponse = await axios.get("user/matches", { params });
-        this.matchHistory = matchesResponse.data;
+        if (this.user) {
+            const matchesResponse = await axios.get("user/matches", { params });
+            this.matchHistory = matchesResponse.data;
+        }
         this.loading = false;
     },
 };
