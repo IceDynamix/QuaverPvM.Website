@@ -5,6 +5,7 @@ import Faq from '../views/Faq.vue'
 import Play from '../views/Play.vue'
 import Leaderboards from '../views/Leaderboards.vue'
 import Random from '../views/Random.vue'
+import User from '../views/User.vue'
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
         path: '/random',
         name: 'Random',
         component: Random
+    },
+    {
+        path: '/user/:id',
+        name: 'User',
+        component: User
     }
 ]
 
