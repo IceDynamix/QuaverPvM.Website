@@ -4,7 +4,7 @@
             <Header />
             <hr />
             <transition name="transition" mode="out-in">
-                <router-view />
+                <router-view :key="$route.fullPath" />
             </transition>
             <hr />
             <Footer />
