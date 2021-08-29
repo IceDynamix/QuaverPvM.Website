@@ -83,7 +83,7 @@ export default {
         letterRankTooltip() {
             if (!this.ranked) return "Unranked";
             if (this.percentile == null) return "";
-            return `#${this.rank}, Top ${100 * this.percentile.toFixed(1)}%`;
+            return `#${this.rank}, Top ${(100 * this.percentile).toFixed(1)}%`;
         },
         ranked() {
             return this.rd <= 100;
