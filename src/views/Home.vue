@@ -4,7 +4,7 @@
             <h1>QuaverPvM</h1>
             <p>
                 <i id="subtitle">
-                    The ultimate Player vs. Map experience based on
+                    The ultimate 4K Player vs. Map experience based on
                     <a href="https://quavergame.com/">Quaver</a>
                 </i>
             </p>
@@ -35,27 +35,33 @@
         </transition>
         <div class="features">
             <div class="col feature">
-                <h3>Rating System</h3>
+                <h3>Player/Map ELO</h3>
                 <p class="feature-text">
                     Imagine chess, where two players play against each other.
                     Each of them has a rating, that goes up or down depending on
-                    whether they win or lose. QuaverPvM uses that concept and
-                    applies it to a VSRG environment.
+                    whether they win or lose.
+                </p>
+                <p class="feature-text">
+                    QuaverPvM uses that concept and applies it to a VSRG
+                    environment, but instead of playing against another player,
+                    <b>you play against a map</b>.
                 </p>
                 <p class="feature-text">
                     You have a rating that goes up or down as you win or lose,
                     and the map also has a rating that goes up or down. The win
-                    condition in QuaverPvM is reaching 95%.
+                    condition in QuaverPvM is reaching 95% (S Rank).
                 </p>
             </div>
             <div class="col feature">
                 <h3>Skill Range</h3>
                 <p class="feature-text">
                     Get map "recommendations" in your skill range. You'll always
-                    have something challenging to play. The rating system will
-                    make sure it's mostly accurate. If it's not, then the
-                    outcome will make sure that it becomes more accurate over
-                    time.
+                    have something challenging to play.
+                </p>
+                <p class="feature-text">
+                    The rating system will make sure it's mostly accurate. If
+                    it's not, then the outcome will make sure that it becomes
+                    more accurate over time.
                 </p>
                 <p class="feature-text">
                     If you're not feeling the thrill of playing the ranked mode,
