@@ -66,7 +66,6 @@ export default {
     margin: 25px;
 }
 .rank {
-    flex: content;
     margin: 5px;
 }
 .user {

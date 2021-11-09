@@ -111,9 +111,6 @@ export default {
     max-width: 460px;
 }
 
-.img {
-    flex: content;
-}
 img {
     height: 50px;
     width: 50px;
