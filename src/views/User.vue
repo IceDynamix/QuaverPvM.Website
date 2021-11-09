@@ -8,6 +8,14 @@
             <User :user="user" class="user" />
         </div>
         <hr />
+        <h3>Best Wins</h3>
+        <div class="content" v-if="bestWins && bestWins.length > 0">
+            <div class="match" v-for="match in bestWins" :key="match.matchId">
+                <MatchResult :match="match" />
+            </div>
+        </div>
+        <div v-else class="content">No wins so far...</div>
+        <hr />
         <h3>Match History</h3>
         <div class="content" v-if="matchHistory && matchHistory.length > 0">
             <div
@@ -36,6 +44,7 @@ export default {
             loading: true,
             user: null,
             matchHistory: null,
+            bestWins: null,
         };
     },
     async created() {
@@ -45,6 +54,11 @@ export default {
         if (this.user) {
             const matchesResponse = await axios.get("user/matches", { params });
             this.matchHistory = matchesResponse.data;
+
+            const bestWinsResponse = await axios.get("user/bestwins", {
+                params,
+            });
+            this.bestWins = bestWinsResponse.data;
         }
         this.loading = false;
     },
