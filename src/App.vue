@@ -7,17 +7,15 @@
                 <router-view :key="$route.fullPath" />
             </transition>
             <hr />
-            <Footer />
         </div>
     </div>
 </template>
 
 <script>
 import Header from "@/components/Elements/Header.vue";
-import Footer from "@/components/Elements/Footer.vue";
 
 export default {
-    components: { Header, Footer },
+    components: { Header },
     created() {
         this.$store.dispatch("login");
     },

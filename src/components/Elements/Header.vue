@@ -28,15 +28,21 @@
                 content="In development mode"
             />
         </div>
+        <div>
+            <Navbar />
+        </div>
     </div>
 </template>
 
 <script>
 import config from "../../config/config";
 import Banner from "./Banner.vue";
+import Navbar from "./Navbar.vue";
+
 export default {
     components: {
         Banner,
+        Navbar,
     },
     computed: {
         loginUrl() {
