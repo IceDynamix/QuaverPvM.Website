@@ -8,7 +8,7 @@
             </div>
             <div class="info title">
                 <div class="main-title">
-                    <a :href="url" target="_blank" rel="noopener noreferrer">
+                    <a :href="url">
                         {{ title }}
                     </a>
                 </div>

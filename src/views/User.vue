@@ -7,6 +7,15 @@
         <div class="content">
             <User :user="user" class="user" />
         </div>
+        <div class="qlink">
+            <a
+                :href="`https://quavergame.com/user/${user.userId}`"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                User on quavergame.com
+            </a>
+        </div>
         <hr />
         <h3>Best Wins</h3>
         <div class="content" v-if="bestWins && bestWins.length > 0">

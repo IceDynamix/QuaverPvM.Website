@@ -5,12 +5,23 @@
     <div v-else-if="maps.length === 0">Map not found</div>
     <div v-else>
         <div class="content">
-            <Map
+            <div
+                class="map"
                 v-for="map in maps"
                 :key="`${map.mapId}x${map.mapRate}`"
-                :map="map"
-                class="map"
-            />
+            >
+                <Map :map="map" />
+            </div>
+
+            <div class="qlink">
+                <a
+                    :href="`https://quavergame.com/mapset/map/${maps[0].mapId}`"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Map on quavergame.com
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -39,4 +50,7 @@ export default {
 </script>
 
 <style>
+.qlink {
+    text-align: center;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
     <Entity
         :img="`${config.quaverCdnUrl}/mapsets/${map.mapsetId}.jpg`"
-        :url="`https://quavergame.com/mapset/map/${map.mapId}`"
+        :url="`/map/${map.mapId}`"
         :imgUrl="`quaver://map/${map.mapId}`"
         :imgTooltip="`Click to open in-game!`"
         :title="`${map.artist} - ${map.title}`"
