@@ -30,5 +30,8 @@
     "vue-template-compiler": "^2.6.11",
     "vue-toasted": "^1.1.28",
     "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.177"
   }
 }

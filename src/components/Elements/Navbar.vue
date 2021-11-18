@@ -18,6 +18,20 @@
         <div><router-link to="/leaderboards">Leaderboard</router-link></div>
         <div class="dropdown">
             <div>
+                Search
+                <span class="material-icons icon">expand_more</span>
+            </div>
+            <div class="dropdown-content">
+                <a href="/search/user">
+                    <div class="dropdown-item">User Search</div>
+                </a>
+                <a href="/search/map">
+                    <div class="dropdown-item">Map Search</div>
+                </a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <div>
                 Socials
                 <span class="material-icons icon">expand_more</span>
             </div>
