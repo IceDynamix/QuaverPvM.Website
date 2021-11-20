@@ -27,18 +27,21 @@
                 because of the maps chosen to get added to QuaverPvM.
             </p>
         </div>
+        <hr />
         <div class="entry">
             <h1>
                 Where can I submit feedback or find a community to talk about
                 QuaverPvM?
             </h1>
             <p>
-                You can refer to the Discord server at the bottom of the page.
+                You can refer to the Discord server linked in the navigation bar
+                of the page.
             </p>
         </div>
+        <hr />
         <div class="entry">
             <h1>
-                Will I gain more rating if I win with a large accuracy lead /
+                Will I gain more rating if I win with a large accuracy lead or a
                 higher rate?
             </h1>
             <p>
@@ -46,6 +49,7 @@
                 matter the accuracy or rate.
             </p>
         </div>
+        <hr />
         <div class="entry">
             <h1>How does the rating work? / What is Glicko or RD?</h1>
             <p>
@@ -57,6 +61,7 @@
                 thinks your rating is more accurate. RD increases over time.
             </p>
         </div>
+        <hr />
         <div class="entry">
             <h1>Why am I not on the leaderboard?</h1>
             <p>
@@ -65,6 +70,139 @@
                 appear on the leaderboards once you are ranked.
             </p>
         </div>
+        <hr />
+        <div class="entry">
+            <h1>I was ranked a while ago, so why am I unranked again?</h1>
+            <p>
+                The rating on QuaverPvM becomes more inaccurate over time,
+                because people can improve (or rust) outside of QuaverPvM.
+                Rating deviation represents rating accuracy, so it decays over
+                time to mimic that behavior. Remember that you're ranked while
+                your RD is below 100, so if your RD decays outside of 100 then
+                you will be considered unranked and removed from the
+                leaderboards.
+            </p>
+            <p>
+                The rate is roughly +0.6-0.8 RD per day, a player with 70 RD
+                (which means that the player has played a pretty good number of
+                matches recently) would become unranked in about 42 days of not
+                touching QuaverPvM.
+            </p>
+        </div>
+        <hr />
+        <div class="entry">
+            <h1>Are the maps added to the database by hand?</h1>
+            <p>
+                No, all maps that meet following conditions are added to the
+                database.
+            </p>
+            <ul>
+                <li>4K only (explained in the question below)</li>
+                <li>Map must be ranked</li>
+                <li>Map is between 2-5 minutes on 1.0x</li>
+                <li>Map has &lt; 60% LN</li>
+                <li>
+                    Map has no SVs in the map file (if the NSV mod becomes
+                    submittable then this will not apply)
+                </li>
+            </ul>
+        </div>
+        <hr />
+        <div class="entry">
+            <h1>Are you going to add QuaverPvM for 7k?</h1>
+            <p>
+                No. Don't get me wrong, I'm a 7k main myself, but there are
+                specific reasons why adding the 7k gamemode will not work out
+                and is generally not worth it.
+            </p>
+            <ol>
+                <li>
+                    <p>Not enough players to play matches</p>
+                    <p>
+                        The system needs a lot of matches and thus a lot of
+                        players to arrive at accurate map ratings. 4k barely has
+                        30 ranked players as of November 2021, while my goal is
+                        to have 100 until I can consider the ratings accurate.
+                        Think about how many players 7k will have.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Inaccurate initial ratings from the Quaver difficulty
+                        calculator
+                    </p>
+                    <p>
+                        In order to get to accurate ratings the fastest, you
+                        need good estimations for the initial rating. It reduces
+                        the amount of matches a map needs to get to its true
+                        rating. Additionally, if a map's initial rating is too
+                        high, then it will never be played and thus also never
+                        arrive at its true rating. The difficulty calculator is
+                        very inaccurate for 7k when compared to 4k, so relying
+                        on those values means its going to take ages until the
+                        map ratings are accurate.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        7k pattern complexity messes up the 0.8x-1.2x rate
+                        system
+                    </p>
+                    <p>
+                        Maps have a specific level of
+                        <i>complexity</i> that the player needs to learn to play
+                        first. This can refer to patterns like LN releases,
+                        inverse, or even specific rice patterns such as
+                        brackets. Playing a map outside your own level of
+                        complexity means you won't be able to play it,
+                        regardless of whether you play on downrates or not. Once
+                        you attain that level of complexity, you will be able to
+                        play it on any rate as long your raw speed allows it.
+                    </p>
+                    <p>
+                        This means that the rate system becomes massively
+                        inaccurate for maps based on complexity and probably
+                        needs to be thrown out the window, so maps are only
+                        playable on 1.0x rate. This restricts the amount of
+                        available maps.
+                    </p>
+                    <p>
+                        This problem does not appear in 4k, as you reach the
+                        required <i>complexity</i> to play any level of
+                        complexity relatively quickly. The highest level
+                        complexity I would consider to be relevant in 4k is
+                        inverse, very dense jacks and very dense
+                        jump/handstream, all of which are unplayable on any rate
+                        at first until practice the patterns individually which
+                        happens relatively early when compared to the highest
+                        level of complexity in 7k. Most of the mid to high level
+                        focus is about gaining raw speed in order to play those
+                        patterns.
+                    </p>
+                </li>
+                <li>
+                    <p>Not enough maps to play</p>
+                    <p>
+                        There is barely 1/3 the number of 7k maps that fit the
+                        aforementioned conditions in order to be added to the
+                        system. Additionally, there are barely any competitive
+                        maps in ranked. This means that there is going to be a
+                        very small pool of maps that don't test isolated high
+                        level skills, such as pure chordstream or chordjack,
+                        which are the most relevant to test overall skill.
+                    </p>
+                    <p>
+                        4k would have 5200+ maps including additional rates,
+                        while 7k would only have around 350 maps excluding
+                        additonal rates (as explained above).
+                        <i>This is not enough.</i>
+                        Would you be ok with playing the same 10 maps over and
+                        over? It wouldn't be a very fun experience.
+                    </p>
+                </li>
+            </ol>
+        </div>
+        <hr />
         <div class="entry">
             <h1>What does my letter rank mean?</h1>
             <p>
@@ -147,18 +285,7 @@
                 </div>
             </div>
         </div>
-        <div class="entry">
-            <h1>Are the maps added to the database randomly?</h1>
-            <p>
-                Yes and no. A specific set of filters have been implemented: 4K
-                only, map must be ranked, length between 2-5 minutes, &lt; 60%
-                LN and no SVs in the map file. The system chooses maps randomly
-                from this filtered pool of maps. The total pool covers around
-                2200 maps, from a subset is in the active matchmaking pool. The
-                initial rating of a map scales off its Quaver difficulty and its
-                initial RD is reduced to 200 as opposed to 350.
-            </p>
-        </div>
+        <hr />
         <div class="entry">
             <h1>I played against a map that was over/underrated in rating!</h1>
             <p>
@@ -178,7 +305,7 @@
 }
 h1 {
     text-align: left;
-    font-size: 18px;
+    font-size: 24px;
 }
 .entry > p {
     text-align: justify;
