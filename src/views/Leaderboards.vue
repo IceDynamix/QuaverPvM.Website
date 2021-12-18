@@ -32,10 +32,12 @@ export default {
             users: [],
             loading: false,
             page: 0,
+            full: false,
         };
     },
     created() {
         this.loadMore();
+        if (this.$route.query.full) this.full = true;
     },
     methods: {
         loadMore() {
@@ -43,7 +45,7 @@ export default {
 
             setTimeout(async () => {
                 const { data } = await axios.get("leaderboard", {
-                    params: { page: this.page },
+                    params: { page: this.page, full: this.full },
                 });
                 console.log(data);
                 this.users.push(...data);
