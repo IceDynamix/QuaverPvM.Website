@@ -194,7 +194,7 @@
                     <p>
                         4k would have 5200+ maps including additional rates,
                         while 7k would only have around 350 maps excluding
-                        additonal rates (as explained above).
+                        additional rates (as explained above).
                         <i>This is not enough.</i>
                         Would you be ok with playing the same 10 maps over and
                         over? It wouldn't be a very fun experience.
