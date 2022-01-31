@@ -20,11 +20,9 @@
                 correct rate.
             </p>
             <p>
-                Mirror mod is allowed. Rates below the provided map rate are not
-                allowed (higher rates are allowed). NF/NLN/FLN/INV mods and
-                pausing are not allowed, as those will make your play not submit
-                to the Quaver server. NSV is also not allowed, but not necessary
-                because of the maps chosen to get added to QuaverPvM.
+                Mirror and NSV mod are allowed. Rates below the provided map
+                rate are not allowed (higher rates are allowed). NF/NLN/FLN/INV
+                mods and pausing are not allowed.
             </p>
         </div>
         <hr />
@@ -101,10 +99,6 @@
                 <li>Map must be ranked</li>
                 <li>Map is between 2-5 minutes on 1.0x</li>
                 <li>Map has &lt; 60% LN</li>
-                <li>
-                    Map has no SVs in the map file (if the NSV mod becomes
-                    submittable then this will not apply)
-                </li>
             </ul>
         </div>
         <hr />
