@@ -10,7 +10,6 @@
         :rd="map.rd"
         :wins="map.wins"
         :matchesPlayed="map.matchesPlayed"
-        :percentile="map.percentile"
         :rank="map.rank"
         :letterRank="map.letterRank"
     />

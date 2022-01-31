@@ -66,7 +66,6 @@ export default {
         rd: Number,
         wins: Number,
         matchesPlayed: Number,
-        percentile: Number,
         rank: Number,
         letterRank: String,
     },
@@ -82,8 +81,7 @@ export default {
         },
         letterRankTooltip() {
             if (!this.ranked) return "Unranked";
-            if (this.percentile == null) return "";
-            return `#${this.rank}, Top ${(100 * this.percentile).toFixed(1)}%`;
+            return `#${this.rank}`;
         },
         ranked() {
             return this.rd <= 100;

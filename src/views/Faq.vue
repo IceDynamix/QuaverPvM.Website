@@ -206,81 +206,79 @@
         <div class="entry">
             <h1>What does my letter rank mean?</h1>
             <p>
-                Your letter rank is determined by the percentile you're
-                currently in. This means that for example at rank #15 of 200
-                players, you would be in the 7.5th percentile, which is
-                considered SS rank. The thresholds are the same as in
+                Your letter rank is determined by the rating you're currently
+                at. The letter ranks are the same as in
                 <a href="https://tetr.io/">Tetr.io</a> and as following:
             </p>
             <div class="ranks">
                 <div class="thresholds">
                     <div class="threshold">
                         <p>X</p>
-                        <p>1%</p>
+                        <p>2400</p>
                     </div>
                     <div class="threshold">
                         <p>U</p>
-                        <p>5%</p>
+                        <p>2100</p>
                     </div>
                     <div class="threshold">
                         <p>SS</p>
-                        <p>11%</p>
+                        <p>1800</p>
                     </div>
                     <div class="threshold">
                         <p>S+</p>
-                        <p>17%</p>
+                        <p>1600</p>
                     </div>
                     <div class="threshold">
                         <p>S</p>
-                        <p>23%</p>
+                        <p>1400</p>
                     </div>
                     <div class="threshold">
                         <p>S-</p>
-                        <p>30%</p>
+                        <p>1200</p>
                     </div>
                     <div class="threshold">
                         <p>A+</p>
-                        <p>38%</p>
+                        <p>1100</p>
                     </div>
                     <div class="threshold">
                         <p>A</p>
-                        <p>46%</p>
+                        <p>1000</p>
                     </div>
                     <div class="threshold">
                         <p>A-</p>
-                        <p>54%</p>
+                        <p>900</p>
                     </div>
                     <div class="threshold">
                         <p>B+</p>
-                        <p>62%</p>
+                        <p>800</p>
                     </div>
                     <div class="threshold">
                         <p>B</p>
-                        <p>70%</p>
+                        <p>700</p>
                     </div>
                     <div class="threshold">
                         <p>B-</p>
-                        <p>78%</p>
+                        <p>650</p>
                     </div>
                     <div class="threshold">
                         <p>C+</p>
-                        <p>84%</p>
+                        <p>600</p>
                     </div>
                     <div class="threshold">
                         <p>C</p>
-                        <p>90%</p>
+                        <p>575</p>
                     </div>
                     <div class="threshold">
                         <p>C-</p>
-                        <p>95%</p>
+                        <p>550</p>
                     </div>
                     <div class="threshold">
                         <p>D+</p>
-                        <p>97.5%</p>
+                        <p>525</p>
                     </div>
                     <div class="threshold">
                         <p>D</p>
-                        <p>100%</p>
+                        <p>500</p>
                     </div>
                 </div>
             </div>
