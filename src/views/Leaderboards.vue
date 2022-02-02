@@ -13,8 +13,15 @@
                 :key="user.userId"
                 v-else
             >
-                <div class="rank light-font">#{{ index + 1 }}</div>
+                <div class="rank light-font">#{{ index + 1 + page * 50 }}</div>
                 <User :user="user" class="user" />
+            </div>
+            <div style="text-align: center">
+                <p>
+                    <a :href="prevPage" v-if="page > 0"><b>←</b></a>
+                    {{ page + 1 }}
+                    <a :href="nextPage"><b>→</b></a>
+                </p>
             </div>
         </div>
     </div>
@@ -35,23 +42,23 @@ export default {
             full: false,
         };
     },
-    created() {
-        this.loadMore();
+    async created() {
+        if (this.$route.query.page)
+            this.page = parseInt(this.$route.query.page);
         if (this.$route.query.full) this.full = true;
+        const { data } = await axios.get("leaderboard", {
+            params: { page: this.page, full: this.full },
+        });
+        this.users = data;
     },
-    methods: {
-        loadMore() {
-            this.loading = true;
-
-            setTimeout(async () => {
-                const { data } = await axios.get("leaderboard", {
-                    params: { page: this.page, full: this.full },
-                });
-                console.log(data);
-                this.users.push(...data);
-                this.page++;
-                this.loading = false;
-            }, 1000);
+    computed: {
+        prevPage() {
+            let index = this.page - 1;
+            return `/leaderboards?page=${index}`;
+        },
+        nextPage() {
+            let index = this.page + 1;
+            return `/leaderboards?page=${index}`;
         },
     },
 };

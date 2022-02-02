@@ -38,13 +38,104 @@
         </div>
         <hr />
         <div class="entry">
+            <h1>What does my letter rank mean?</h1>
+            <p>
+                Your letter rank is determined by the rating you're currently
+                at. The letter ranks are the same as in
+                <a href="https://tetr.io/">Tetr.io</a> and as following:
+            </p>
+            <div class="ranks">
+                <div class="thresholds">
+                    <div class="threshold">
+                        <p>X</p>
+                        <p>2400</p>
+                    </div>
+                    <div class="threshold">
+                        <p>U</p>
+                        <p>2100</p>
+                    </div>
+                    <div class="threshold">
+                        <p>SS</p>
+                        <p>1800</p>
+                    </div>
+                    <div class="threshold">
+                        <p>S+</p>
+                        <p>1600</p>
+                    </div>
+                    <div class="threshold">
+                        <p>S</p>
+                        <p>1400</p>
+                    </div>
+                    <div class="threshold">
+                        <p>S-</p>
+                        <p>1200</p>
+                    </div>
+                    <div class="threshold">
+                        <p>A+</p>
+                        <p>1100</p>
+                    </div>
+                    <div class="threshold">
+                        <p>A</p>
+                        <p>1000</p>
+                    </div>
+                    <div class="threshold">
+                        <p>A-</p>
+                        <p>900</p>
+                    </div>
+                    <div class="threshold">
+                        <p>B+</p>
+                        <p>800</p>
+                    </div>
+                    <div class="threshold">
+                        <p>B</p>
+                        <p>700</p>
+                    </div>
+                    <div class="threshold">
+                        <p>B-</p>
+                        <p>650</p>
+                    </div>
+                    <div class="threshold">
+                        <p>C+</p>
+                        <p>600</p>
+                    </div>
+                    <div class="threshold">
+                        <p>C</p>
+                        <p>575</p>
+                    </div>
+                    <div class="threshold">
+                        <p>C-</p>
+                        <p>550</p>
+                    </div>
+                    <div class="threshold">
+                        <p>D+</p>
+                        <p>525</p>
+                    </div>
+                    <div class="threshold">
+                        <p>D</p>
+                        <p>500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="entry">
+            <h1>I played against a map that was over/underrated in rating!</h1>
+            <p>
+                This happens. Remember, a map's initial rating scales off Quaver
+                difficulty rating, so it's as accurate as that when it hasn't
+                played against anyone. It will get more accurate as more players
+                play against it, so please play more!
+            </p>
+        </div>
+        <hr />
+        <div class="entry">
             <h1>
                 Will I gain more rating if I win with a large accuracy lead or a
                 higher rate?
             </h1>
             <p>
                 No, the Glicko-2 system considers each win/loss as the same, no
-                matter the accuracy or rate.
+                matter the accuracy or rate. Just aim for the S rank.
             </p>
         </div>
         <hr />
@@ -63,39 +154,20 @@
         <div class="entry">
             <h1>Why am I not on the leaderboard?</h1>
             <p>
-                You need to play until you have less than 100 RD for your rating
+                You need to play until you have played 10 maps for your rating
                 to be considered accurate enough to have you ranked. You will
                 appear on the leaderboards once you are ranked.
             </p>
         </div>
         <hr />
         <div class="entry">
-            <h1>I was ranked a while ago, so why am I unranked again?</h1>
-            <p>
-                The rating on QuaverPvM becomes more inaccurate over time,
-                because people can improve (or rust) outside of QuaverPvM.
-                Rating deviation represents rating accuracy, so it decays over
-                time to mimic that behavior. Remember that you're ranked while
-                your RD is below 100, so if your RD decays outside of 100 then
-                you will be considered unranked and removed from the
-                leaderboards.
-            </p>
-            <p>
-                The rate is roughly +0.6-0.8 RD per day, a player with 70 RD
-                (which means that the player has played a pretty good number of
-                matches recently) would become unranked in about 42 days of not
-                touching QuaverPvM.
-            </p>
-        </div>
-        <hr />
-        <div class="entry">
             <h1>Are the maps added to the database by hand?</h1>
             <p>
-                No, all maps that meet following conditions are added to the
-                database.
+                No, I automatically add all maps that meet following conditions
+                are added to the database in regular intervals:
             </p>
             <ul>
-                <li>4K only (explained in the question below)</li>
+                <li>4K only (7k is explained in the question below)</li>
                 <li>Map must be ranked</li>
                 <li>Map is between 2-5 minutes on 1.0x</li>
                 <li>Map has &lt; 60% LN</li>
@@ -195,97 +267,6 @@
                     </p>
                 </li>
             </ol>
-        </div>
-        <hr />
-        <div class="entry">
-            <h1>What does my letter rank mean?</h1>
-            <p>
-                Your letter rank is determined by the rating you're currently
-                at. The letter ranks are the same as in
-                <a href="https://tetr.io/">Tetr.io</a> and as following:
-            </p>
-            <div class="ranks">
-                <div class="thresholds">
-                    <div class="threshold">
-                        <p>X</p>
-                        <p>2400</p>
-                    </div>
-                    <div class="threshold">
-                        <p>U</p>
-                        <p>2100</p>
-                    </div>
-                    <div class="threshold">
-                        <p>SS</p>
-                        <p>1800</p>
-                    </div>
-                    <div class="threshold">
-                        <p>S+</p>
-                        <p>1600</p>
-                    </div>
-                    <div class="threshold">
-                        <p>S</p>
-                        <p>1400</p>
-                    </div>
-                    <div class="threshold">
-                        <p>S-</p>
-                        <p>1200</p>
-                    </div>
-                    <div class="threshold">
-                        <p>A+</p>
-                        <p>1100</p>
-                    </div>
-                    <div class="threshold">
-                        <p>A</p>
-                        <p>1000</p>
-                    </div>
-                    <div class="threshold">
-                        <p>A-</p>
-                        <p>900</p>
-                    </div>
-                    <div class="threshold">
-                        <p>B+</p>
-                        <p>800</p>
-                    </div>
-                    <div class="threshold">
-                        <p>B</p>
-                        <p>700</p>
-                    </div>
-                    <div class="threshold">
-                        <p>B-</p>
-                        <p>650</p>
-                    </div>
-                    <div class="threshold">
-                        <p>C+</p>
-                        <p>600</p>
-                    </div>
-                    <div class="threshold">
-                        <p>C</p>
-                        <p>575</p>
-                    </div>
-                    <div class="threshold">
-                        <p>C-</p>
-                        <p>550</p>
-                    </div>
-                    <div class="threshold">
-                        <p>D+</p>
-                        <p>525</p>
-                    </div>
-                    <div class="threshold">
-                        <p>D</p>
-                        <p>500</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr />
-        <div class="entry">
-            <h1>I played against a map that was over/underrated in rating!</h1>
-            <p>
-                This happens. Remember, a map's initial rating scales off Quaver
-                difficulty rating, so it's as accurate as that when it hasn't
-                played against anyone. It will get more accurate as more players
-                play against it, so please play more!
-            </p>
         </div>
     </div>
 </template>

@@ -17,8 +17,8 @@
                             After getting matched, you have 10 minutes to submit
                             an S rank play on the map. Make sure you're playing
                             the correct rate, shown next to the difficulty name!
-                            Mirror and higher rates are allowed, anything else
-                            (including pausing) is not.
+                            <b>Mirror, NSV, and higher rates are allowed</b>,
+                            anything else (including pausing) is not.
                         </li>
                         <li>
                             Once your score is submitted to Quaver, you need to
@@ -47,9 +47,7 @@
             </div>
             <hr v-if="showTutorial && showUnranked" />
             <div class="flavor" v-if="showUnranked">
-                Your Rating Deviation (currently {{ user.rd.toFixed(0) }} RD) is
-                above 100, which means you're <b>unranked</b>. Your RD will
-                decrease with every match. Once your RD is below 100, you will
+                Once you have played 10 matches, you will be considered ranked,
                 receive a letter rank and appear on the leaderboards.
             </div>
             <hr v-if="showUnranked && !showTutorial" />
@@ -84,7 +82,9 @@ export default {
         },
         showUnranked() {
             return (
-                this.user && this.user.rd > 100 && this.user.matchesPlayed > 0
+                this.user &&
+                this.user.matchesPlayed > 0 &&
+                this.user.matchesPlayed < 10
             );
         },
     },

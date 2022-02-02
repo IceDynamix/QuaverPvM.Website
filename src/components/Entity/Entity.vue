@@ -84,7 +84,7 @@ export default {
             return `#${this.rank}`;
         },
         ranked() {
-            return this.rd <= 100;
+            return this.matchesPlayed >= 10;
         },
     },
 };
