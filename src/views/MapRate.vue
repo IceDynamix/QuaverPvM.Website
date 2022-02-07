@@ -36,11 +36,12 @@
 
 <script>
 import Map from "@/components/Entity/Map.vue";
+import RatingPlot from "@/components/Entity/RatingPlot.vue";
 import Spinner from "@/components/Elements/Spinner.vue";
 import axios from "axios";
 
 export default {
-    components: { Map, Spinner },
+    components: { Map, Spinner, RatingPlot },
     data() {
         return {
             id: this.$route.params.id,
