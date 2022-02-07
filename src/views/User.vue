@@ -17,6 +17,12 @@
             </a>
         </div>
         <hr />
+        <h3>Rating Plot</h3>
+        <div class="content" v-if="user.history && user.history.length > 0">
+            <RatingPlot :datapoints="user.history" :height="100" />
+        </div>
+        <div v-else class="content">No datapoints to plot...</div>
+        <hr />
         <h3>Best Wins</h3>
         <div class="content" v-if="bestWins && bestWins.length > 0">
             <div class="match" v-for="match in bestWins" :key="match.matchId">
@@ -41,12 +47,13 @@
 
 <script>
 import User from "@/components/Entity/User.vue";
+import RatingPlot from "@/components/Entity/RatingPlot.vue";
 import MatchResult from "@/components/Match/MatchResult.vue";
 import Spinner from "@/components/Elements/Spinner.vue";
 import axios from "axios";
 
 export default {
-    components: { User, Spinner, MatchResult },
+    components: { User, Spinner, MatchResult, RatingPlot },
     data() {
         return {
             id: this.$route.params.id,

@@ -15,6 +15,12 @@
                 </router-link>
             </div>
             <hr />
+            <h3>Rating Plot</h3>
+            <div class="content" v-if="map.history && map.history.length > 0">
+                <RatingPlot :datapoints="map.history" :height="100" />
+            </div>
+            <div v-else class="content">No datapoints to plot...</div>
+            <hr />
             <div class="qlink">
                 <a
                     :href="`https://quavergame.com/mapset/map/${map.mapId}`"
