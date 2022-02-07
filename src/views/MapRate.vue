@@ -2,20 +2,22 @@
     <div v-if="loading">
         <Spinner />
     </div>
-    <div v-else-if="maps.length === 0">Map not found</div>
+    <div v-else-if="!map">Map not found</div>
     <div v-else>
         <div class="content">
-            <div
-                class="map"
-                v-for="map in maps"
-                :key="`${map.mapId}x${map.mapRate}`"
-            >
+            <div class="map">
                 <Map :map="map" />
             </div>
             <hr />
             <div class="qlink">
+                <router-link :to="`/map/${map.mapId}`">
+                    All map rates
+                </router-link>
+            </div>
+            <hr />
+            <div class="qlink">
                 <a
-                    :href="`https://quavergame.com/mapset/map/${maps[0].mapId}`"
+                    :href="`https://quavergame.com/mapset/map/${map.mapId}`"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -36,14 +38,15 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
+            rate: this.$route.params.rate,
             loading: true,
-            maps: [],
+            map: null,
         };
     },
     async created() {
-        const params = { id: this.id, all: true };
+        const params = { id: this.id, rate: this.rate };
         const mapResponse = await axios.get("map", { params });
-        this.maps = mapResponse.data;
+        this.map = mapResponse.data;
         this.loading = false;
     },
 };

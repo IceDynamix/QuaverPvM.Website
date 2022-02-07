@@ -7,6 +7,7 @@ import Leaderboards from "../views/Leaderboards.vue"
 import Random from "../views/Random.vue"
 import User from "../views/User.vue"
 import Map from "../views/Map.vue"
+import MapRate from "../views/MapRate.vue"
 import MapSearch from "../views/SearchMap.vue"
 import UserSearch from "../views/SearchUser.vue"
 
@@ -47,6 +48,11 @@ const routes = [
         path: "/map/:id",
         name: "Map",
         component: Map
+    },
+    {
+        path: "/map/:id/:rate",
+        name: "MapRate",
+        component: MapRate
     },
     {
         path: "/search/map",
