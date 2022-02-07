@@ -3,7 +3,8 @@ import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
 import Faq from "../views/Faq.vue"
 import Play from "../views/Play.vue"
-import Leaderboards from "../views/Leaderboards.vue"
+import UserLeaderboards from "../views/UserLeaderboards.vue"
+import MapLeaderboards from "../views/MapLeaderboards.vue"
 import Random from "../views/Random.vue"
 import User from "../views/User.vue"
 import Map from "../views/Map.vue"
@@ -30,9 +31,14 @@ const routes = [
         component: Play
     },
     {
-        path: "/leaderboards",
-        name: "Leaderboards",
-        component: Leaderboards
+        path: "/leaderboards/user",
+        name: "User Leaderboards",
+        component: UserLeaderboards
+    },
+    {
+        path: "/leaderboards/map",
+        name: "Map Leaderboards",
+        component: MapLeaderboards
     },
     {
         path: "/random",

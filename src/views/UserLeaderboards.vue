@@ -16,13 +16,7 @@
                     </div>
                     <User :user="user" class="user" />
                 </div>
-                <div style="text-align: center">
-                    <p>
-                        <a :href="prevPage" v-if="page > 0"><b>←</b></a>
-                        {{ page + 1 }}
-                        <a :href="nextPage"><b>→</b></a>
-                    </p>
-                </div>
+                <PageSwitcher :page="page" :forwards="users.length == 50" />
             </div>
         </div>
     </div>
@@ -30,11 +24,12 @@
 
 <script>
 import User from "@/components/Entity/User.vue";
+import PageSwitcher from "@/components/Elements/PageSwitcher.vue";
 import axios from "axios";
 import Spinner from "@/components/Elements/Spinner.vue";
 
 export default {
-    components: { User, Spinner },
+    components: { User, Spinner, PageSwitcher },
     data() {
         return {
             users: [],
@@ -57,16 +52,6 @@ export default {
 
         this.users = data;
         this.loading = false;
-    },
-    computed: {
-        prevPage() {
-            let index = this.page - 1;
-            return `/leaderboards?page=${index}`;
-        },
-        nextPage() {
-            let index = this.page + 1;
-            return `/leaderboards?page=${index}`;
-        },
     },
 };
 </script>

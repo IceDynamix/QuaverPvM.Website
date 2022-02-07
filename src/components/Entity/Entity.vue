@@ -107,7 +107,7 @@ export default {
 }
 
 .info-container {
-    max-width: 460px;
+    max-width: 400px;
 }
 
 img {

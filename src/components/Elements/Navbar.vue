@@ -15,7 +15,20 @@
             </div>
         </div>
         <div><router-link to="/faq">FAQ</router-link></div>
-        <div><router-link to="/leaderboards">Leaderboard</router-link></div>
+        <div class="dropdown">
+            <div>
+                Leaderboards
+                <span class="material-icons icon">expand_more</span>
+            </div>
+            <div class="dropdown-content">
+                <router-link to="/leaderboards/user">
+                    <div class="dropdown-item">Users</div>
+                </router-link>
+                <router-link to="/leaderboards/map">
+                    <div class="dropdown-item">Maps</div>
+                </router-link>
+            </div>
+        </div>
         <div class="dropdown">
             <div>
                 Search
