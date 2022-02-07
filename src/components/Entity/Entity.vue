@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { glickoToQr } from "@/ranks.js";
 import Number from "@/components/Elements/Number.vue";
 import LetterRank from "@/components/Entity/LetterRank.vue";
 
@@ -71,7 +72,7 @@ export default {
     },
     computed: {
         glickoTooltip() {
-            const qr = Math.sqrt(Math.max(0, this.rating - 500) / 1.28);
+            const qr = glickoToQr(this.rating);
             return `Glicko rating, cv. ${qr.toFixed(2)}QR`;
         },
         wlTooltip() {
